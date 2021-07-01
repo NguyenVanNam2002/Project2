@@ -60,3 +60,5 @@ add foreign key (ten_tai_khoan) references account_client(ten_tai_khoan);
 
 alter table older
 add foreign key (ma_sp) REFERENCES products(ma_sp);
+
+SELECT * FROM account_client;
