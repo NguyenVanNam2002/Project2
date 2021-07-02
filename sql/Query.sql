@@ -39,8 +39,8 @@ CREATE TABLE account_qtv(
 );
 
 CREATE TABLE account_client(
-	ten_tai_khoan VARCHAR(40) PRIMARY KEY ,
-	mat_khau VARCHAR(24) NOT NULL ,
+	accounts VARCHAR(40) PRIMARY KEY ,
+	passwords VARCHAR(255) NOT NULL ,
 	nick_name VARCHAR(255) NOT NULL ,
 	phone VARCHAR(255) NOT NULL ,
 	address VARCHAR(255) NOT null

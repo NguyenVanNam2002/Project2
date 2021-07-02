@@ -11,4 +11,5 @@ package Project.Data;
  */
 public interface ProjectSignUpDAP {
     public ProjectSignUp insert(ProjectSignUp insert);
+    public boolean Login(ProjectSignUp account);
 }

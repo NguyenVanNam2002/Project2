@@ -20,7 +20,7 @@ import javafx.stage.Stage;
 public class Nagatice {
     public static final String login_FXML = "Login.fxml";
     public static final String sing_up_FXML = "SignUp.fxml";
-
+    public static final String go_FXML = "GoGo.fxml";
     private FXMLLoader loader;
     private Stage stage = null;
     
@@ -63,6 +63,11 @@ public class Nagatice {
     public void goSingup() throws IOException {
         this.goTo(sing_up_FXML);
     }
+    
+     public void goGo() throws IOException {
+        this.goTo(go_FXML);
+    }
+    
     
     
    

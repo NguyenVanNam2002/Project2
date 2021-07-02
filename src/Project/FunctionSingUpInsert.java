@@ -13,11 +13,14 @@ import com.jfoenix.controls.JFXPasswordField;
 import com.jfoenix.controls.JFXTextField;
 import com.jfoenix.validation.RequiredFieldValidator;
 import java.io.IOException;
+import java.math.BigInteger;
+import java.security.MessageDigest;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.text.Text;
+import javax.print.DocFlavor;
 
 /**
  *
@@ -97,7 +100,7 @@ public class FunctionSingUpInsert {
         ProjectSignUp sign = new ProjectSignUp();
         
         sign.setAccount(account.getText());
-        sign.setPassword(password.getText());
+        sign.setPassword(md5(password.getText()));
         sign.setName(name.getText());
         sign.setPhone(phone.getText());
         sign.setAddress(address.getText());
@@ -131,8 +134,8 @@ public class FunctionSingUpInsert {
         }else{
             error2.setText("");
         }
-        if(account.getText().length() < 6 ){
-            error2.setText("Account more than 6");
+        if(account.getText().length() < 10 ){
+            error2.setText("Account more than 10");
             return false; 
         }else{
             error2.setText("");
@@ -187,20 +190,21 @@ public class FunctionSingUpInsert {
         }else{
             error4.setText("");
         }
-        if(phone.getText().length() != 9 ){
-            error4.setText("Your Phone Number not equals 9");
+        if(phone.getText().length() != 10 ){
+            error4.setText("Your Phone Number not equals 10");
             return false; 
         }else{
             error4.setText("");
         }
-        if(!phone.getText().substring(0, 2).contentEquals("09") || !phone.getText().substring(0, 2).contentEquals("03")
-         ||  !phone.getText().substring(0, 2).contentEquals("08") || !phone.getText().substring(0, 2).contentEquals("07")
-         || !phone.getText().substring(0, 2).contentEquals("05") 
+        if(phone.getText().substring(0, 2).contentEquals("09") || phone.getText().substring(0, 2).contentEquals("03")
+         ||  phone.getText().substring(0, 2).contentEquals("08") || phone.getText().substring(0, 2).contentEquals("07")
+         || phone.getText().substring(0, 2).contentEquals("05") 
          ){
+            error4.setText("");
+        }else{
             error4.setText("phone numbers starting with 09 , 08 , 07 , 05 and 03");
             return false; 
-        }else{
-            error4.setText("");
+            
         }
         
         if(address.getText().isEmpty()){
@@ -215,14 +219,28 @@ public class FunctionSingUpInsert {
         }else{
             error5.setText("");
         }
-        if(!address.getText().contains("Ha Noi") || !address.getText().contains("ha noi")){
+        if(address.getText().contains("Ha Noi") || address.getText().contains("ha noi")){
+             error5.setText("");
+        }else{
             error5.setText("You are too far from Hanoi.");
             return false; 
-        }else{
-            error5.setText("");
+        }
+        return true;
+    }
+    
+    private String md5(String a){
+        try {
+            MessageDigest digs =  MessageDigest.getInstance("MD5");
+            byte[] messageDigest = digs.digest(a.getBytes());
+            BigInteger number = new BigInteger(1,messageDigest);
+            String hashtext = number.toString(16);
+            while(hashtext.length() <32 ){
+                hashtext = "0"+ hashtext;
+            }
+            return hashtext;
+        } catch (Exception e) {
         }
         
-        
-        return true;
+        return a;
     }
 }

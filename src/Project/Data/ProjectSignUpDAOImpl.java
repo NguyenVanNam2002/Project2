@@ -22,7 +22,7 @@ public class ProjectSignUpDAOImpl implements ProjectSignUpDAP{
     
     public  ProjectSignUp insert(ProjectSignUp inserts){
         
-        String sql = "INSERT into account_client (ten_tai_khoan,mat_khau,nick_name, phone , address)"
+        String sql = "INSERT into account_client (accounts,passwords,nick_name, phone , address)"
                 + "VALUES (?, ?, ?, ?, ?)";
         ResultSet key = null;
         try (
@@ -52,4 +52,31 @@ public class ProjectSignUpDAOImpl implements ProjectSignUpDAP{
             return null;
         }
      }
+    
+    
+    public boolean Login(ProjectSignUp account){
+        String sql = "SELECT * FROM account_client WHERE accounts = ? and passwords =?";
+        try (
+            Connection conn = DbProject.getConnection(database);
+            PreparedStatement stmt = 
+                    conn.prepareStatement(sql);
+                ) {
+            
+            stmt.setString(1, account.getAccount());
+            stmt.setString(2, account.getPassword());
+            
+            ResultSet rs = stmt.executeQuery();
+            if (rs.next()) {
+               
+                return true;
+            } else {
+                 return false;
+            }  
+        } catch (Exception e) {
+            return false;
+        }
+    
+    
+    
+    }
 }
