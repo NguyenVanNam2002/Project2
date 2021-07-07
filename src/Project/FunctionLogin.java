@@ -20,6 +20,8 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
+import javafx.scene.control.ComboBox;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
 
 /**
@@ -27,7 +29,8 @@ import javafx.scene.text.Text;
  * @author Admin
  */
 public class FunctionLogin {
-    
+    @FXML
+    private AnchorPane a;
     private ProjectSignUpDAP psd = new ProjectSignUpDAOImpl();
     
     @FXML
@@ -48,16 +51,30 @@ public class FunctionLogin {
     @FXML
     private Text error1;
     @FXML
+    private Text errors5;
+    @FXML
+    private ComboBox<String> Sign;
+    @FXML
     void btnLogin(ActionEvent event) throws IOException {
         try{
             if(Validate()){
                 ProjectSignUp login = extractSignUpFromFields();
                 boolean requierd = psd.Login(login);
+                boolean Requierd = psd.LoginAdmin(login);
                 if(requierd){
-                    Nagatice.getInstance().goGo();
-                }
-                else{
-                    errors.setText("null");
+                    if(Sign.getSelectionModel().getSelectedItem().toString() == "Admin"){
+                        errors5.setText("Bạn không có quyền hạn");
+                    }else if(Sign.getSelectionModel().getSelectedItem().toString() == "Client"){
+                        Nagatice.getInstance().goToClient();
+                    }
+                }else if(Requierd){
+                    if(Sign.getSelectionModel().getSelectedItem().toString() == "Admin"){
+                        Nagatice.getInstance().goAdmin();
+                    }else if(Sign.getSelectionModel().getSelectedItem().toString() == "Client"){
+                        Nagatice.getInstance().goToClient();
+                    }  
+                } else{
+                    errors5.setText("Này anh bạn : tài khoản và mật khẩu sai rồi");
                 }
             }
         }catch(Exception  e){
@@ -91,8 +108,8 @@ public class FunctionLogin {
         }else{
             errors.setText("");
         }
-        if(account.getText().length() > 25 ){
-            errors.setText("Account less than 25");
+        if(account.getText().length() > 40 ){
+            errors.setText("Account less than 40");
             return false; 
         }else{
             errors.setText("");
@@ -148,7 +165,11 @@ public class FunctionLogin {
        
         return sign;
     }
-    
+    public void initialize() {
+        System.out.println("#Login initialized!");
+        Sign.getItems().add("Client");
+        Sign.getItems().add("Admin");
+    }
     private String md5(String a){
         try {
             MessageDigest digs =  MessageDigest.getInstance("MD5");

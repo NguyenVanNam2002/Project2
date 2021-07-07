@@ -6,59 +6,52 @@ USE snack_shop;
 
 
 CREATE TABLE category(
-	ma_dm INT AUTO_INCREMENT PRIMARY KEY,
-	ten_dm VARCHAR(255) NOT null
+	CatID INT AUTO_INCREMENT PRIMARY KEY,
+	Cat_name VARCHAR(255) NOT null
 );
 
 CREATE TABLE products(
-	ma_sp INT AUTO_INCREMENT PRIMARY KEY ,
-	ma_dm INT NOT NULL ,
-	ten_sp VARCHAR(255) NOT NULL,
-	gia_ca int NOT NULL ,
-	thuoc_tinh VARCHAR(255) NOT NULL ,
+	ProductID INT AUTO_INCREMENT PRIMARY KEY ,
+	CatID INT NOT NULL ,
+	Product_name VARCHAR(255) NOT NULL,
+	Pice int NOT NULL ,
+	Properties VARCHAR(255) NOT NULL ,
 	image VARCHAR(255) NOT NULL
 
 );
 alter table products
-add foreign key (ma_dm) references category(ma_dm);
+add foreign KEY (CatID) references category(CatID);
 
 CREATE TABLE feedback(
-	ma_fb INT AUTO_INCREMENT PRIMARY KEY ,
-	noi_dung TEXT NOT NULL ,
-	ma_sp INT 
+	FbID INT AUTO_INCREMENT PRIMARY KEY ,
+	Content TEXT NOT NULL ,
+	ProductID INT 
 );
 alter table feedback
-add foreign key (ma_sp) references products(ma_sp);
+add foreign key (ProductID) references products(ProductID);
 
-CREATE TABLE account_qtv(
-	ten_tk VARCHAR(40) PRIMARY KEY ,
-	mat_khau VARCHAR(25) NOT NULL ,
-	DoB VARCHAR(10) NOT NULL ,
-	ten_qtv VARCHAR(255) NOT null
+CREATE TABLE account_admin(
+	accountadmin VARCHAR(40) PRIMARY KEY ,
+	passwordadmin VARCHAR(32) NOT NULL ,
+	DoB date NOT NULL ,
+	nameadmin VARCHAR(55) NOT null
 
 );
 
+INSERT INTO account_admin(accountadmin , passwordadmin,DoB , nameadmin)
+VALUES ('Conzin@gmail.com','cb44f839a193bc118e6314e6dacb0da8',"1970-08-06",'Nguyen Van B');
+
+SELECT * FROM account_admin;
 CREATE TABLE account_client(
 	accounts VARCHAR(40) PRIMARY KEY ,
-	passwords VARCHAR(255) NOT NULL ,
-	nick_name VARCHAR(255) NOT NULL ,
-	phone VARCHAR(255) NOT NULL ,
-	address VARCHAR(255) NOT null
+	passwords VARCHAR(33) NOT NULL ,
+	nick_name VARCHAR(55) NOT NULL ,
+	phone VARCHAR(10) NOT NULL ,
+	address VARCHAR(55) NOT null
 );
 
-CREATE TABLE older(
-	ma_older INT AUTO_INCREMENT PRIMARY KEY ,
-	ten_tai_khoan VARCHAR(40) NOT NULL ,
-	ma_sp int , 
-	gia_ca INT NOT NULL ,
-	datetime_older VARCHAR(40) NOT null
-);
-
-alter table older
-add foreign key (ten_tai_khoan) references account_client(ten_tai_khoan);
+DROP TABLE account_client;
 
 
-alter table older
-add foreign key (ma_sp) REFERENCES products(ma_sp);
 
 SELECT * FROM account_client;

@@ -11,16 +11,12 @@ import Project.Data.ProjectSignUpDAP;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXPasswordField;
 import com.jfoenix.controls.JFXTextField;
-import com.jfoenix.validation.RequiredFieldValidator;
 import java.io.IOException;
 import java.math.BigInteger;
 import java.security.MessageDigest;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.text.Text;
-import javax.print.DocFlavor;
 
 /**
  *
@@ -92,7 +88,7 @@ public class FunctionSingUpInsert {
         }
     }
     public void initialize() {
-        System.out.println("#Insert Teacher initialized!");
+        System.out.println("#Insert Customer initialized!");
    
     }
       
@@ -140,8 +136,8 @@ public class FunctionSingUpInsert {
         }else{
             error2.setText("");
         }
-        if(account.getText().length() > 25 ){
-            error2.setText("Account less than 25");
+        if(account.getText().length() > 40 ){
+            error2.setText("Account less than 40");
             return false; 
         }else{
             error2.setText("");

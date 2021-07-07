@@ -5,11 +5,16 @@
  */
 package Project.Data;
 
+import javafx.collections.ObservableList;
+
 /**
  *
  * @author Admin
  */
 public interface ProjectSignUpDAP {
+    public  ObservableList<ProjectSignUp> selectAll();
     public ProjectSignUp insert(ProjectSignUp insert);
     public boolean Login(ProjectSignUp account);
+    public boolean LoginAdmin(ProjectSignUp account);
+    public  boolean delete(ProjectSignUp delete);
 }

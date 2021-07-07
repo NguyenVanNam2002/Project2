@@ -12,6 +12,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 
 /**
  *
@@ -79,4 +81,79 @@ public class ProjectSignUpDAOImpl implements ProjectSignUpDAP{
     
     
     }
+    
+    public boolean LoginAdmin(ProjectSignUp account){
+        String sql = "SELECT * FROM account_admin WHERE accountadmin = ? and passwordadmin =?";
+        try (
+            Connection conn = DbProject.getConnection(database);
+            PreparedStatement stmt = 
+                    conn.prepareStatement(sql);
+                ) {
+            
+            stmt.setString(1, account.getAccount());
+            stmt.setString(2, account.getPassword());
+            
+            ResultSet rs = stmt.executeQuery();
+            if (rs.next()) {
+               
+                return true;
+            } else {
+                 return false;
+            }  
+        } catch (Exception e) {
+            return false;
+        }
+    
+    
+    
+    }
+    public  ObservableList<ProjectSignUp> selectAll() {
+
+        ObservableList<ProjectSignUp> select = FXCollections.observableArrayList();
+
+        try (
+                Connection conn = DbProject.getConnection(database);
+                Statement stmt = conn.createStatement();
+                ResultSet rs = stmt.executeQuery("SELECT * FROM account_client");) {
+            while (rs.next()) {
+                ProjectSignUp p = new ProjectSignUp();
+                p.setAccount(rs.getString("accounts"));
+                p.setPassword(rs.getString("passwords"));
+                p.setName(rs.getString("nick_name"));
+                p.setPhone(rs.getString("phone"));
+                p.setAddress(rs.getString("address"));
+                
+                select.add(p);
+            }         
+        } catch (Exception e) {
+            System.err.println(e.getMessage());
+
+        }
+
+        return select;
+    }
+
+    public  boolean delete(ProjectSignUp delete) {
+        String sql = "DELETE FROM account_client WHERE accounts = ?";
+        try (
+                Connection conn = DbProject.getConnection(database);
+                PreparedStatement stmt = conn.prepareStatement(sql);) {
+
+            stmt.setString(1, delete.getAccount());
+
+            int rowDeleted = stmt.executeUpdate();
+
+            if (rowDeleted == 1) {
+                return true;
+            } else {
+                System.err.println("No category deleted");
+                return false;
+            }
+
+        } catch (Exception e) {
+            System.err.println(e);
+            return false;
+        }
+    }
+
 }

@@ -4,39 +4,52 @@
 <?import com.jfoenix.controls.JFXPasswordField?>
 <?import com.jfoenix.controls.JFXTextField?>
 <?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="590.0" prefWidth="819.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Project.FunctionLogin">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="651.0" prefWidth="1075.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Project.FunctionLogin">
    <children>
-      <ImageView fitHeight="590.0" fitWidth="819.0" pickOnBounds="true">
-         <image>
-            <Image url="@anhbia.jpg" />
-         </image>
-      </ImageView>
-      <Text fill="#d40d0d" layoutX="344.0" layoutY="91.0" strokeType="OUTSIDE" strokeWidth="0.0" text="LOGIN">
-         <font>
-            <Font size="45.0" />
-         </font>
-      </Text>
-      <JFXTextField fx:id="account" focusColor="#f11b1b" labelFloat="true" layoutX="182.0" layoutY="185.0" prefHeight="60.0" prefWidth="493.0" promptText="Enter Account" style="-fx-background-color: white;" unFocusColor="#ee1d1d">
-         <font>
-            <Font size="25.0" />
-         </font>
-      </JFXTextField>
-      <JFXPasswordField fx:id="password" focusColor="#f11b1b" labelFloat="true" layoutX="182.0" layoutY="328.0" prefHeight="60.0" prefWidth="493.0" promptText="Enter Password" style="-fx-background-color: white;" unFocusColor="#ee1d1d">
-         <font>
-            <Font size="25.0" />
-         </font>
-      </JFXPasswordField>
-      <FontAwesomeIconView glyphName="USER" layoutX="124.0" layoutY="230.0" size="45" style="-fx-fill: red;" text="" />
-      <FontAwesomeIconView glyphName="KEY" layoutX="119.0" layoutY="380.0" size="45" style="-fx-fill: red;" text="" />
-      <JFXButton fx:id="btnlogin" buttonType="RAISED" layoutX="173.0" layoutY="476.0" onAction="#btnLogin" prefHeight="85.0" prefWidth="121.0" style="-fx-background-color: #da8646;" text="Login" textFill="#fcfbfa" />
-      <JFXButton fx:id="btnsingup" buttonType="RAISED" layoutX="554.0" layoutY="476.0" onAction="#btnSingup" prefHeight="85.0" prefWidth="121.0" style="-fx-background-color: #da8646;" text="Sign up" textFill="#f8f7f7" />
-      <Text fx:id="errors" fill="#e10a0a" layoutX="182.0" layoutY="261.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="493.0000194311142" />
-      <Text fx:id="error1" fill="#e10a0a" layoutX="182.0" layoutY="404.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="493.0000194311142" />
+      <Pane layoutX="43.0" layoutY="22.0" prefHeight="607.0" prefWidth="989.0">
+         <children>
+            <ImageView fitHeight="607.0" fitWidth="989.0" pickOnBounds="true">
+               <image>
+                  <Image url="@../9.jpg" />
+               </image>
+            </ImageView>
+            <Text layoutX="389.0" layoutY="91.0" strokeType="OUTSIDE" strokeWidth="0.0" text="LOGIN">
+               <font>
+                  <Font name="System Bold Italic" size="45.0" />
+               </font>
+            </Text>
+            <FontAwesomeIconView glyphName="USER" layoutX="215.0" layoutY="171.0" size="45" style="-fx-fill: red;" text="" />
+            <JFXTextField fx:id="account" focusColor="#f11b1b" labelFloat="true" layoutX="288.0" layoutY="126.0" prefHeight="60.0" prefWidth="441.0" promptText="Enter Account" style="-fx-background-color: white;" unFocusColor="#ee1d1d">
+               <font>
+                  <Font size="25.0" />
+               </font>
+            </JFXTextField>
+            <FontAwesomeIconView glyphName="KEY" layoutX="210.0" layoutY="302.0" size="45" style="-fx-fill: red;" text="" />
+            <JFXPasswordField fx:id="password" focusColor="#f11b1b" labelFloat="true" layoutX="288.0" layoutY="257.0" prefHeight="60.0" prefWidth="441.0" promptText="Enter Password" style="-fx-background-color: white;" unFocusColor="#ee1d1d">
+               <font>
+                  <Font size="25.0" />
+               </font>
+            </JFXPasswordField>
+            <JFXButton fx:id="btnlogin" buttonType="RAISED" layoutX="280.0" layoutY="468.0" onAction="#btnLogin" prefHeight="46.0" prefWidth="457.0" style="-fx-background-color: #4ecbd6;" text="Login" textFill="WHITE" />
+            <JFXButton fx:id="btnsingup" buttonType="RAISED" layoutX="280.0" layoutY="540.0" onAction="#btnSingup" prefHeight="46.0" prefWidth="457.0" style="-fx-background-color: #4ecbd6;" text="Sign up" textFill="#f8f7f7" />
+            <Text fx:id="errors" fill="#e00b0b" layoutX="288.0" layoutY="202.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="441.0000070929527" />
+            <Text fx:id="error1" fill="#e00b0b" layoutX="288.0" layoutY="333.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="441.0000070929527" />
+            <FontAwesomeIconView glyphName="USERS" layoutX="558.0" layoutY="89.0" size="45" text="" wrappingWidth="53.642860412597656" />
+            <Text fx:id="errors5" fill="#e81010" layoutX="288.0" layoutY="413.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="441.0000070929527">
+               <font>
+                  <Font size="33.0" />
+               </font>
+            </Text>
+            <ComboBox fx:id="Sign" editable="true" layoutX="382.0" layoutY="346.0" prefHeight="31.0" prefWidth="253.0" promptText="Vui lòng chọn vai trò của bạn" />
+         </children>
+      </Pane>
    </children>
 </AnchorPane>
