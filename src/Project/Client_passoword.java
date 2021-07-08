@@ -43,28 +43,56 @@ public class Client_passoword {
 
     @FXML
     private Text erros;
+    
+     @FXML
+    private JFXPasswordField oldPassword;
 
+    @FXML
+    private Text erros1;
+
+    @FXML
+    private JFXPasswordField newpassword1;
+
+    @FXML
+    private Text erros11;
+
+    @FXML
+    private JFXButton backsetting;
+    
+     @FXML
+    void btnsetting(ActionEvent event) throws IOException {
+        ProjectSignUp setting = extractChangePasswordFromFields();
+        Nagatice.getInstance().goToSeting(setting);
+    }
     @FXML
     void btnChangePassword(ActionEvent event) {
         try {
             if(Validate()){
-                ProjectSignUp changepassword = extractSignUpFromFields();
-                changepassword.setAccount(this.psu.getAccount());
-                Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-                alert.setHeaderText("Bạn đổi mật khẩu ?");
-                alert.setTitle("Lưu ý ");
-                Optional<ButtonType> confirmationResponse
-                        = alert.showAndWait();
-                if (confirmationResponse.get() == ButtonType.OK) {
-                    boolean reslut = psud.update(changepassword);
-                    if(reslut){
-                        succes.setText("Đổi mật khẩu thành công");
+                ProjectSignUp password = extractPasswordFromFields();
+                boolean passwords = psud.Login(password);
+                if(passwords){
+                    if(newpassword1.getText().contentEquals(newpassword.getText())){
+                        ProjectSignUp change = extractChangePasswordFromFields();
+                        change.setAccount(this.psu.getAccount());
+                        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+                        alert.setHeaderText("Bạn có chắc đổi mật khẩu ?");
+                        alert.setTitle("Lưu ý ");
+                        Optional<ButtonType> confirmationResponse
+                                = alert.showAndWait();
+                        if (confirmationResponse.get() == ButtonType.OK) {
+                            boolean reslut = psud.update(change);
+                            if(reslut){
+                                succes.setText("Đổi mật khẩu thành công");
+                            }else{
+                                succes.setText("Đổi mật khẩu không thành công");
+                            }
+                        }
                     }else{
-                        succes.setText("Đổi mật khẩu không thành công");
+                        erros11.setText("Nhập lại mật khẩu mới chưa chính xác !");
                     }
-                } 
-            
-            
+                }else{
+                    erros1.setText("Mật khẩu cũ không chính xác !");
+                }
             }
             
         } catch (Exception e) {
@@ -73,7 +101,7 @@ public class Client_passoword {
 
     @FXML
     void btnmenu(ActionEvent event) throws IOException {
-        ProjectSignUp menus = extractSignUpFromFields();
+        ProjectSignUp menus = extractChangePasswordFromFields();
         Nagatice.getInstance().goToClient(menus);
     }
     
@@ -83,8 +111,13 @@ public class Client_passoword {
             user.setText(p.getAccount());
         }
     }
-    
-    private ProjectSignUp extractSignUpFromFields() {
+    private ProjectSignUp extractPasswordFromFields() {
+        ProjectSignUp sign = new ProjectSignUp(); 
+        sign.setAccount(user.getText());
+        sign.setPassword(md5(oldPassword.getText()));
+        return sign;
+    }
+    private ProjectSignUp extractChangePasswordFromFields() {
         ProjectSignUp sign = new ProjectSignUp(); 
         sign.setAccount(user.getText());
         sign.setPassword(md5(newpassword.getText()));
@@ -106,6 +139,31 @@ public class Client_passoword {
     }
     private boolean Validate(){
       
+        if(oldPassword.getText().isEmpty() ){
+            erros1.setText("Password not empty");
+            return false; 
+        }else{
+            erros1.setText("");
+        }
+        if(oldPassword.getText().length() < 8 ){
+            erros1.setText("Password more than 8");
+            return false; 
+        }else{
+            erros1.setText("");
+        }
+        if(oldPassword.getText().length() > 16 ){
+            erros1.setText("Password less than 16");
+            return false; 
+        }else{
+           erros1.setText("");
+        }
+        if(oldPassword.getText().length() > 16 ){
+            erros1.setText("Password less than 16");
+            return false; 
+        }else{
+            erros1.setText("");
+        }
+        
         if(newpassword.getText().isEmpty() ){
             erros.setText("Password not empty");
             return false; 
@@ -130,8 +188,6 @@ public class Client_passoword {
         }else{
             erros.setText("");
         }
-    
-    
         return true;
     }
 }

@@ -18,6 +18,7 @@ CREATE TABLE products(
 	CategoryID INT,
 	ImgLink VARCHAR(255)
 );
+SELECT * FROM products;
 alter table products
 add foreign key (CategoryID) references category(CatID);
 

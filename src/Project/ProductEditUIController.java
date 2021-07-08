@@ -66,7 +66,6 @@ public class ProductEditUIController {
     void btnImagesClick(ActionEvent event) throws URISyntaxException, MalformedURLException {
         if(txtImages != null){
             txtImages.setText("");
-            
         }
         FileChooser fc = new FileChooser();
         fc.setTitle("My File");
