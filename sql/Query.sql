@@ -11,16 +11,16 @@ CREATE TABLE category(
 );
 
 CREATE TABLE products(
-	ProductID INT AUTO_INCREMENT PRIMARY KEY ,
-	CatID INT NOT NULL ,
-	Product_name VARCHAR(255) NOT NULL,
-	Pice int NOT NULL ,
-	Properties VARCHAR(255) NOT NULL ,
-	image VARCHAR(255) NOT NULL
-
+	ProductID INT AUTO_INCREMENT PRIMARY KEY,
+	`Name` VARCHAR(255) NOT NULL,
+	Price int NOT NULL ,
+	Properties VARCHAR(255) NOT NULL,
+	CategoryID INT,
+	ImgLink VARCHAR(255)
 );
 alter table products
-add foreign KEY (CatID) references category(CatID);
+add foreign key (CategoryID) references category(CatID);
+
 
 CREATE TABLE feedback(
 	FbID INT AUTO_INCREMENT PRIMARY KEY ,

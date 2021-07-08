@@ -10,7 +10,10 @@ package Project;
 
 import Project.Data.Category;
 import Project.Data.Feedback;
+import Project.Data.Product;
+import Project.Data.ProjectSignUp;
 import java.io.IOException;
+import java.sql.SQLException;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -29,12 +32,17 @@ public class Nagatice {
     public static final String Feedback_EDIT_FXML = "FeedBackEditUI.fxml";
     public static final String Feedback_index_FXML = "FeedBackIndex.fxml";
     public static final String Customer_index_FXML = "CustomerIndex.fxml";
+    public static final String PRODUCT_INDEX_FXML = "ProductIndexUI.fxml";
+    public static final String PRODUCT_EDIT_FXML = "ProductEditUI.fxml";
+    public static final String PRODUCT_VIEW_FXML = "ViewImg.fxml";
 
     // Client
     public static final String CLIENT_FXML = "Client_user.fxml";
     public static final String CHOOSE_FXML = "Choose.fxml";
     public static final String FOOD_FXML = "Food.fxml";
     public static final String DRINK_FXML = "Drink.fxml";
+    public static final String SETTING_FXML = "Client_Settings.fxml";
+    public static final String PASSWORD_FXML = "Client_Password.fxml";
 
     private FXMLLoader loader;
     private Stage stage = null;
@@ -102,14 +110,44 @@ public class Nagatice {
         FeedBackEditController ctrl = loader.getController();
         ctrl.initialize(fe);
     }
+    public void goToIndexProduct() throws IOException {
+        this.goTo(PRODUCT_INDEX_FXML);
+    }
+
+    public void goToEditProduct(Product editProduct) throws IOException {
+        this.goTo(PRODUCT_EDIT_FXML);
+        ProductEditUIController ctrl = loader.getController();
+        ctrl.initialize(editProduct);
+    }
+      public void goToViewProduct(Product pros) throws  SQLException, IOException {
+        this.goTo(PRODUCT_VIEW_FXML);
+        ImgController ctrl = loader.getController();
+        ctrl.initialize(pros);
+    }
+    
+    
     
    //Client
     
-    public void goToClient() throws IOException {
+    public void goToClient(ProjectSignUp p) throws IOException {
         this.goTo(CLIENT_FXML);
+        Client_Controller ctrl = loader.getController();
+        ctrl.initialize(p);
     }
-    public void goToChoose() throws IOException {
+    public void goToChoose(ProjectSignUp p) throws IOException {
         this.goTo(CHOOSE_FXML);
+        Client_ChooseController ctrl = loader.getController();
+        ctrl.initialize(p);
+    }
+    public void goToSeting(ProjectSignUp p) throws IOException {
+        this.goTo(SETTING_FXML);
+        Client_setting ctrl = loader.getController();
+        ctrl.initialize(p);
+    }
+    public void goToChangePassword(ProjectSignUp p) throws IOException {
+        this.goTo(PASSWORD_FXML);
+        Client_passoword ctrl = loader.getController();
+        ctrl.initialize(p);
     }
     public void goToDrink() throws IOException {
         this.goTo(DRINK_FXML);

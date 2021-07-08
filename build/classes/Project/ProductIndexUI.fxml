@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane id="AnchorPane" prefHeight="787.0" prefWidth="1118.0" style="-fx-background-color: Lavender;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Project.ProductIndexUIController">
+   <children>
+      <TableView fx:id="tvProduct" layoutY="1.0" prefHeight="751.0" prefWidth="1155.0" style="-fx-background-color: Lavender;">
+        <columns>
+          <TableColumn fx:id="tcName" prefWidth="235.00003051757812" text="Name" />
+          <TableColumn fx:id="tcPrice" prefWidth="156.0" text="Price" />
+            <TableColumn fx:id="tcProperties" prefWidth="257.0" text="Properties" />
+            <TableColumn fx:id="tcImages" prefWidth="508.0" text="Images" />
+        </columns>
+      </TableView>
+      <JFXButton fx:id="btnInsert" layoutX="71.0" layoutY="760.0" onAction="#btnInsertClick" prefHeight="53.0" prefWidth="85.0" text="Insert" textAlignment="CENTER" />
+      <JFXButton fx:id="btnUpdate" layoutX="387.0" layoutY="760.0" onAction="#btnUpdateClick" prefHeight="53.0" prefWidth="107.0" text="Update" />
+      <JFXButton fx:id="btnDelete" layoutX="741.0" layoutY="760.0" onAction="#btnDeleteClick" prefHeight="53.0" prefWidth="116.0" text="Delete" />
+      <JFXButton fx:id="btnView" layoutX="989.0" layoutY="760.0" onAction="#btnViewClick" prefHeight="53.0" prefWidth="116.0" text="View" />
+   </children>
+</AnchorPane>

@@ -21,7 +21,33 @@ import javafx.collections.ObservableList;
  */
 public class ProjectSignUpDAOImpl implements ProjectSignUpDAP{
     DbType database = DbType.SQL;
+    //Admin
+    public boolean LoginAdmin(ProjectSignUp account){
+        String sql = "SELECT * FROM account_admin WHERE accountadmin = ? and passwordadmin =?";
+        try (
+            Connection conn = DbProject.getConnection(database);
+            PreparedStatement stmt = 
+                    conn.prepareStatement(sql);
+                ) {
+            
+            stmt.setString(1, account.getAccount());
+            stmt.setString(2, account.getPassword());
+            
+            ResultSet rs = stmt.executeQuery();
+            if (rs.next()) {
+               
+                return true;
+            } else {
+                 return false;
+            }  
+        } catch (Exception e) {
+            return false;
+        }
     
+    
+    
+    }
+   //Client
     public  ProjectSignUp insert(ProjectSignUp inserts){
         
         String sql = "INSERT into account_client (accounts,passwords,nick_name, phone , address)"
@@ -81,32 +107,7 @@ public class ProjectSignUpDAOImpl implements ProjectSignUpDAP{
     
     
     }
-    
-    public boolean LoginAdmin(ProjectSignUp account){
-        String sql = "SELECT * FROM account_admin WHERE accountadmin = ? and passwordadmin =?";
-        try (
-            Connection conn = DbProject.getConnection(database);
-            PreparedStatement stmt = 
-                    conn.prepareStatement(sql);
-                ) {
-            
-            stmt.setString(1, account.getAccount());
-            stmt.setString(2, account.getPassword());
-            
-            ResultSet rs = stmt.executeQuery();
-            if (rs.next()) {
-               
-                return true;
-            } else {
-                 return false;
-            }  
-        } catch (Exception e) {
-            return false;
-        }
-    
-    
-    
-    }
+   
     public  ObservableList<ProjectSignUp> selectAll() {
 
         ObservableList<ProjectSignUp> select = FXCollections.observableArrayList();
@@ -155,5 +156,24 @@ public class ProjectSignUpDAOImpl implements ProjectSignUpDAP{
             return false;
         }
     }
-
+    public  boolean update(ProjectSignUp update){
+        String sql = "UPDATE account_client SET "
+                + " passwords = ?"
+                +"WHERE accounts = ? ";
+        try(Connection conn = DbProject.getConnection(database);
+                PreparedStatement stmt = conn.prepareStatement(sql);
+            ) {
+            stmt.setString(1, update.getPassword());
+            stmt.setString(2, update.getAccount());
+            
+            int row = stmt.executeUpdate();
+            if(row == 1 ){
+                return true;
+            }else{
+                return false;
+            }
+        } catch (Exception e) {
+            return false;
+        }
+    }
 }

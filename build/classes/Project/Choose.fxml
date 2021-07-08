@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXButton?>
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
@@ -13,21 +13,23 @@
 
 <!--<?import java.net.URL?>-->
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="646.0" prefWidth="748.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Project.ChooseController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="643.0" prefWidth="752.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Project.Client_ChooseController">
    <children>
-      <Pane layoutX="-1.0" prefHeight="162.0" prefWidth="745.0" />
-      <HBox alignment="CENTER" layoutX="-5.0" layoutY="-1.0" prefHeight="121.0" prefWidth="756.0" style="-fx-background-color: #0096FF;">
+      <Pane layoutX="-1.0" layoutY="-4.0" prefHeight="123.0" prefWidth="755.0" style="-fx-background-color: blue;">
          <children>
-            <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Snack Shop" wrappingWidth="181.22265625">
+            <Text fill="WHITE" layoutX="319.0" layoutY="51.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Snack Shop" wrappingWidth="181.22265625">
                <font>
                   <Font name="System Bold Italic" size="34.0" />
                </font>
-               <HBox.margin>
-                  <Insets top="10.0" />
-               </HBox.margin>
             </Text>
-         </children>
-      </HBox>
+            <FontAwesomeIconView fill="#f2f0f0" glyphName="USER" layoutX="500.0" layoutY="107.0" size="25" text="" />
+            <Text fx:id="user" fill="#fcfcfc" layoutX="520.0" layoutY="103.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="222.99999904632568" />
+            <JFXButton fx:id="menu" layoutY="87.0" onAction="#btnmenu" prefHeight="40.0" prefWidth="89.0" text="Menu" textFill="#fcefef">
+               <graphic>
+                  <FontAwesomeIconView fill="#ff0b0b" glyphName="BARS" size="25" />
+               </graphic>
+            </JFXButton>
+         </children></Pane>
       <Pane layoutY="120.0" prefHeight="498.0" prefWidth="366.0">
          <children>
             <VBox layoutX="-1.0" prefHeight="528.0" prefWidth="378.0" style="-fx-background-color: #e018d7;">

@@ -65,13 +65,13 @@ public class FunctionLogin {
                     if(Sign.getSelectionModel().getSelectedItem().toString() == "Admin"){
                         errors5.setText("Bạn không có quyền hạn");
                     }else if(Sign.getSelectionModel().getSelectedItem().toString() == "Client"){
-                        Nagatice.getInstance().goToClient();
+                        Nagatice.getInstance().goToClient(login);
                     }
                 }else if(Requierd){
                     if(Sign.getSelectionModel().getSelectedItem().toString() == "Admin"){
                         Nagatice.getInstance().goAdmin();
                     }else if(Sign.getSelectionModel().getSelectedItem().toString() == "Client"){
-                        Nagatice.getInstance().goToClient();
+                        Nagatice.getInstance().goToClient(login);
                     }  
                 } else{
                     errors5.setText("Này anh bạn : tài khoản và mật khẩu sai rồi");
@@ -182,7 +182,6 @@ public class FunctionLogin {
             return hashtext;
         } catch (Exception e) {
         }
-        
         return a;
     }
 }

@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="705.0" prefWidth="717.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Project.Client_setting">
+   <children>
+      <Pane prefHeight="122.0" prefWidth="717.0" style="-fx-background-color: blue;">
+         <children>
+            <Text fill="WHITE" layoutX="285.0" layoutY="51.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Snack Shop" wrappingWidth="181.22265625">
+               <font>
+                  <Font name="System Bold Italic" size="34.0" />
+               </font>
+            </Text>
+            <FontAwesomeIconView fill="#f2f0f0" glyphName="USER" layoutX="477.0" layoutY="108.0" size="25" text="" />
+            <Text fx:id="user" fill="#fcfcfc" layoutX="506.0" layoutY="106.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="210.99999904632568" />
+            <JFXButton fx:id="menu" layoutY="80.0" onAction="#btnmenu" prefHeight="40.0" prefWidth="89.0" text="Menu" textFill="#fcefef">
+               <graphic>
+                  <FontAwesomeIconView fill="#ff0b0b" glyphName="BARS" size="25" />
+               </graphic>
+            </JFXButton>
+         </children>
+      </Pane>
+      <Text layoutX="281.0" layoutY="190.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Setting">
+         <font>
+            <Font name="System Bold Italic" size="47.0" />
+         </font>
+      </Text>
+      <JFXButton fx:id="newpassword" layoutX="203.0" layoutY="252.0" onAction="#btnpassword" prefHeight="74.0" prefWidth="374.0" style="-fx-background-color: gray;" text="Đổi mật khẩu" textFill="WHITE">
+         <graphic>
+            <FontAwesomeIconView glyphName="KEY" size="25" />
+         </graphic>
+         <font>
+            <Font size="26.0" />
+         </font>
+      </JFXButton>
+      <FontAwesomeIconView glyphName="COG" layoutX="457.0" layoutY="193.0" size="45" />
+      <JFXButton fx:id="logout" layoutX="203.0" layoutY="457.0" onAction="#btnLogout" prefHeight="74.0" prefWidth="374.0" style="-fx-background-color: gray;" text="Logout" textFill="WHITE">
+         <graphic>
+            <FontAwesomeIconView glyphName="USER" size="25" />
+         </graphic>
+         <font>
+            <Font size="26.0" />
+         </font>
+      </JFXButton>
+      <JFXButton fx:id="information" layoutX="203.0" layoutY="353.0" onAction="#btnInformation" prefHeight="74.0" prefWidth="374.0" style="-fx-background-color: gray;" text="Thông Tin cá nhân" textFill="WHITE">
+         <graphic>
+            <FontAwesomeIconView glyphName="BOOK" size="25" />
+         </graphic>
+         <font>
+            <Font size="26.0" />
+         </font>
+      </JFXButton>
+   </children>
+</AnchorPane>

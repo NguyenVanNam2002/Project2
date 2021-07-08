@@ -7,8 +7,11 @@ package Project;
 
 import com.jfoenix.controls.JFXButton;
 import java.io.IOException;
+import java.util.Optional;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 
 /**
  *
@@ -42,8 +45,8 @@ public class InFutional  {
     }
 
     @FXML
-    void btnproduct(ActionEvent event) {
-
+    void btnproduct(ActionEvent event) throws IOException {
+        Nagatice.getInstance().goToIndexProduct();
     }
 
     @FXML
@@ -53,7 +56,14 @@ public class InFutional  {
     
     @FXML
     void logout(ActionEvent event) throws IOException {
-        Nagatice.getInstance().goToIndex();
+       Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setHeaderText("Bạn chắc chắn muốn đăng xuất ?");
+        alert.setTitle("Lưu ý ");
+        Optional<ButtonType> confirmationResponse
+                = alert.showAndWait();
+        if (confirmationResponse.get() == ButtonType.OK) {
+            Nagatice.getInstance().goToIndex();
+        } 
     }
     public void initialize(){
         

@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package  Project;
+package Project;
 
 import Project.Data.ProjectSignUp;
 import com.jfoenix.controls.JFXButton;
@@ -16,39 +16,31 @@ import javafx.scene.text.Text;
  *
  * @author icom
  */
-public class Client_Controller {
+public class Client_ChooseController {
     private ProjectSignUp psu;
     @FXML
-    private JFXButton btnMenu;
+    private JFXButton btnViewFood;
 
     @FXML
-    private JFXButton btnFeedback;
+    private JFXButton btnViewDrink;
     
     @FXML
-    private JFXButton btnSearch;
-    
+    private JFXButton menu;
     @FXML
     private Text user;
     @FXML
-    private JFXButton setting;
-    @FXML
-    void btnFeedback(ActionEvent event) {
-
-    }
-    @FXML
-    void btnsetting(ActionEvent event) throws IOException {
+    void btnmenu(ActionEvent event) throws IOException {
         ProjectSignUp account = extractSignUpFromFields();
-        Nagatice.getInstance().goToSeting(account);
+        Nagatice.getInstance().goToClient(account);
     }
     @FXML
-    void btnMenuClick(ActionEvent event) throws IOException {
-        ProjectSignUp account = extractSignUpFromFields();
-        Nagatice.getInstance().goToChoose(account);
+    void btnViewDrinkClick(ActionEvent event) throws IOException {
+        Nagatice.getInstance().goToDrink();
     }
 
     @FXML
-    void btnSearchClick(ActionEvent event) {
-
+    void btnViewFoodClick(ActionEvent event) throws IOException {
+        Nagatice.getInstance().goToFood();
     }
     
     public void initialize(ProjectSignUp p){
@@ -56,6 +48,7 @@ public class Client_Controller {
         if(this.psu != null){
             user.setText(p.getAccount());
         }
+    
     }
     
     private ProjectSignUp extractSignUpFromFields() {
@@ -63,4 +56,5 @@ public class Client_Controller {
         sign.setAccount(user.getText());
         return sign;
     }
+    
 }

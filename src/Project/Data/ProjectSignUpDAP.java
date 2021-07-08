@@ -12,9 +12,12 @@ import javafx.collections.ObservableList;
  * @author Admin
  */
 public interface ProjectSignUpDAP {
+    //admin
+    public boolean LoginAdmin(ProjectSignUp account);
+    // client
     public  ObservableList<ProjectSignUp> selectAll();
     public ProjectSignUp insert(ProjectSignUp insert);
     public boolean Login(ProjectSignUp account);
-    public boolean LoginAdmin(ProjectSignUp account);
     public  boolean delete(ProjectSignUp delete);
+    public  boolean update(ProjectSignUp update);
 }
