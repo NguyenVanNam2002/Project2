@@ -24,7 +24,7 @@ import javafx.collections.ObservableList;
  */
 public class Product {
     
-    private ObjectProperty<Integer> id;
+   private ObjectProperty<Integer> id;
     private StringProperty name;
     private ObjectProperty<Integer> price;
     private StringProperty properties;
@@ -155,26 +155,32 @@ public class Product {
         return products;
     }
 
-    public static Product insert(Product newProduct) throws SQLException {
-       String sql = "INSERT INTO products (products.Name, products.Price, products.Properties, products.ImgLink, products.CategoryID) "
-               + "SELECT ?, ?, ?, ?, category.CategoryID from products " 
-                 + "JOIN category ON products.CategoryID = category.CategoryID " 
-                + "WHERE category.NameC = ? "
-                + "LIMIT 1 ";
+   public static Product insert(Product newProduct) throws SQLException {
+        String getLvl = newProduct.getLevel() ;
+        int catID = 0;
+        String sql = "INSERT INTO products (products.Name, products.Price, products.Properties, products.ImgLink, products.CategoryID) "
+               + "VALUES (?, ?, ?, ?, ?)" 
+                + "LIMIT 1";
         ResultSet key = null;
         try (
                 Connection connect = DbProject.getConnection();
-                PreparedStatement stsm = connect.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);) {
-            stsm.setString(1, newProduct.getName());
-            stsm.setInt(2, newProduct.getPrice());
-            stsm.setString(3, newProduct.getProperties());
-            stsm.setString(4, newProduct.getImg());
+                PreparedStatement stmt = connect.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+                Statement stsm = connect.createStatement();
+                ResultSet result = stsm.executeQuery("SELECT CategoryID FROM category WHERE NameC = '" + getLvl + "'");) {
             
-            stsm.setString(5, newProduct.getLevel());
+            if(result.next()){
+                catID = result.getInt("CategoryID");
+            }
+            
+            stmt.setString(1, newProduct.getName());
+            stmt.setInt(2, newProduct.getPrice());
+            stmt.setString(3, newProduct.getProperties());
+            stmt.setString(4, newProduct.getImg());
+             stmt.setInt(5, catID);
 
-            int rowInserted = stsm.executeUpdate();
-            if (rowInserted ==1) {
-                key = stsm.getGeneratedKeys();
+            int rowInserted = stmt.executeUpdate();
+            if (rowInserted == 1) {
+                key = stmt.getGeneratedKeys();
                 key.next();
                 int newKey = key.getInt(1);
                 newProduct.setId(newKey);
@@ -192,6 +198,7 @@ public class Product {
             }
         }
     }
+
 
     public static boolean delete(Product deleteProduct) {
         String sql = "DELETE  FROM products "
@@ -217,27 +224,36 @@ public class Product {
         }
     }
 
-    public static boolean update(Product updateProduct) {
-       String sql = "UPDATE products AS p " 
-                + "JOIN category AS c ON p.CategoryID = c.CategoryID "
+  public static boolean update(Product updateProduct) {
+        String getLvl = updateProduct.getLevel() ;
+        int catID = 0;
+            String sql = "UPDATE products " 
                 + "SET "
-                + "p.CategoryID = c.CategoryID, "
-                + "p.`Name` = ?, "
-                + "p.Price = ?, "
-                + "p.Properties = ?, "
-                + "p.ImgLink = ? "
-                + "WHERE p.ProductID = ? AND c.NameC = ? "
-                + "LIMIT 1";
+                + "CategoryID = ?, "
+                + "`Name` = ?, "
+                + "Price = ?, "
+                + "Properties = ?, "
+                + "ImgLink = ? "  
+                + "WHERE ProductID = ? "
+                + "LIMIT 1;";
+        
         try (
                 Connection connect = DbProject.getConnection();
-                PreparedStatement stmt = connect.prepareStatement(sql);) {
-
-            stmt.setString(1, updateProduct.getName());
-            stmt.setInt(2, updateProduct.getPrice());
-            stmt.setString(3, updateProduct.getProperties());
-            stmt.setString(4, updateProduct.getImg());
-            stmt.setString(5, updateProduct.getLevel());
+                PreparedStatement stmt = connect.prepareStatement(sql);
+                Statement stsm = connect.createStatement();
+                ResultSet result = stsm.executeQuery("SELECT CategoryID FROM category WHERE NameC = '" + getLvl + "'");) {
+            
+            if(result.next()){
+                catID = result.getInt("CategoryID");
+            }
+            
+            stmt.setInt(1, catID);
+            stmt.setString(2, updateProduct.getName());
+            stmt.setInt(3, updateProduct.getPrice());
+            stmt.setString(4, updateProduct.getProperties());
+            stmt.setString(5, updateProduct.getImg());
             stmt.setInt(6, updateProduct.getID());
+           
 
             int rowUpdated = stmt.executeUpdate();
 
@@ -251,5 +267,6 @@ public class Product {
             System.err.println(e);
             return false;
         }
+        
     }
 }

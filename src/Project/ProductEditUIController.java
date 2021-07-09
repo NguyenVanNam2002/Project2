@@ -68,9 +68,8 @@ public class ProductEditUIController {
     @FXML
     private JFXButton btnReset;
     
-    ObservableList<String> list = FXCollections.observableArrayList("Drink","Food","Caffe");
-     
-     
+     ObservableList<String> list = FXCollections.observableArrayList("Drink","Food");
+
     @FXML
     void btnImagesClick(ActionEvent event) throws URISyntaxException, MalformedURLException {
 
@@ -92,7 +91,7 @@ public class ProductEditUIController {
 
     @FXML
     void btnIndexClick(ActionEvent event) throws IOException {
-       Nagatice.getInstance().goToIndexProduct();
+        Nagatice.getInstance().goToIndexProduct();
     }
 
     @FXML
@@ -133,6 +132,11 @@ public class ProductEditUIController {
         }
     }
     
+        @FXML
+    void btnCB(ActionEvent event) {
+
+    }
+
     void resetTextFields() {
         txtName.setText("");
         txtPrice.setText("");
@@ -167,8 +171,7 @@ public class ProductEditUIController {
         product.setPrice(Integer.parseInt(txtPrice.getText()));
         product.setProperties(txtProperties.getText());
         product.setImg(txtImages.getText());
-        String p = txtCB.getSelectionModel().getSelectedItem().toString();
-        product.setLevel(p);
+         product.setLevel(txtCB.getValue());
         return product;
     }
 
