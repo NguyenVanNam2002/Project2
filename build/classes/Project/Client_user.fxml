@@ -14,26 +14,29 @@
 
 <!--<?import java.net.URL?>-->
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="732.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Project.Client_Controller">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="785.0" prefWidth="1173.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Project.Client_Controller">
    <children>
-      <Pane layoutX="-5.0" prefHeight="122.0" prefWidth="739.0" style="-fx-background-color: blue;">
+      <Pane layoutX="-4.0" layoutY="-2.0" prefHeight="124.0" prefWidth="1179.0" style="-fx-background-color: #f49db1;">
          <children>
-            <Text fill="WHITE" layoutX="285.0" layoutY="51.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Snack Shop" wrappingWidth="181.22265625">
+            <Text fill="WHITE" layoutX="505.0" layoutY="37.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Snack Shop" wrappingWidth="181.22265625">
                <font>
                   <Font name="System Bold Italic" size="34.0" />
                </font>
             </Text>
-            <FontAwesomeIconView fill="#f2f0f0" glyphName="USER" layoutX="14.0" layoutY="104.0" size="25" />
-            <Text fx:id="user" fill="#fcfcfc" layoutX="34.0" layoutY="102.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="210.99999904632568" />
-            <JFXButton fx:id="setting" layoutX="629.0" layoutY="75.0" onAction="#btnsetting" prefHeight="43.0" prefWidth="109.0" text="Settings" textFill="WHITE">
-               <graphic>
-                  <FontAwesomeIconView fill="WHITE" glyphName="COG" size="25" text="" />
-               </graphic>
-            </JFXButton>
+            <FontAwesomeIconView fill="#f2f0f0" glyphName="USER" layoutX="14.0" layoutY="104.0" size="30" />
+            <Text fx:id="user" fill="#fcfcfc" layoutX="38.0" layoutY="103.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="210.99999904632568">
+               <font>
+                  <Font size="20.0" />
+               </font></Text>
          </children></Pane>
-      <Pane layoutX="-2.0" layoutY="122.0" prefHeight="531.0" prefWidth="263.0" style="-fx-background-color: gray;">
+      <Pane layoutX="-3.0" layoutY="120.0" prefHeight="665.0" prefWidth="1179.0">
          <children>
-            <HBox layoutX="14.0" layoutY="408.0" prefHeight="100.0" prefWidth="200.0">
+            <ImageView fitHeight="665.0" fitWidth="1179.0" pickOnBounds="true">
+               <image>
+                  <Image url="@../img/kSOp97d.jpg" />
+               </image>
+            </ImageView>
+            <HBox layoutX="42.0" layoutY="457.0" prefHeight="100.0" prefWidth="200.0">
                <children>
                   <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -61,7 +64,32 @@
                   </ImageView>
                </children>
             </HBox>
-            <JFXButton fx:id="btnFeedback" layoutX="31.0" layoutY="255.0" onAction="#btnFeedback" prefHeight="62.0" prefWidth="202.0" style="-fx-background-radius: 50; -fx-background-color: #FF7F50;" text="Feedback" textFill="WHITE">
+            <JFXButton fx:id="setting" layoutX="50.0" layoutY="174.0" onAction="#btnsetting" prefHeight="63.0" prefWidth="255.0" style="-fx-background-radius: 50; -fx-background-color: #FF7F50;" text="EDIT PROFILE" textFill="WHITE">
+               <font>
+                  <Font size="29.0" />
+               </font>
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+               <graphic>
+                  <FontAwesomeIconView fill="WHITE" glyphName="COG" size="30" />
+               </graphic>
+            </JFXButton>
+            <FontAwesomeIconView fill="WHITE" glyphName="COMMENTS" layoutX="-82.0" layoutY="-12.0" size="32" text="" wrappingWidth="36.0" />
+            <JFXButton fx:id="btnMenu" layoutX="50.0" layoutY="71.0" onAction="#btnMenuClick" prefHeight="63.0" prefWidth="255.0" style="-fx-background-radius: 50; -fx-background-color: #FF7F50;" text="Menu" textFill="#f8f8f8">
+               <graphic>
+                  <FontAwesomeIconView fill="WHITE" glyphName="BARS" size="34" />
+               </graphic>
+               <font>
+                  <Font size="29.0" />
+               </font>
+            </JFXButton>
+            <Text layoutX="71.0" layoutY="391.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Follow us">
+               <font>
+                  <Font name="System Bold Italic" size="41.0" />
+               </font>
+            </Text>
+            <JFXButton fx:id="btnFeedback1" layoutX="50.0" layoutY="284.0" onAction="#btnFeedback" prefHeight="63.0" prefWidth="255.0" style="-fx-background-radius: 50; -fx-background-color: #FF7F50;" text="Feedback" textFill="WHITE">
                <font>
                   <Font size="29.0" />
                </font>
@@ -72,42 +100,20 @@
                   <Insets />
                </opaqueInsets>
             </JFXButton>
-            <JFXButton fx:id="btnMenu" layoutX="31.0" layoutY="149.0" onAction="#btnMenuClick" prefHeight="62.0" prefWidth="202.0" style="-fx-background-radius: 50; -fx-background-color: #FF7F50;" text="Menu" textFill="#f8f8f8">
-               <graphic>
-                  <FontAwesomeIconView fill="WHITE" glyphName="BARS" size="34" />
-               </graphic>
-               <font>
-                  <Font size="29.0" />
-               </font>
-            </JFXButton>
-            <HBox layoutX="19.0" layoutY="71.0" prefHeight="40.0" prefWidth="211.0" style="-fx-background-radius: 100; -fx-background-color: white;" styleClass="search-box-" stylesheets="@css_client.css">
+            <HBox layoutX="882.0" layoutY="7.0" prefHeight="40.0" prefWidth="283.0" style="-fx-background-radius: 100; -fx-background-color: white;" styleClass="search-box-" stylesheets="@css_client.css">
                <children>
                   <JFXButton fx:id="btnSearch" onAction="#btnSearchClick" prefHeight="43.0" prefWidth="57.0" style="-fx-background-color: #0096FF; -fx-background-radius: 50;" styleClass="search-button-" text="Search" textFill="WHITE">
                      <font>
                         <Font size="13.0" />
                      </font>
                   </JFXButton>
+                  <TextField alignment="CENTER" focusTraversable="false" prefHeight="43.0" prefWidth="149.0" promptText="Type here to search" style="-fx-background-color: rgba(0,0,0,0);">
+                     <font>
+                        <Font size="13.0" />
+                     </font>
+                  </TextField>
                </children>
             </HBox>
-            <Text layoutX="76.0" layoutY="395.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Follow us">
-               <font>
-                  <Font name="System Bold Italic" size="22.0" />
-               </font>
-            </Text>
-            <TextField alignment="CENTER" focusTraversable="false" layoutX="76.0" layoutY="69.0" prefHeight="43.0" prefWidth="149.0" promptText="Type here to search" style="-fx-background-color: rgba(0,0,0,0);">
-               <font>
-                  <Font size="13.0" />
-               </font>
-            </TextField>
-         </children>
-      </Pane>
-      <Pane layoutX="262.0" layoutY="120.0" prefHeight="531.0" prefWidth="472.0">
-         <children>
-            <ImageView fitHeight="531.0" fitWidth="472.0" pickOnBounds="true">
-               <image>
-                  <Image url="@../img/1e8480754363b711bb161cde4fee6ec5.jpg" />
-               </image>
-            </ImageView>
          </children>
       </Pane>
    </children>

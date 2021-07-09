@@ -23,10 +23,13 @@
                <font>
                   <Font name="System Bold Italic" size="15.0" />
                </font></JFXButton>
-            <JFXButton fx:id="back" onAction="#btnback" text="&lt;-">
+            <JFXButton fx:id="back" onAction="#btnback" prefHeight="63.0" prefWidth="223.0" style="-fx-background-color: #d0c2c2;" text="Menu Adnmin" textFill="WHITE">
                <font>
-                  <Font name="System Bold Italic" size="29.0" />
+                  <Font name="System Bold Italic" size="20.0" />
                </font>
+               <graphic>
+                  <FontAwesomeIconView fill="#ff0b0b" glyphName="BARS" size="25" />
+               </graphic>
             </JFXButton>
             <TableView fx:id="Tableview" layoutX="65.0" layoutY="137.0" prefHeight="553.0" prefWidth="991.0">
               <columns>

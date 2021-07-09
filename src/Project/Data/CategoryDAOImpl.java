@@ -31,8 +31,8 @@ public class CategoryDAOImpl implements CategoryDAO {
                 ResultSet rs = stmt.executeQuery("SELECT * FROM category");) {
             while (rs.next()) {
                 Category c = new Category();
-                c.setCatID(rs.getInt("CatID")); //"id" is column name in table book
-                c.setCat_name(rs.getString("Cat_name")); //"title" is column name in table book
+                c.setCatID(rs.getInt("CategoryID")); 
+                c.setCat_name(rs.getString("NameC")); 
                 categories.add(c);
             }
 
@@ -45,7 +45,7 @@ public class CategoryDAOImpl implements CategoryDAO {
     }
 
     public  Category insert(Category newcategory){
-        String sql = "INSERT into category (Cat_name) "
+        String sql = "INSERT into category (NameC) "
                 + "VALUES (?)";
         ResultSet key = null;
         try (
@@ -82,8 +82,8 @@ public class CategoryDAOImpl implements CategoryDAO {
 
     public  boolean update(Category updatecategory) {
         String sql = "UPDATE category SET "
-                + "Cat_name = ? "
-                + "WHERE CatID = ?";
+                + "NameC = ? "
+                + "WHERE CategoryID = ?";
 
         try (
                 Connection conn = DbProject.getConnection(database);
@@ -110,7 +110,7 @@ public class CategoryDAOImpl implements CategoryDAO {
     }
 
     public  boolean delete(Category deletecategory) {
-        String sql = "DELETE FROM category WHERE CatID = ?";
+        String sql = "DELETE FROM category WHERE CategoryID = ?";
         try (
                 Connection conn = DbProject.getConnection(database);
                 PreparedStatement stmt = conn.prepareStatement(sql);) {

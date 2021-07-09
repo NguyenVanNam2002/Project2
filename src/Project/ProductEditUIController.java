@@ -7,12 +7,15 @@ package Project;
 
 import Project.Data.Product;
 import com.jfoenix.controls.JFXButton;
+import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXTextField;
 import java.io.File;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URISyntaxException;
 import java.util.Optional;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
@@ -46,8 +49,12 @@ public class ProductEditUIController {
 
     @FXML
     private JFXTextField txtPrice;
+    
     @FXML
     private Label txtMsg;
+    
+    @FXML
+    private JFXComboBox<String> txtCB;
 
     @FXML
     private JFXTextField txtProperties;
@@ -60,30 +67,34 @@ public class ProductEditUIController {
 
     @FXML
     private JFXButton btnReset;
-
-  
+    
+    ObservableList<String> list = FXCollections.observableArrayList("Drink","Food","Caffe");
+     
+     
     @FXML
     void btnImagesClick(ActionEvent event) throws URISyntaxException, MalformedURLException {
-        if(txtImages != null){
+
+        if (txtImages != null) {
             txtImages.setText("");
         }
         FileChooser fc = new FileChooser();
+
         fc.setTitle("My File");
         fc.getExtensionFilters().addAll(new ExtensionFilter("Img File", "*.png", "*.jpeg", "*.jpg"));
         File file = fc.showOpenDialog(null);
-        if(file != null){
+        if (file != null) {
             txtImages.appendText("/img/" + file.getName());
             imgView.setImage(new Image(file.toURI().toString()));
-        }else{
-            txtMsg.setText("Image null");
+        } else {
+            txtMsg.setText("Img Null");
         }
-        
-        
     }
+
     @FXML
     void btnIndexClick(ActionEvent event) throws IOException {
-        Nagatice.getInstance().goToIndexProduct();
+       Nagatice.getInstance().goToIndexProduct();
     }
+
     @FXML
     void btnResetClick(ActionEvent event) {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
@@ -109,7 +120,6 @@ public class ProductEditUIController {
                     Product updateProduct = extractProductFromFields();
                     updateProduct.setId(this.editProduct.getID());
                     boolean result = Product.update(updateProduct);
-                    
                     if (result) {
                         txtMsg.setText("Update Successful");
                     } else {
@@ -122,16 +132,19 @@ public class ProductEditUIController {
             }
         }
     }
-
+    
     void resetTextFields() {
         txtName.setText("");
         txtPrice.setText("");
         txtProperties.setText("");
         txtImages.setText("");
         imgView.setImage(null);
+        txtCB.setValue("Drink");
     }
 
     public void initialize(Product editProduct) {
+        txtCB.setItems(list);
+        txtCB.setValue("Drink");
         this.editProduct = editProduct;
         String msg = "";
         if (this.editProduct == null) {
@@ -142,7 +155,8 @@ public class ProductEditUIController {
             txtName.setText(editProduct.getName());
             txtPrice.setText(Integer.toString(editProduct.getPrice()));
             txtProperties.setText(editProduct.getProperties());
-           
+            txtCB.setValue(editProduct.getLevel());
+
         }
         txtMsg.setText(msg);
     }
@@ -153,6 +167,8 @@ public class ProductEditUIController {
         product.setPrice(Integer.parseInt(txtPrice.getText()));
         product.setProperties(txtProperties.getText());
         product.setImg(txtImages.getText());
+        String p = txtCB.getSelectionModel().getSelectedItem().toString();
+        product.setLevel(p);
         return product;
     }
 

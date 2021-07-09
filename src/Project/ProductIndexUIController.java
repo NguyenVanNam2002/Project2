@@ -16,6 +16,8 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 
 /**
  *
@@ -37,6 +39,9 @@ public class ProductIndexUIController {
 
     @FXML
     private TableColumn<Product, String> tcImages;
+    
+       @FXML
+    private TableColumn<Product, String> tcCategory;
 
     @FXML
     private JFXButton btnInsert;
@@ -49,7 +54,16 @@ public class ProductIndexUIController {
 
     @FXML
     private JFXButton btnView;
-
+    
+    @FXML
+    private JFXButton back;
+    
+    @FXML
+    private ImageView image;
+    @FXML
+    void btnBack(ActionEvent event) throws IOException {
+        Nagatice.getInstance().goAdmin();
+    }
     @FXML
     void btnDeleteClick(ActionEvent event) {
         Product selectedProduct = tvProduct.getSelectionModel().getSelectedItem();
@@ -59,8 +73,9 @@ public class ProductIndexUIController {
         } else {
             Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
             alert.setHeaderText("Are you sure to do you want delete : " + "\n"
-                    + "Name :" + selectedProduct.getName()
-                    + "Price :" + selectedProduct.getPrice());
+                    + "Name :" + selectedProduct.getName() + "\n"
+                    + "Price :" + selectedProduct.getPrice() + "\n"
+                    +"Category :" + selectedProduct.getLevel());
             alert.setTitle("Deleting");
             Optional<ButtonType> confirmationResponse
                     = alert.showAndWait();
@@ -102,8 +117,10 @@ public class ProductIndexUIController {
         if (view == null) {
             selectImgWarning();
         } else {
-            Nagatice.getInstance().goToViewProduct(view);
+            Image myimage = new Image(getClass().getResourceAsStream(view.getImg()));
+            image.setImage(myimage);
         }
+        
     }
     
 
@@ -139,6 +156,11 @@ public class ProductIndexUIController {
         tcImages.setCellValueFactory((product) -> {
             return product.getValue().getImgProperty();
         });
+        
+         tcCategory.setCellValueFactory((product) -> {
+            return product.getValue().getLevelProperty();
+        });
+        
     }
 
 }

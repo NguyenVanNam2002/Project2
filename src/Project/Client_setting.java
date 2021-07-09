@@ -35,8 +35,9 @@ public class Client_setting {
     private JFXButton information;
 
     @FXML
-    void btnInformation(ActionEvent event) {
-
+    void btnInformation(ActionEvent event) throws IOException {
+        ProjectSignUp informations = extractSignUpFromFields();
+        Nagatice.getInstance().goToInformationClient(informations);
     }
     @FXML
     void btnpassword(ActionEvent event) throws IOException {

@@ -86,14 +86,8 @@ public class FunctionLogin {
 
     @FXML
     void btnSingup(ActionEvent event) throws IOException {
-      Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-        alert.setHeaderText("Bạn muốn tạo tài Khoản ?");
-        alert.setTitle("Lưu ý ");
-        Optional<ButtonType> confirmationResponse
-                = alert.showAndWait();
-        if (confirmationResponse.get() == ButtonType.OK) {
-            Nagatice.getInstance().goSingup();
-        } 
+       Nagatice.getInstance().goSingup();
+    
     }
     private boolean Validate(){
         if(account.getText().isEmpty() ){

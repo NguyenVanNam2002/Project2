@@ -18,6 +18,8 @@ public interface ProjectSignUpDAP {
     public  ObservableList<ProjectSignUp> selectAll();
     public ProjectSignUp insert(ProjectSignUp insert);
     public boolean Login(ProjectSignUp account);
-    public  boolean delete(ProjectSignUp delete);
-    public  boolean update(ProjectSignUp update);
+    public boolean delete(ProjectSignUp delete);
+    public boolean update(ProjectSignUp update);
+    public boolean information(ProjectSignUp update);
+    public ProjectSignUp selectinformation(ProjectSignUp update);
 }

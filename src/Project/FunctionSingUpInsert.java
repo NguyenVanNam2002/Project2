@@ -209,13 +209,13 @@ public class FunctionSingUpInsert {
         }else{
             error5.setText("");
         }
-        if(address.getText().length() < 4){
+        if(address.getText().length() < 10){
             error5.setText("Unknown address");
             return false; 
         }else{
             error5.setText("");
         }
-        if(address.getText().contains("Ha Noi") || address.getText().contains("ha noi")){
+        if(address.getText().contains("Hà Nội") || address.getText().contains("hà nội")){
              error5.setText("");
         }else{
             error5.setText("You are too far from Hanoi.");

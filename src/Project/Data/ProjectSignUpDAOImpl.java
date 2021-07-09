@@ -10,7 +10,6 @@ import Project.DbProject.DbType;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.sql.Statement;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -80,8 +79,6 @@ public class ProjectSignUpDAOImpl implements ProjectSignUpDAP{
             return null;
         }
      }
-    
-    
     public boolean Login(ProjectSignUp account){
         String sql = "SELECT * FROM account_client WHERE accounts = ? and passwords =?";
         try (
@@ -104,10 +101,7 @@ public class ProjectSignUpDAOImpl implements ProjectSignUpDAP{
             return false;
         }
     
-    
-    
     }
-   
     public  ObservableList<ProjectSignUp> selectAll() {
 
         ObservableList<ProjectSignUp> select = FXCollections.observableArrayList();
@@ -133,7 +127,6 @@ public class ProjectSignUpDAOImpl implements ProjectSignUpDAP{
 
         return select;
     }
-
     public  boolean delete(ProjectSignUp delete) {
         String sql = "DELETE FROM account_client WHERE accounts = ?";
         try (
@@ -175,5 +168,52 @@ public class ProjectSignUpDAOImpl implements ProjectSignUpDAP{
         } catch (Exception e) {
             return false;
         }
+    }
+    public boolean information(ProjectSignUp update){
+        String sql = "UPDATE account_client SET "
+                + " nick_name = ? ,"
+                + " phone = ? ,"
+                + " address = ? "
+                +"WHERE accounts = ? ";
+        try(Connection conn = DbProject.getConnection(database);
+                PreparedStatement stmt = conn.prepareStatement(sql);
+            ) {
+            stmt.setString(1, update.getName());
+            stmt.setString(2, update.getPhone());
+            stmt.setString(3, update.getAddress());
+            stmt.setString(4, update.getAccount());
+            
+            int row = stmt.executeUpdate();
+            if(row == 1 ){
+                return true;
+            }else{
+                return false;
+            }
+        } catch (Exception e) {
+            return false;
+        }
+    }
+    public ProjectSignUp selectinformation(ProjectSignUp update){
+        String sql = "SELECT * FROM account_client WHERE accounts = ? ";
+        ProjectSignUp n = new ProjectSignUp();
+        try (
+            Connection conn = DbProject.getConnection(database);
+            PreparedStatement stmt = 
+                    conn.prepareStatement(sql);
+                ) {
+            
+            stmt.setString(1, update.getAccount());
+            ResultSet rs = stmt.executeQuery();
+            if (rs.next()) {
+              
+                
+            } else {
+                 
+            }  
+        } catch (Exception e) {
+            
+        }
+        
+        return n;
     }
 }

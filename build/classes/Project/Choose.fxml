@@ -2,112 +2,81 @@
 
 <?import com.jfoenix.controls.JFXButton?>
 <?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
-<?import javafx.geometry.Insets?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
-<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
 <!--<?import java.net.URL?>-->
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="643.0" prefWidth="752.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Project.Client_ChooseController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="687.0" prefWidth="1055.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Project.Client_ChooseController">
    <children>
-      <Pane layoutX="-1.0" layoutY="-4.0" prefHeight="123.0" prefWidth="755.0" style="-fx-background-color: blue;">
+      <Pane layoutX="-1.0" layoutY="-4.0" prefHeight="123.0" prefWidth="1055.0" style="-fx-background-color: blue;">
          <children>
-            <Text fill="WHITE" layoutX="319.0" layoutY="51.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Snack Shop" wrappingWidth="181.22265625">
+            <Text fill="WHITE" layoutX="450.0" layoutY="37.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Snack Shop" wrappingWidth="181.22265625">
                <font>
                   <Font name="System Bold Italic" size="34.0" />
                </font>
             </Text>
-            <FontAwesomeIconView fill="#f2f0f0" glyphName="USER" layoutX="500.0" layoutY="107.0" size="25" text="" />
-            <Text fx:id="user" fill="#fcfcfc" layoutX="520.0" layoutY="103.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="222.99999904632568" />
+            <FontAwesomeIconView fill="#f2f0f0" glyphName="USER" layoutX="798.0" layoutY="108.0" size="30" text="" />
+            <Text fx:id="user" fill="#fcfcfc" layoutX="822.0" layoutY="105.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="227.99999904632568">
+               <font>
+                  <Font size="20.0" />
+               </font></Text>
             <JFXButton fx:id="menu" layoutY="87.0" onAction="#btnmenu" prefHeight="40.0" prefWidth="89.0" text="Menu" textFill="#fcefef">
                <graphic>
                   <FontAwesomeIconView fill="#ff0b0b" glyphName="BARS" size="25" />
                </graphic>
             </JFXButton>
          </children></Pane>
-      <Pane layoutY="120.0" prefHeight="498.0" prefWidth="366.0">
+      <Pane layoutY="115.0" prefHeight="576.0" prefWidth="529.0">
          <children>
-            <VBox layoutX="-1.0" prefHeight="528.0" prefWidth="378.0" style="-fx-background-color: #e018d7;">
-               <children>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Food" textAlignment="JUSTIFY">
-                     <font>
-                        <Font name="System Bold Italic" size="30.0" />
-                     </font>
-                     <VBox.margin>
-                        <Insets left="140.0" />
-                     </VBox.margin>
-                  </Text>
-                  <ImageView fitHeight="286.0" fitWidth="348.0" pickOnBounds="true" preserveRatio="true">
-                     <VBox.margin>
-                        <Insets left="10.0" right="10.0" top="20.0" />
-                     </VBox.margin>
-                     <image>
-                        <Image url="@../img/food.jpg" />
-                     </image>
-                  </ImageView>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Snack, fast food v.v..">
-                     <font>
-                        <Font name="System Bold Italic" size="30.0" />
-                     </font>
-                     <VBox.margin>
-                        <Insets left="40.0" top="20.0" />
-                     </VBox.margin>
-                  </Text>
-                  <JFXButton fx:id="btnViewFood" onAction="#btnViewFoodClick" prefHeight="51.0" prefWidth="180.0" style="-fx-background-color: #FF7F50; -fx-background-radius: 50;" styleClass="label" stylesheets="@css_client.css" text="View" textFill="WHITE">
-                     <font>
-                        <Font name="System Bold" size="24.0" />
-                     </font>
-                     <VBox.margin>
-                        <Insets left="90.0" top="20.0" />
-                     </VBox.margin>
-                  </JFXButton>
-               </children>
-            </VBox>
+            <Text layoutX="231.0" layoutY="62.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Food" textAlignment="JUSTIFY">
+               <font>
+                  <Font name="System Bold Italic" size="30.0" />
+               </font>
+            </Text>
+            <ImageView fitHeight="286.0" fitWidth="348.0" layoutX="102.0" layoutY="109.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../img/food.jpg" />
+               </image>
+            </ImageView>
+            <Text layoutX="145.0" layoutY="436.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Snack, fast food v.v..">
+               <font>
+                  <Font name="System Bold Italic" size="30.0" />
+               </font>
+            </Text>
+            <JFXButton fx:id="btnViewFood" layoutX="186.0" layoutY="473.0" onAction="#btnViewFoodClick" prefHeight="51.0" prefWidth="180.0" style="-fx-background-color: #FF7F50; -fx-background-radius: 50;" styleClass="label" stylesheets="@css_client.css" text="View" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="24.0" />
+               </font>
+            </JFXButton>
          </children>
       </Pane>
-      <Pane layoutX="369.0" layoutY="120.0" prefHeight="528.0" prefWidth="378.0">
+      <Pane layoutX="527.0" layoutY="119.0" prefHeight="568.0" prefWidth="529.0">
          <children>
-            <VBox layoutX="5.0" prefHeight="528.0" prefWidth="378.0" style="-fx-background-color: #1bd3d6;">
-               <children>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Drink" textAlignment="JUSTIFY">
-                     <font>
-                        <Font name="System Bold Italic" size="30.0" />
-                     </font>
-                     <VBox.margin>
-                        <Insets left="130.0" />
-                     </VBox.margin>
-                  </Text>
-                  <ImageView fitHeight="285.0" fitWidth="331.0" pickOnBounds="true">
-                     <VBox.margin>
-                        <Insets left="10.0" right="10.0" top="20.0" />
-                     </VBox.margin>
-                     <image>
-                        <Image url="@../img/drink.jpg" />
-                     </image>
-                  </ImageView>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Soft drink">
-                     <font>
-                        <Font name="System Bold Italic" size="30.0" />
-                     </font>
-                     <VBox.margin>
-                        <Insets left="100.0" top="20.0" />
-                     </VBox.margin>
-                  </Text>
-                  <JFXButton fx:id="btnViewDrink" onAction="#btnViewDrinkClick" prefHeight="51.0" prefWidth="180.0" style="-fx-background-color: #FF7F50; -fx-background-radius: 50;" styleClass="label" stylesheets="@css_client.css" text="View" textFill="WHITE">
-                     <font>
-                        <Font name="System Bold" size="24.0" />
-                     </font>
-                     <VBox.margin>
-                        <Insets left="90.0" top="20.0" />
-                     </VBox.margin>
-                  </JFXButton>
-               </children>
-            </VBox>
+            <Text layoutX="246.0" layoutY="32.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Drink" textAlignment="JUSTIFY">
+               <font>
+                  <Font name="System Bold Italic" size="30.0" />
+               </font>
+            </Text>
+            <ImageView fitHeight="285.0" fitWidth="331.0" layoutX="99.0" layoutY="104.0" pickOnBounds="true">
+               <image>
+                  <Image url="@../img/drink.jpg" />
+               </image>
+            </ImageView>
+            <Text layoutX="195.0" layoutY="439.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Soft drink">
+               <font>
+                  <Font name="System Bold Italic" size="30.0" />
+               </font>
+            </Text>
+            <JFXButton fx:id="btnViewDrink" layoutX="184.0" layoutY="466.0" onAction="#btnViewDrinkClick" prefHeight="51.0" prefWidth="180.0" style="-fx-background-color: #FF7F50; -fx-background-radius: 50;" styleClass="label" stylesheets="@css_client.css" text="View" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="24.0" />
+               </font>
+            </JFXButton>
          </children>
       </Pane>
    </children>

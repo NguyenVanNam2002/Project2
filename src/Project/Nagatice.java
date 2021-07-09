@@ -13,7 +13,6 @@ import Project.Data.Feedback;
 import Project.Data.Product;
 import Project.Data.ProjectSignUp;
 import java.io.IOException;
-import java.sql.SQLException;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -34,7 +33,6 @@ public class Nagatice {
     public static final String Customer_index_FXML = "CustomerIndex.fxml";
     public static final String PRODUCT_INDEX_FXML = "ProductIndexUI.fxml";
     public static final String PRODUCT_EDIT_FXML = "ProductEditUI.fxml";
-    public static final String PRODUCT_VIEW_FXML = "ViewImg.fxml";
 
     // Client
     public static final String CLIENT_FXML = "Client_user.fxml";
@@ -43,6 +41,7 @@ public class Nagatice {
     public static final String DRINK_FXML = "Drink.fxml";
     public static final String SETTING_FXML = "Client_Settings.fxml";
     public static final String PASSWORD_FXML = "Client_Password.fxml";
+    public static final String INFORMATION_FXML = "Client_Infomation.fxml";
 
     private FXMLLoader loader;
     private Stage stage = null;
@@ -119,13 +118,6 @@ public class Nagatice {
         ProductEditUIController ctrl = loader.getController();
         ctrl.initialize(editProduct);
     }
-      public void goToViewProduct(Product pros) throws  SQLException, IOException {
-        this.goTo(PRODUCT_VIEW_FXML);
-        ImgController ctrl = loader.getController();
-        ctrl.initialize(pros);
-    }
-    
-    
     
    //Client
     
@@ -147,6 +139,12 @@ public class Nagatice {
     public void goToChangePassword(ProjectSignUp p) throws IOException {
         this.goTo(PASSWORD_FXML);
         Client_passoword ctrl = loader.getController();
+        ctrl.initialize(p);
+    }
+    
+    public void goToInformationClient(ProjectSignUp p) throws IOException {
+        this.goTo(INFORMATION_FXML);
+        Client_infomation ctrl = loader.getController();
         ctrl.initialize(p);
     }
     public void goToDrink() throws IOException {

@@ -8,38 +8,41 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="713.0" prefWidth="807.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Project.CategoryUIController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="729.0" prefWidth="1088.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Project.CategoryUIController">
    <children>
-      <TableView fx:id="tvCategory" layoutX="24.0" layoutY="153.0" prefHeight="416.0" prefWidth="760.0">
+      <TableView fx:id="tvCategory" layoutX="24.0" layoutY="153.0" prefHeight="565.0" prefWidth="889.0">
          <columns>
             <TableColumn fx:id="tcCatID" prefWidth="145.0" text="Mã danh mục" />
-            <TableColumn fx:id="tcCat_name" prefWidth="475.0" text="Tên danh mục" />
+            <TableColumn fx:id="tcCat_name" prefWidth="741.0" text="Tên danh mục" />
          </columns>
       </TableView>
-      <JFXButton fx:id="btnInsert" layoutX="84.0" layoutY="608.0" onAction="#btnInsertClick" prefHeight="57.0" prefWidth="109.0" style="-fx-background-color: #668aff;" text="Insert &gt;&gt;" textFill="WHITE">
+      <JFXButton fx:id="btnInsert" layoutX="952.0" layoutY="198.0" onAction="#btnInsertClick" prefHeight="57.0" prefWidth="109.0" style="-fx-background-color: #668aff;" text="Go insert" textFill="WHITE">
          <font>
             <Font name="System Bold" size="15.0" />
          </font>
       </JFXButton>
-      <JFXButton fx:id="btnUpdate" layoutX="368.0" layoutY="608.0" onAction="#btnUpdateClick" prefHeight="57.0" prefWidth="109.0" style="-fx-background-color: #668aff;" text="Update" textFill="WHITE">
+      <JFXButton fx:id="btnUpdate" layoutX="952.0" layoutY="349.0" onAction="#btnUpdateClick" prefHeight="57.0" prefWidth="109.0" style="-fx-background-color: #668aff;" text="Update" textFill="WHITE">
          <font>
             <Font name="System Bold" size="15.0" />
          </font>
       </JFXButton>
-      <JFXButton fx:id="btnDelete" layoutX="612.0" layoutY="608.0" onAction="#btnDeleteClick" prefHeight="57.0" prefWidth="109.0" style="-fx-background-color: #668aff;" text="Delete" textFill="WHITE">
+      <JFXButton fx:id="btnDelete" layoutX="952.0" layoutY="480.0" onAction="#btnDeleteClick" prefHeight="57.0" prefWidth="109.0" style="-fx-background-color: #668aff;" text="Delete" textFill="WHITE">
          <font>
             <Font name="System Bold" size="15.0" />
          </font>
       </JFXButton>
-      <Text layoutX="241.0" layoutY="121.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Category Manager">
+      <Text layoutX="332.0" layoutY="115.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Category Manager">
          <font>
             <Font name="System Bold Italic" size="34.0" />
          </font>
       </Text>
-      <FontAwesomeIconView glyphName="COMMENTS" layoutX="553.0" layoutY="117.0" size="32" text="" wrappingWidth="36.0" />
-      <JFXButton fx:id="BACK" layoutX="-36.0" layoutY="-14.0" onAction="#btnbackHome" prefHeight="65.0" prefWidth="120.0" text="&lt;-">
+      <FontAwesomeIconView glyphName="COMMENTS" layoutX="644.0" layoutY="111.0" size="32" text="" wrappingWidth="36.0" />
+      <JFXButton fx:id="BACK" layoutX="7.0" layoutY="14.0" onAction="#btnbackHome" prefHeight="57.0" prefWidth="175.0" style="-fx-background-color: #dacfcf;" text="Menu Admin" textFill="WHITE">
+         <graphic>
+            <FontAwesomeIconView fill="#ff0b0b" glyphName="BARS" size="25" />
+         </graphic>
          <font>
-            <Font size="33.0" />
+            <Font size="20.0" />
          </font>
       </JFXButton>
    </children>

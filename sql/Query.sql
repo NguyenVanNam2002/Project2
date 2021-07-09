@@ -6,21 +6,26 @@ USE snack_shop;
 
 
 CREATE TABLE category(
-	CatID INT AUTO_INCREMENT PRIMARY KEY,
-	Cat_name VARCHAR(255) NOT null
-);
-
+	CategoryID INT AUTO_INCREMENT PRIMARY KEY,
+	`NameC` CHAR(5)
+)
+ INSERT INTO category(`NameC`)
+ VALUES('Drink');
+  INSERT INTO category(`NameC`)
+ VALUES('Food');
+ SELECT * FROM category;
 CREATE TABLE products(
 	ProductID INT AUTO_INCREMENT PRIMARY KEY,
 	`Name` VARCHAR(255) NOT NULL,
 	Price int NOT NULL ,
 	Properties VARCHAR(255) NOT NULL,
-	CategoryID INT,
-	ImgLink VARCHAR(255)
+	ImgLink VARCHAR(255),
+	CategoryID INT
 );
+
 SELECT * FROM products;
 alter table products
-add foreign key (CategoryID) references category(CatID);
+add foreign key (CategoryID) references category(CategoryID);
 
 
 CREATE TABLE feedback(
@@ -50,9 +55,5 @@ CREATE TABLE account_client(
 	phone VARCHAR(10) NOT NULL ,
 	address VARCHAR(55) NOT null
 );
-
-DROP TABLE account_client;
-
-
 
 SELECT * FROM account_client;
