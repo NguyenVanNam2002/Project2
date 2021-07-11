@@ -69,6 +69,8 @@ public class Client_setting {
             user.setText(p.getAccount());
         }
     }
+    // mình cần đầu vào , do là view c2 phụ thuộc vào ảnh , nên mỗi ảnh phải thực hiện được Event
+     // vì là ảnh đầu vào mình sẽ là ảnh
     
     private ProjectSignUp extractSignUpFromFields() {
         ProjectSignUp sign = new ProjectSignUp(); 

@@ -63,6 +63,7 @@ public class Client_infomation {
     void btnmenu(ActionEvent event) throws IOException {
         ProjectSignUp menus = extractPasswordFromFields();
         Nagatice.getInstance().goToClient(menus);
+        
     }
 
     @FXML
@@ -173,8 +174,13 @@ public class Client_infomation {
         }
         return true;
     }
+    // ông dùng câu lệnh luôn trong trang nhé , lúc mà ông chuyên trang ý
+    // ông nên để ntn
+    
+    // mình sẽ nhập đầu vào là 1 string nhé , vì ảnh trong data hay lúc print đểu là varchar mà 
     public void infomaitonselect(String user){
         String sql = "SELECT * FROM account_client WHERE accounts = ? ";
+        // vì vậy lúc select thì thay where của mình là image thì lúc đấy sẽ được
         try(Connection con = DbProject.getConnection();
             PreparedStatement stmt = con.prepareStatement(sql);
             ){

@@ -5,6 +5,8 @@
  */
 package Project;
 
+import Project.Data.CategoryDAO;
+import Project.Data.CategoryDAOImpl;
 import Project.Data.Product;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXComboBox;
@@ -14,7 +16,6 @@ import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URISyntaxException;
 import java.util.Optional;
-import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -32,7 +33,7 @@ import javafx.stage.FileChooser.ExtensionFilter;
  * @author DELL
  */
 public class ProductEditUIController {
-
+    private CategoryDAO ca = new CategoryDAOImpl();
     private Product editProduct = null;
 
     @FXML
@@ -68,7 +69,7 @@ public class ProductEditUIController {
     @FXML
     private JFXButton btnReset;
     
-     ObservableList<String> list = FXCollections.observableArrayList("Drink","Food");
+     ObservableList<String> list = ca.selectName();
 
     @FXML
     void btnImagesClick(ActionEvent event) throws URISyntaxException, MalformedURLException {
@@ -160,6 +161,7 @@ public class ProductEditUIController {
             txtPrice.setText(Integer.toString(editProduct.getPrice()));
             txtProperties.setText(editProduct.getProperties());
             txtCB.setValue(editProduct.getLevel());
+            imgView.setImage(new Image(editProduct.getImg()));
 
         }
         txtMsg.setText(msg);
@@ -171,7 +173,7 @@ public class ProductEditUIController {
         product.setPrice(Integer.parseInt(txtPrice.getText()));
         product.setProperties(txtProperties.getText());
         product.setImg(txtImages.getText());
-         product.setLevel(txtCB.getValue());
+        product.setLevel(txtCB.getValue());
         return product;
     }
 

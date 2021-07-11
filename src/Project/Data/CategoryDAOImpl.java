@@ -43,6 +43,29 @@ public class CategoryDAOImpl implements CategoryDAO {
 
         return categories;
     }
+    
+    public  ObservableList<String> selectName() {
+
+        ObservableList<String> categories = FXCollections.observableArrayList();
+
+        try (
+                Connection conn = DbProject.getConnection(database);
+                Statement stmt = conn.createStatement();
+                ResultSet rs = stmt.executeQuery("SELECT NameC FROM category");) {
+            while (rs.next()) {
+//                Category c = new Category();
+//                c.setCatID(rs.getInt("CategoryID")); 
+//                c.setCat_name(rs.getString("NameC")); 
+                categories.add(rs.getString("NameC"));
+            }
+
+        } catch (Exception e) {
+            System.err.println(e.getMessage());
+
+        }
+
+        return categories;
+    }
 
     public  Category insert(Category newcategory){
         String sql = "INSERT into category (NameC) "

@@ -43,7 +43,7 @@ public class Client_Controller {
     @FXML
     void btnMenuClick(ActionEvent event) throws IOException {
         ProjectSignUp account = extractSignUpFromFields();
-        Nagatice.getInstance().goToChoose(account);
+        Nagatice.getInstance().goToChoose(account);              
     }
 
     @FXML

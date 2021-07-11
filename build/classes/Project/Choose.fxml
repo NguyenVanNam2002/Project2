@@ -1,83 +1,85 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXComboBox?>
 <?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
 <!--<?import java.net.URL?>-->
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="687.0" prefWidth="1055.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Project.Client_ChooseController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="701.0" prefWidth="1138.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Project.Client_ChooseController">
    <children>
-      <Pane layoutX="-1.0" layoutY="-4.0" prefHeight="123.0" prefWidth="1055.0" style="-fx-background-color: blue;">
+      <Pane layoutX="313.0" layoutY="-5.0" prefHeight="123.0" prefWidth="827.0" style="-fx-background-color: #463e3e;">
          <children>
-            <Text fill="WHITE" layoutX="450.0" layoutY="37.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Snack Shop" wrappingWidth="181.22265625">
+            <Text fill="WHITE" layoutX="206.0" layoutY="61.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Snack Shop Menu" wrappingWidth="290.22265625">
                <font>
                   <Font name="System Bold Italic" size="34.0" />
                </font>
             </Text>
-            <FontAwesomeIconView fill="#f2f0f0" glyphName="USER" layoutX="798.0" layoutY="108.0" size="30" text="" />
-            <Text fx:id="user" fill="#fcfcfc" layoutX="822.0" layoutY="105.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="227.99999904632568">
+            <ImageView fitHeight="77.0" fitWidth="87.0" layoutX="490.0" layoutY="8.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../img/hamburger_96px.png" />
+               </image>
+            </ImageView>
+            <FontAwesomeIconView fill="#f2f0f0" glyphName="USER" layoutX="27.0" layoutY="96.0" size="30" text="" />
+            <Text fx:id="user" fill="#fcfcfc" layoutX="95.0" layoutY="93.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="322.99999409914017">
                <font>
-                  <Font size="20.0" />
-               </font></Text>
-            <JFXButton fx:id="menu" layoutY="87.0" onAction="#btnmenu" prefHeight="40.0" prefWidth="89.0" text="Menu" textFill="#fcefef">
-               <graphic>
-                  <FontAwesomeIconView fill="#ff0b0b" glyphName="BARS" size="25" />
-               </graphic>
-            </JFXButton>
+                  <Font size="18.0" />
+               </font>
+            </Text>
+            <JFXComboBox fx:id="combobox" labelFloat="true" layoutX="609.0" layoutY="77.0" onAction="#onclick" prefHeight="31.0" prefWidth="192.0" promptText="Danh mục" style="-fx-background-color: white;" />
+            <Text fx:id="id" layoutX="37.0" layoutY="30.0" strokeType="OUTSIDE" strokeWidth="0.0" />
          </children></Pane>
-      <Pane layoutY="115.0" prefHeight="576.0" prefWidth="529.0">
+      <ImageView fitHeight="701.0" fitWidth="315.0" pickOnBounds="true">
+         <image>
+            <Image url="@../img/banner.jpg" />
+         </image>
+      </ImageView>
+      <JFXButton fx:id="menu" layoutX="58.0" layoutY="14.0" onAction="#btnmenu" prefHeight="55.0" prefWidth="192.0" style="-fx-background-color: #0096FF; -fx-background-radius: 50;" text="     HomePage" textFill="WHITE">
+         <font>
+            <Font name="System Bold Italic" size="20.0" />
+         </font>
+         <graphic>
+            <FontAwesomeIconView fill="WHITE" glyphName="BARS" size="30" text="" />
+         </graphic>
+      </JFXButton>
+      <HBox layoutX="313.0" layoutY="118.0" prefHeight="586.0" prefWidth="827.0">
          <children>
-            <Text layoutX="231.0" layoutY="62.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Food" textAlignment="JUSTIFY">
-               <font>
-                  <Font name="System Bold Italic" size="30.0" />
-               </font>
-            </Text>
-            <ImageView fitHeight="286.0" fitWidth="348.0" layoutX="102.0" layoutY="109.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../img/food.jpg" />
-               </image>
-            </ImageView>
-            <Text layoutX="145.0" layoutY="436.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Snack, fast food v.v..">
-               <font>
-                  <Font name="System Bold Italic" size="30.0" />
-               </font>
-            </Text>
-            <JFXButton fx:id="btnViewFood" layoutX="186.0" layoutY="473.0" onAction="#btnViewFoodClick" prefHeight="51.0" prefWidth="180.0" style="-fx-background-color: #FF7F50; -fx-background-radius: 50;" styleClass="label" stylesheets="@css_client.css" text="View" textFill="WHITE">
-               <font>
-                  <Font name="System Bold" size="24.0" />
-               </font>
-            </JFXButton>
+            <ScrollPane prefHeight="582.0" prefWidth="827.0">
+               <HBox.margin>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </HBox.margin>
+               <content>
+                  <GridPane fx:id="grid" prefHeight="13.0" prefWidth="3.0">
+                     <rowConstraints>
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" />
+                     </rowConstraints>
+                  </GridPane>
+               </content>
+            </ScrollPane>
          </children>
-      </Pane>
-      <Pane layoutX="527.0" layoutY="119.0" prefHeight="568.0" prefWidth="529.0">
-         <children>
-            <Text layoutX="246.0" layoutY="32.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Drink" textAlignment="JUSTIFY">
-               <font>
-                  <Font name="System Bold Italic" size="30.0" />
-               </font>
-            </Text>
-            <ImageView fitHeight="285.0" fitWidth="331.0" layoutX="99.0" layoutY="104.0" pickOnBounds="true">
-               <image>
-                  <Image url="@../img/drink.jpg" />
-               </image>
-            </ImageView>
-            <Text layoutX="195.0" layoutY="439.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Soft drink">
-               <font>
-                  <Font name="System Bold Italic" size="30.0" />
-               </font>
-            </Text>
-            <JFXButton fx:id="btnViewDrink" layoutX="184.0" layoutY="466.0" onAction="#btnViewDrinkClick" prefHeight="51.0" prefWidth="180.0" style="-fx-background-color: #FF7F50; -fx-background-radius: 50;" styleClass="label" stylesheets="@css_client.css" text="View" textFill="WHITE">
-               <font>
-                  <Font name="System Bold" size="24.0" />
-               </font>
-            </JFXButton>
-         </children>
-      </Pane>
+      </HBox>
+      <Text fx:id="name" fill="WHITE" layoutY="230.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="315.00000447034836">
+         <font>
+            <Font name="System Bold Italic" size="25.0" />
+         </font>
+      </Text>
+      <ImageView fx:id="imageview" fitHeight="286.0" fitWidth="290.0" layoutX="17.0" layoutY="237.0" pickOnBounds="true" />
+      <Text fx:id="Price" fill="WHITE" layoutY="567.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="315.00000447034836">
+         <font>
+            <Font name="System Bold Italic" size="25.0" />
+         </font>
+      </Text>
+      <JFXButton layoutX="49.0" layoutY="624.0" prefHeight="31.0" prefWidth="192.0" style="-fx-background-color: #fbfbfb;" text="ADD ORDER" />
    </children>
 </AnchorPane>

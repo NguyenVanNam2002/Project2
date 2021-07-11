@@ -138,7 +138,9 @@ public class Product {
         return products;
 
     }
-
+    
+    
+    
     public static ObservableList selectImgByID(int id) throws SQLException {
         ObservableList products = FXCollections.observableArrayList();
         String sql = "SELECT ImgLink FROM products WHERE ProductID = ?";
@@ -269,4 +271,6 @@ public class Product {
         }
         
     }
+
+    
 }

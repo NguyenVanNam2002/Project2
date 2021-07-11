@@ -16,4 +16,5 @@ public interface CategoryDAO {
     public  Category insert(Category newcategory);
     public  boolean update(Category updatecategory);
     public  boolean delete(Category deletecategory);
+    public  ObservableList<String> selectName();
 }

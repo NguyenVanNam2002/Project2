@@ -18,7 +18,8 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-
+import javafx.scene.input.MouseEvent;
+import javafx.scene.text.Text;
 /**
  *
  * @author DELL
@@ -39,8 +40,8 @@ public class ProductIndexUIController {
 
     @FXML
     private TableColumn<Product, String> tcImages;
-    
-       @FXML
+
+    @FXML
     private TableColumn<Product, String> tcCategory;
 
     @FXML
@@ -53,17 +54,17 @@ public class ProductIndexUIController {
     private JFXButton btnDelete;
 
     @FXML
-    private JFXButton btnView;
-    
-    @FXML
     private JFXButton back;
-    
+
     @FXML
     private ImageView image;
+    @FXML
+    private Text u;
     @FXML
     void btnBack(ActionEvent event) throws IOException {
         Nagatice.getInstance().goAdmin();
     }
+
     @FXML
     void btnDeleteClick(ActionEvent event) {
         Product selectedProduct = tvProduct.getSelectionModel().getSelectedItem();
@@ -75,7 +76,7 @@ public class ProductIndexUIController {
             alert.setHeaderText("Are you sure to do you want delete : " + "\n"
                     + "Name :" + selectedProduct.getName() + "\n"
                     + "Price :" + selectedProduct.getPrice() + "\n"
-                    +"Category :" + selectedProduct.getLevel());
+                    + "Category :" + selectedProduct.getLevel());
             alert.setTitle("Deleting");
             Optional<ButtonType> confirmationResponse
                     = alert.showAndWait();
@@ -110,19 +111,18 @@ public class ProductIndexUIController {
         }
     }
 
-    @FXML
-    void btnViewClick(ActionEvent event) throws IOException, SQLException {
-          Product view = tvProduct.getSelectionModel().getSelectedItem();
-
-        if (view == null) {
-            selectImgWarning();
-        } else {
-            Image myimage = new Image(getClass().getResourceAsStream(view.getImg()));
-            image.setImage(myimage);
-        }
-        
-    }
     
+      @FXML
+    void onMouseClick(MouseEvent event) {
+        Product nul = tvProduct.getSelectionModel().getSelectedItem();
+               if (nul != null) {
+                   Image myimage = new Image(getClass().getResourceAsStream(nul.getImg()));
+                   image.setImage(myimage);
+                   
+               }
+               
+    }
+
 
     private void selectProductWarning() {
         Alert alert = new Alert(Alert.AlertType.WARNING);
@@ -130,13 +130,13 @@ public class ProductIndexUIController {
         alert.setHeaderText("A product must be selected for the operation ");
         alert.showAndWait();
     }
-     private void selectImgWarning() {
+
+    private void selectImgWarning() {
         Alert alert = new Alert(Alert.AlertType.WARNING);
         alert.setTitle("Please select a Images");
         alert.setHeaderText("Please enter selected you want choose ! ");
         alert.showAndWait();
     }
-    
 
     public void initialize() throws SQLException {
         System.out.println("Index Controller");
@@ -156,11 +156,11 @@ public class ProductIndexUIController {
         tcImages.setCellValueFactory((product) -> {
             return product.getValue().getImgProperty();
         });
-        
-         tcCategory.setCellValueFactory((product) -> {
+
+        tcCategory.setCellValueFactory((product) -> {
             return product.getValue().getLevelProperty();
         });
-        
+
     }
 
 }

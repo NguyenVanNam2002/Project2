@@ -43,6 +43,7 @@ public class Nagatice {
     public static final String PASSWORD_FXML = "Client_Password.fxml";
     public static final String INFORMATION_FXML = "Client_Infomation.fxml";
 
+
     private FXMLLoader loader;
     private Stage stage = null;
     
@@ -120,13 +121,21 @@ public class Nagatice {
     }
     
    //Client
-    
+    public void goTo() throws IOException {
+        this.goTo(CLIENT_FXML);
+        
+    }
     public void goToClient(ProjectSignUp p) throws IOException {
         this.goTo(CLIENT_FXML);
         Client_Controller ctrl = loader.getController();
         ctrl.initialize(p);
     }
     public void goToChoose(ProjectSignUp p) throws IOException {
+        this.goTo(CHOOSE_FXML);
+        Client_ChooseController ctrl = loader.getController();
+        ctrl.initialize(p);
+    }
+    public void goToChoose(ProjectSignUp p, Category u) throws IOException {
         this.goTo(CHOOSE_FXML);
         Client_ChooseController ctrl = loader.getController();
         ctrl.initialize(p);
@@ -147,6 +156,7 @@ public class Nagatice {
         Client_infomation ctrl = loader.getController();
         ctrl.initialize(p);
     }
+    
     public void goToDrink() throws IOException {
         this.goTo(DRINK_FXML);
     }

@@ -11,7 +11,7 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="747.0" prefWidth="1156.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Project.Client_setting">
    <children>
-      <Pane layoutX="-5.0" prefHeight="122.0" prefWidth="1163.0" style="-fx-background-color: #f49db1;">
+      <Pane layoutX="-5.0" prefHeight="122.0" prefWidth="1163.0" style="-fx-background-color: black;">
          <children>
             <Text fill="WHITE" layoutX="491.0" layoutY="37.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Snack Shop" wrappingWidth="181.22265625">
                <font>
