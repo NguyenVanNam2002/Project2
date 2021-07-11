@@ -37,12 +37,12 @@ public class Nagatice {
     // Client
     public static final String CLIENT_FXML = "Client_user.fxml";
     public static final String CHOOSE_FXML = "Choose.fxml";
-    public static final String FOOD_FXML = "Food.fxml";
-    public static final String DRINK_FXML = "Drink.fxml";
     public static final String SETTING_FXML = "Client_Settings.fxml";
     public static final String PASSWORD_FXML = "Client_Password.fxml";
     public static final String INFORMATION_FXML = "Client_Infomation.fxml";
     public static final String VIEWC2_FXML = "Client_ViewC2.fxml";
+    public static final String CHOOSE_CATEGORY_FXML = "Client_Choose_Category.fxml";
+    
 
     private FXMLLoader loader;
     private Stage stage = null;
@@ -123,17 +123,22 @@ public class Nagatice {
    //Client
     public void goTo() throws IOException {
         this.goTo(CLIENT_FXML);
-        
     }
+    
     public void goToClient(ProjectSignUp p) throws IOException {
         this.goTo(CLIENT_FXML);
         Client_Controller ctrl = loader.getController();
         ctrl.initialize(p);
     }
-    public void goToChoose(ProjectSignUp p) throws IOException {
+    public void goToChooseCategory(ProjectSignUp p) throws IOException {
+        this.goTo(CHOOSE_CATEGORY_FXML);
+        Client_Chosse_Catgory ctrl = loader.getController();
+        ctrl.initialize(p);
+    }
+    public void goToChoose(ProjectSignUp p , Category u) throws IOException {
         this.goTo(CHOOSE_FXML);
         Client_ChooseController ctrl = loader.getController();
-        ctrl.initialize(p);
+        ctrl.initialize(p , u);
     }
     public void goToViewC2(ProjectSignUp p, Product d) throws IOException {
         this.goTo(VIEWC2_FXML);
@@ -157,10 +162,5 @@ public class Nagatice {
         ctrl.initialize(p);
     }
     
-    public void goToDrink() throws IOException {
-        this.goTo(DRINK_FXML);
-    }
-    public void goToFood() throws IOException {
-        this.goTo(FOOD_FXML);
-    }
+   
 }

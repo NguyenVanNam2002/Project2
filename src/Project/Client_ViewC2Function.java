@@ -5,6 +5,7 @@
  */
 package Project;
 
+import Project.Data.Category;
 import Project.Data.Product;
 import Project.Data.ProjectSignUp;
 import Project.DbProject.DbProject;
@@ -42,7 +43,8 @@ public class Client_ViewC2Function {
 
     @FXML
     private TextArea proties;
-
+    @FXML
+    private JFXTextField category;
     @FXML
     private JFXTextField thename;
 
@@ -61,7 +63,8 @@ public class Client_ViewC2Function {
     @FXML
     void btnmenu(ActionEvent event) throws IOException {
         ProjectSignUp menus = extractPasswordFromFields();
-        Nagatice.getInstance().goToChoose(menus);
+        Category cate = extractFromFields();
+        Nagatice.getInstance().goToChoose(menus,cate);
     }
     
      public void initialize(ProjectSignUp p , Product d){
@@ -80,8 +83,13 @@ public class Client_ViewC2Function {
         sign.setAccount(user.getText());
         return sign;
     }
+    private Category extractFromFields() {
+        Category ca = new Category(); 
+         ca.setCat_name(category.getText());
+        return  ca;
+    }
     public void infomaitonselect(String user){
-        String sql = "SELECT  * FROM products WHERE Name = ? ";
+        String sql = "SELECT  p.* , c.* FROM products as p join category as c on p.CategoryID = c.CategoryID WHERE p.Name = ? ";
        
         try(Connection con = DbProject.getConnection();
             PreparedStatement stmt = con.prepareStatement(sql);
@@ -89,9 +97,10 @@ public class Client_ViewC2Function {
              stmt.setString(1, user);
             try (ResultSet rs = stmt.executeQuery()) {
                 if(rs.next()){
-                    theprice.setText(rs.getString("Price")+" VNĐ");
-                    proties.setText(rs.getString("Properties"));
-                    Image myimage = new Image(getClass().getResourceAsStream(rs.getString("ImgLink")));
+                    category.setText(rs.getString("c.NameC"));
+                    theprice.setText(rs.getString("p.Price")+" VNĐ");
+                    proties.setText(rs.getString("p.Properties"));
+                    Image myimage = new Image(getClass().getResourceAsStream(rs.getString("p.ImgLink")));
                     imageview.setImage(myimage);
                     
                 }

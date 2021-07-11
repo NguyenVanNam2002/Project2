@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane id="AnchorPane" prefHeight="799.0" prefWidth="1103.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Project.Client_Chosse_Catgory">
+   <children>
+      <Pane layoutX="-14.0" prefHeight="124.0" prefWidth="1186.0" style="-fx-background-color: black;">
+         <children>
+            <Text fill="WHITE" layoutX="505.0" layoutY="37.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Snack Shop" wrappingWidth="181.22265625">
+               <font>
+                  <Font name="System Bold Italic" size="34.0" />
+               </font>
+            </Text>
+            <FontAwesomeIconView fill="#f2f0f0" glyphName="USER" layoutX="944.0" layoutY="112.0" size="30" />
+            <Text fx:id="user" fill="#fcfcfc" layoutX="968.0" layoutY="111.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="210.99999904632568">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Text>
+            <JFXButton fx:id="menu" layoutX="14.0" layoutY="62.0" onAction="#btnmenu" prefHeight="55.0" prefWidth="192.0" style="-fx-background-color: #0096FF; -fx-background-radius: 50;" text="     HomePage" textFill="WHITE">
+               <font>
+                  <Font name="System Bold Italic" size="20.0" />
+               </font>
+               <graphic>
+                  <FontAwesomeIconView fill="WHITE" glyphName="BARS" size="30" text="" />
+               </graphic>
+            </JFXButton>
+         </children>
+      </Pane>
+      <Pane layoutY="124.0" prefHeight="679.0" prefWidth="575.0" style="-fx-background-color: green;">
+         <children>
+            <ImageView fitHeight="679.0" fitWidth="576.0" onMouseClicked="#clickFood" pickOnBounds="true">
+               <image>
+                  <Image url="@../img/666.jpg" />
+               </image>
+            </ImageView>
+            <Text fx:id="food" fill="WHITE" layoutX="166.0" layoutY="640.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="227.6708984375">
+               <font>
+                  <Font size="96.0" />
+               </font>
+            </Text>
+            <Text fill="WHITE" layoutX="29.0" layoutY="47.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nếu bạn là người đam mê đồ ăn" wrappingWidth="473.6708984375">
+               <font>
+                  <Font name="System Bold Italic" size="30.0" />
+               </font>
+            </Text>
+            <Text fill="WHITE" layoutX="72.0" layoutY="118.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Đừng bỏ lỡ , Hãy  Lựa chọn Food" wrappingWidth="473.6708984375">
+               <font>
+                  <Font name="System Bold Italic" size="30.0" />
+               </font>
+            </Text>
+         </children>
+      </Pane>
+      <Pane layoutX="575.0" layoutY="124.0" prefHeight="679.0" prefWidth="593.0">
+         <children>
+            <ImageView fitHeight="679.0" fitWidth="599.0" onMouseClicked="#clickDrink" pickOnBounds="true">
+               <image>
+                  <Image url="@../img/Drinkgod.jpg" />
+               </image>
+            </ImageView>
+            <Text fx:id="drink" fill="WHITE" layoutX="198.0" layoutY="646.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="227.6708984375">
+               <font>
+                  <Font size="96.0" />
+               </font>
+            </Text>
+            <Text fill="WHITE" layoutY="46.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Hay bạn là người ưa những vị nước uống" wrappingWidth="592.9999933727086">
+               <font>
+                  <Font name="System Bold Italic" size="30.0" />
+               </font>
+            </Text>
+            <Text fill="WHITE" layoutX="66.0" layoutY="123.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Hãy lựa chọn loại nước bạn thích" wrappingWidth="473.6708984375">
+               <font>
+                  <Font name="System Bold Italic" size="30.0" />
+               </font>
+            </Text>
+         </children>
+      </Pane>
+   </children>
+</AnchorPane>

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+
+<AnchorPane id="AnchorPane" prefHeight="643.0" prefWidth="638.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.171" fx:controller="Client_Food.Food_Controller">
+   <children>
+      <TableView fx:id="tvFood" layoutX="-1.0" layoutY="168.0" prefHeight="436.0" prefWidth="764.0">
+        <columns>
+          <TableColumn fx:id="tcName" prefWidth="388.0" text="Name" />
+          <TableColumn fx:id="tcPrice" prefWidth="375.0" text="Price" />
+        </columns>
+      </TableView>
+      <Text layoutX="313.0" layoutY="56.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Food" textAlignment="RIGHT" wrappingWidth="112.7353515625">
+         <font>
+            <Font size="39.0" />
+         </font>
+      </Text>
+      <JFXTextField fx:id="txtSearch" layoutX="201.0" layoutY="101.0" prefHeight="31.0" prefWidth="230.0" />
+      <Text layoutX="79.0" layoutY="126.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Search" wrappingWidth="65.0771484375" />
+   </children>
+</AnchorPane>

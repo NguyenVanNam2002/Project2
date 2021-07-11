@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXButton?>
-<?import com.jfoenix.controls.JFXComboBox?>
 <?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.ScrollPane?>
@@ -31,13 +30,12 @@
                   <Image url="@../img/hamburger_96px.png" />
                </image>
             </ImageView>
-            <FontAwesomeIconView fill="#f2f0f0" glyphName="USER" layoutX="27.0" layoutY="96.0" size="30" text="" />
-            <Text fx:id="user" fill="#fcfcfc" layoutX="95.0" layoutY="93.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="322.99999409914017">
+            <FontAwesomeIconView fill="#f2f0f0" glyphName="USER" layoutX="466.0" layoutY="111.0" size="30" text="" />
+            <Text fx:id="user" fill="#fcfcfc" layoutX="496.0" layoutY="108.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="322.99999409914017">
                <font>
                   <Font size="18.0" />
                </font>
             </Text>
-            <JFXComboBox fx:id="combobox" labelFloat="true" layoutX="609.0" layoutY="77.0" onAction="#onclick" prefHeight="31.0" prefWidth="192.0" promptText="Danh mục" style="-fx-background-color: white;" />
             <Text fx:id="id" layoutX="37.0" layoutY="30.0" strokeType="OUTSIDE" strokeWidth="0.0" />
          </children></Pane>
       <ImageView fitHeight="701.0" fitWidth="315.0" pickOnBounds="true">
@@ -45,7 +43,7 @@
             <Image url="@../img/banner.jpg" />
          </image>
       </ImageView>
-      <JFXButton fx:id="menu" layoutX="58.0" layoutY="14.0" onAction="#btnmenu" prefHeight="55.0" prefWidth="192.0" style="-fx-background-color: #0096FF; -fx-background-radius: 50;" text="     HomePage" textFill="WHITE">
+      <JFXButton fx:id="menu" layoutX="59.0" layoutY="91.0" onAction="#btnmenu" prefHeight="55.0" prefWidth="199.0" style="-fx-background-color: #0096FF; -fx-background-radius: 50;" text="Back Category" textFill="WHITE">
          <font>
             <Font name="System Bold Italic" size="20.0" />
          </font>

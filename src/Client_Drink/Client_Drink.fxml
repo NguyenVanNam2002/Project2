@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="774.0" prefWidth="778.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Client_Drink.Drink_Controller">
+   <children>
+      <Text layoutX="349.0" layoutY="49.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Drink">
+         <font>
+            <Font name="Blackadder ITC" size="32.0" />
+         </font>
+      </Text>
+      <TableView fx:id="tvDrink" layoutX="2.0" layoutY="138.0" prefHeight="488.0" prefWidth="778.0">
+        <columns>
+          <TableColumn fx:id="tcName" prefWidth="361.0" text="Name" />
+          <TableColumn fx:id="tcPrice" prefWidth="417.0" text="Price" />
+        </columns>
+      </TableView>
+      <JFXButton fx:id="btnView" layoutX="499.0" layoutY="648.0" onAction="#btnViewClick" prefHeight="118.0" prefWidth="169.0" text="View " />
+      <JFXTextField fx:id="txtSearch" layoutX="190.0" layoutY="84.0" prefHeight="31.0" prefWidth="248.0" />
+      <Text layoutX="92.0" layoutY="116.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Search" />
+   </children>
+</AnchorPane>

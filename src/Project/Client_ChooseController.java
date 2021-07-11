@@ -5,8 +5,7 @@
  */
 package Project;
 
-import Project.Data.CategoryDAO;
-import Project.Data.CategoryDAOImpl;
+import Project.Data.Category;
 import Project.Data.Product;
 import Project.Data.ProjectSignUp;
 import Project.DbProject.DbProject;
@@ -36,7 +35,8 @@ import javafx.scene.text.Text;
  * @author icom
  */
 public class Client_ChooseController {
-    private CategoryDAO ca = new CategoryDAOImpl();
+    private Category cate;
+    private ProjectSignUp psu;
     @FXML
     private Text user;
 
@@ -46,8 +46,6 @@ public class Client_ChooseController {
     @FXML
     private JFXButton menu;
 
-    
-    private ProjectSignUp psu;
     @FXML
     private JFXButton btnViewFood;
 
@@ -63,215 +61,175 @@ public class Client_ChooseController {
 
     @FXML
     private Text Price;
+
     @FXML
     void onclickimage(MouseEvent event) throws IOException {
         ProjectSignUp acc = extractSignUpFromFields();
         Product ea = extractProductFromFields();
         Nagatice.getInstance().goToViewC2(acc, ea);
     }
-  
+    ObservableList<Product> lis = FXCollections.observableArrayList();
+
     private Product extractProductFromFields() {
-        Product sign = new Product(); 
+        Product sign = new Product();
         sign.setName(name.getText());
         return sign;
     }
-    ObservableList<String> liti = ca.selectName();
+
     private void setChosenSnack(Product snack) {
         name.setText(snack.getName());
         Price.setText(snack.getPrice().toString() + " VND");
         Image image = new Image(getClass().getResourceAsStream(snack.getImg()));
         imageview.setImage(image);
-  
+
     }
+
     @FXML
     void btnmenu(ActionEvent event) throws IOException {
         ProjectSignUp account = extractSignUpFromFields();
-        Nagatice.getInstance().goToClient(account);
-    }
-    @FXML
-    void btnViewDrinkClick(ActionEvent event) throws IOException {
-        Nagatice.getInstance().goToDrink();
+        Nagatice.getInstance().goToChooseCategory(account);
     }
 
-    @FXML
-    void btnViewFoodClick(ActionEvent event) throws IOException {
-        Nagatice.getInstance().goToFood();
-    }
-     ObservableList<Product> lis = FXCollections.observableArrayList();
-    @FXML
-    void onclick(ActionEvent event) {
-      String a="";
-          switch(combobox.getValue()){
-              case  "ALL":
-                  a = "ALL";
-                  Sting(a);
-                  lis.removeAll(lis);
-                  break;
-                  
-                case "Food":
-                    a = "Food";
-                    where(a);
-                    lis.removeAll(lis);
-                    break;
-                case "Candy":
-                    a = "Candy";
-                    where(a);
-                    lis.removeAll(lis);
-                    break;
-                case "Drink":
-                    a = "Drink";
-                    where(a);
-                    lis.removeAll(lis);
-                    break;
-                case "Bim":
-                    a = "Bim";
-                    where(a);
-                    lis.removeAll(lis);
-                    break;
-                default:
-                    lis.removeAll(lis);
-            }
-          
-          
-    }
+   
     private MyListener myListener;
-    public void initialize(ProjectSignUp p){
+
+    public void initialize(ProjectSignUp p , Category u) {
         this.psu = p;
-        combobox.setItems(liti);
-        combobox.setValue("ALL");
-        if(this.psu != null){
+        this.cate = u;
+        if (this.psu != null) {
             user.setText(p.getAccount());
         }
-        
-        
+        if(this.cate != null){
+            where(u.getCat_name());
+        }
+
     }
-    
+
     private ProjectSignUp extractSignUpFromFields() {
-        ProjectSignUp sign = new ProjectSignUp(); 
+        ProjectSignUp sign = new ProjectSignUp();
         sign.setAccount(user.getText());
         return sign;
     }
-    
-   public void where(String b ){
+
+    public void where(String b) {
         String sql = "SELECT ImgLink,Name,Price FROM products as p join category as c on p.CategoryID = c.CategoryID where c.NameC = ?";
-           try (  Connection conn = DbProject.getConnection();
-                PreparedStatement stmt = conn.prepareStatement(sql);
-            ){
-               
-                stmt.setString(1, b);
-                ResultSet rs = stmt.executeQuery();
-                while (rs.next()) {
-                    Product u = new Product();
-                    
-                    u.setName(rs.getString("Name"));
-                    u.setPrice(rs.getInt("Price"));
-                    u.setImg(rs.getString("ImgLink"));
-                    lis.add(u);
-                }
-            } catch (Exception e) {
-                System.err.println(e.getMessage());
+        try (Connection conn = DbProject.getConnection();
+                PreparedStatement stmt = conn.prepareStatement(sql);) {
+
+            stmt.setString(1, b);
+            ResultSet rs = stmt.executeQuery();
+            while (rs.next()) {
+                Product u = new Product();
+
+                u.setName(rs.getString("Name"));
+                u.setPrice(rs.getInt("Price"));
+                u.setImg(rs.getString("ImgLink"));
+                lis.add(u);
             }
-           
-            if (lis.size() > 0) {
+        } catch (Exception e) {
+            System.err.println(e.getMessage());
+        }
+
+        if (lis.size() > 0) {
 //            setChosenSnack(list.get(0));
-                myListener = (Product snack) -> {
+            myListener = (Product snack) -> {
+                setChosenSnack(snack);
+            };
+        }
+        
+        int column = 0;
+        int row = 1;
+        try {
+            for (int i = 0; i < lis.size(); i++) {
+                FXMLLoader fxmlLoader = new FXMLLoader();
+                fxmlLoader.setLocation(getClass().getResource("item.fxml"));
+                AnchorPane anchorPane = fxmlLoader.load();
+
+                ItemController itemController = fxmlLoader.getController();
+                itemController.setData(lis.get(i), myListener);
+                if (column == 4) {
+                    column = 0;
+                    row++;
+                }
+
+                grid.add(anchorPane, column++, row); //(child,column,row)
+                //set grid width
+                grid.setMinWidth(Region.USE_COMPUTED_SIZE);
+                grid.setPrefWidth(Region.USE_COMPUTED_SIZE);
+                grid.setMaxWidth(Region.USE_PREF_SIZE);
+
+                //set grid height
+                grid.setMinHeight(Region.USE_COMPUTED_SIZE);
+                grid.setPrefHeight(Region.USE_COMPUTED_SIZE);
+                grid.setMaxHeight(Region.USE_PREF_SIZE);
+                GridPane.setMargin(anchorPane, new Insets(10));
+
+            }
+            lis.removeAll(lis);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void Sting(String a) {
+        try {
+            Connection conn = DbProject.getConnection();
+            Statement stmt = conn.createStatement();
+            ResultSet rs = stmt.executeQuery("SELECT ImgLink,`Name`,Price FROM products ");
+            while (rs.next()) {
+                Product u = new Product();
+                u.setName(rs.getString("Name"));
+                u.setPrice(rs.getInt("Price"));
+                u.setImg(rs.getString("ImgLink"));
+                lis.add(u);
+            }
+        } catch (Exception e) {
+            System.err.println(e.getMessage());
+        }
+        if (lis.size() > 0) {
+
+            myListener = new MyListener() {
+                @Override
+                public void onClickListener(Product snack) {
                     setChosenSnack(snack);
-                };
-            }
-            int column = 0;
-            int row = 1;
-            try {
-                for (int i = 0; i < lis.size(); i++) {
-                    FXMLLoader fxmlLoader = new FXMLLoader();
-                    fxmlLoader.setLocation(getClass().getResource("item.fxml"));
-                    AnchorPane anchorPane = fxmlLoader.load();
-
-                    ItemController itemController = fxmlLoader.getController();
-                    itemController.setData(lis.get(i),myListener);
-                    if (column == 3) {
-                        column = 0;
-                        row++;
-                    }
-                    
-                    grid.add(anchorPane, column++, row); //(child,column,row)
-                    //set grid width
-                    grid.setMinWidth(Region.USE_COMPUTED_SIZE);
-                    grid.setPrefWidth(Region.USE_COMPUTED_SIZE);
-                    grid.setMaxWidth(Region.USE_PREF_SIZE);
-
-                    //set grid height
-                    grid.setMinHeight(Region.USE_COMPUTED_SIZE);
-                    grid.setPrefHeight(Region.USE_COMPUTED_SIZE);
-                    grid.setMaxHeight(Region.USE_PREF_SIZE);
-                    GridPane.setMargin(anchorPane, new Insets(10));
-                    lis.removeAll(lis);
                 }
-                
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-   }
-   public void Sting(String a ){
-       try {
-                Connection conn = DbProject.getConnection();
-                Statement stmt = conn.createStatement();
-                ResultSet rs = stmt.executeQuery("SELECT ImgLink,`Name`,Price FROM products ");
-                while (rs.next()) {
-                    Product u = new Product();
-                    u.setName(rs.getString("Name"));
-                    u.setPrice(rs.getInt("Price"));
-                    u.setImg(rs.getString("ImgLink"));
-                    lis.add(u);
+            };
+        }
+        int column = 0;
+        int row = 1;
+        try {
+            for (int i = 0; i < lis.size(); i++) {
+                FXMLLoader fxmlLoader = new FXMLLoader();
+                fxmlLoader.setLocation(getClass().getResource("item.fxml"));
+                AnchorPane anchorPane = fxmlLoader.load();
+
+                ItemController itemController = fxmlLoader.getController();
+                itemController.setData(lis.get(i), myListener);
+
+                if (column == 3) {
+                    column = 0;
+                    row++;
                 }
-            } catch (Exception e) {
-                System.err.println(e.getMessage());
+
+                grid.add(anchorPane, column++, row); //(child,column,row)
+                //set grid width
+                grid.setMinWidth(Region.USE_COMPUTED_SIZE);
+                grid.setPrefWidth(Region.USE_COMPUTED_SIZE);
+                grid.setMaxWidth(Region.USE_PREF_SIZE);
+
+                //set grid height
+                grid.setMinHeight(Region.USE_COMPUTED_SIZE);
+                grid.setPrefHeight(Region.USE_COMPUTED_SIZE);
+                grid.setMaxHeight(Region.USE_PREF_SIZE);
+                GridPane.setMargin(anchorPane, new Insets(10));
+
             }
-            if (lis.size() > 0) {
-
-                myListener = new MyListener() {
-                    @Override
-                    public void onClickListener(Product snack) {
-                        setChosenSnack(snack);
-                    }
-                };
+            if (lis != null) {
+                lis.removeAll(lis);
             }
-            int column = 0;
-            int row = 1;
-            try {
-                for (int i = 0; i < lis.size(); i++) {
-                    FXMLLoader fxmlLoader = new FXMLLoader();
-                    fxmlLoader.setLocation(getClass().getResource("item.fxml"));
-                    AnchorPane anchorPane = fxmlLoader.load();
+        } catch (IOException e) {
 
-                    ItemController itemController = fxmlLoader.getController();
-                    itemController.setData(lis.get(i),myListener);
+        }
 
-
-                    if (column == 3) {
-                        column = 0;
-                        row++;
-                    }
-
-                    grid.add(anchorPane, column++, row); //(child,column,row)
-                    //set grid width
-                    grid.setMinWidth(Region.USE_COMPUTED_SIZE);
-                    grid.setPrefWidth(Region.USE_COMPUTED_SIZE);
-                    grid.setMaxWidth(Region.USE_PREF_SIZE);
-
-                    //set grid height
-                    grid.setMinHeight(Region.USE_COMPUTED_SIZE);
-                    grid.setPrefHeight(Region.USE_COMPUTED_SIZE);
-                    grid.setMaxHeight(Region.USE_PREF_SIZE);
-                    GridPane.setMargin(anchorPane, new Insets(10));
-                    lis.removeAll(lis);
-                }
-                if(lis != null){
-                    
-                }
-            } catch (IOException e) {
-                
-            }
-           
-   
-   }
+    }
 }
