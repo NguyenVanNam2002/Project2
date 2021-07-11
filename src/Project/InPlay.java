@@ -20,7 +20,7 @@ public class InPlay extends Application {
         primaryStage.resizableProperty().setValue(Boolean.FALSE);
         primaryStage.setTitle("Snacks Shop");
         Nagatice.getInstance().setStage(primaryStage);
-        Nagatice.getInstance().goTo();
+        Nagatice.getInstance().goAdmin();
         primaryStage.show();
     }
 

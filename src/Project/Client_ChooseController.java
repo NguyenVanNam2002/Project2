@@ -88,12 +88,40 @@ public class Client_ChooseController {
      ObservableList<Product> lis = FXCollections.observableArrayList();
     @FXML
     void onclick(ActionEvent event) {
-        if(combobox.getSelectionModel().getSelectedItem().equals("ALL")){
-         
-            if(lis != null){
-                lis.removeAll(lis);
-            }
-            try {
+      String a="";
+          switch(combobox.getValue()){
+                case "Food":
+                    a = "Food";
+                    where(a);
+                    lis.removeAll(lis);
+                    break;
+                case "Candy":
+                    a = "Candy";
+                    where(a);
+                    lis.removeAll(lis);
+                    break;
+                case "Drink":
+                    a = "Drink";
+                    where(a);
+                    lis.removeAll(lis);
+                    break;
+                case "Trà":
+                    a = "Trà";
+                    where(a);
+                    lis.removeAll(lis);
+                    break;
+          
+        }
+    }
+    private MyListener myListener;
+    public void initialize(ProjectSignUp p){
+        this.psu = p;
+        combobox.setItems(liti);
+        combobox.setValue("ALL");
+        if(this.psu != null){
+            user.setText(p.getAccount());
+        }
+        try {
                 Connection conn = DbProject.getConnection();
                 Statement stmt = conn.createStatement();
                 ResultSet rs = stmt.executeQuery("SELECT ImgLink,`Name`,Price FROM products ");
@@ -150,43 +178,6 @@ public class Client_ChooseController {
                 
             }
            
-        }else{
-            String a="";
-          switch(combobox.getSelectionModel().getSelectedItem().toString()){
-                case "Food":
-                    a = combobox.getSelectionModel().getSelectedItem().toString();
-                    where(a);
-                    lis.removeAll(lis);
-                    break;
-                case "Candy":
-                    a = combobox.getSelectionModel().getSelectedItem().toString();
-                    where(a);
-                    lis.removeAll(lis);
-                    break;
-                case "Drink":
-                    a = combobox.getSelectionModel().getSelectedItem().toString();
-                    where(a);
-                    lis.removeAll(lis);
-                    break;
-                case "Trà":
-                    a = combobox.getSelectionModel().getSelectedItem().toString();
-                    where(a);
-                    lis.removeAll(lis);
-                    break;
-          }
-        }
-          
-            
-    }
-    private MyListener myListener;
-    public void initialize(ProjectSignUp p){
-        this.psu = p;
-        combobox.setItems(liti);
-        combobox.setValue("ALL");
-        if(this.psu != null){
-            user.setText(p.getAccount());
-        }
-       
         
     }
     
