@@ -123,7 +123,16 @@ public class Client_ChooseController {
                     where(a);
                     lis.removeAll(lis);
                     break;
+                case "Bim":
+                    a = "Bim";
+                    where(a);
+                    lis.removeAll(lis);
+                    break;
+                default:
+                    lis.removeAll(lis);
             }
+          
+          
     }
     private MyListener myListener;
     public void initialize(ProjectSignUp p){
@@ -165,11 +174,8 @@ public class Client_ChooseController {
            
             if (lis.size() > 0) {
 //            setChosenSnack(list.get(0));
-                myListener = new MyListener() {
-                    @Override
-                    public void onClickListener(Product snack) {
-                        setChosenSnack(snack);
-                    }
+                myListener = (Product snack) -> {
+                    setChosenSnack(snack);
                 };
             }
             int column = 0;
@@ -198,6 +204,7 @@ public class Client_ChooseController {
                     grid.setPrefHeight(Region.USE_COMPUTED_SIZE);
                     grid.setMaxHeight(Region.USE_PREF_SIZE);
                     GridPane.setMargin(anchorPane, new Insets(10));
+                    lis.removeAll(lis);
                 }
                 
             } catch (IOException e) {
@@ -255,8 +262,11 @@ public class Client_ChooseController {
                     grid.setMinHeight(Region.USE_COMPUTED_SIZE);
                     grid.setPrefHeight(Region.USE_COMPUTED_SIZE);
                     grid.setMaxHeight(Region.USE_PREF_SIZE);
-
                     GridPane.setMargin(anchorPane, new Insets(10));
+                    lis.removeAll(lis);
+                }
+                if(lis != null){
+                    
                 }
             } catch (IOException e) {
                 

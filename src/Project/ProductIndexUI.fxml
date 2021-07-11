@@ -4,8 +4,10 @@
 <?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
@@ -33,5 +35,19 @@
       <ImageView fx:id="image" fitHeight="212.0" fitWidth="236.0" layoutX="880.0" layoutY="454.0" pickOnBounds="true" preserveRatio="true" />
       <JFXButton fx:id="btnInsert" layoutX="939.0" layoutY="87.0" onAction="#btnInsertClick" prefHeight="53.0" prefWidth="107.0" style="-fx-background-color: gray;" text="Insert" textAlignment="CENTER" />
       <Text fx:id="u" layoutX="880.0" layoutY="666.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="235.99998438358307" />
+      <HBox layoutX="644.0" layoutY="18.0" prefHeight="40.0" prefWidth="283.0" style="-fx-background-radius: 100; -fx-background-color: white;" styleClass="search-box-" stylesheets="@css_client.css">
+         <children>
+            <JFXButton prefHeight="43.0" prefWidth="57.0" style="-fx-background-color: #0096FF; -fx-background-radius: 50;" styleClass="search-button-" text="Search" textFill="WHITE">
+               <font>
+                  <Font size="13.0" />
+               </font>
+            </JFXButton>
+            <TextField fx:id="txtSearch" alignment="CENTER" focusTraversable="false" prefHeight="43.0" prefWidth="149.0" promptText="Type here to search" style="-fx-background-color: rgba(0,0,0,0);">
+               <font>
+                  <Font size="13.0" />
+               </font>
+            </TextField>
+         </children>
+      </HBox>
    </children>
 </AnchorPane>

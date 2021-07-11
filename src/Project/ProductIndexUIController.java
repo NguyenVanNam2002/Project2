@@ -10,12 +10,15 @@ import com.jfoenix.controls.JFXButton;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.Optional;
+import javafx.collections.transformation.FilteredList;
+import javafx.collections.transformation.SortedList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
@@ -60,6 +63,8 @@ public class ProductIndexUIController {
     private ImageView image;
     @FXML
     private Text u;
+    @FXML
+    private TextField txtSearch;
     @FXML
     void btnBack(ActionEvent event) throws IOException {
         Nagatice.getInstance().goAdmin();
@@ -160,6 +165,31 @@ public class ProductIndexUIController {
         tcCategory.setCellValueFactory((product) -> {
             return product.getValue().getLevelProperty();
         });
+        Search();
+    }
+    private void Search() throws SQLException {
+        FilteredList<Product> filteredData = new FilteredList<>(Product.selectAll(), b -> true);
+        txtSearch.textProperty().addListener((observable, oldValue, newValue) -> {
+            filteredData.setPredicate(pro -> {
+                if (newValue == null || newValue.isEmpty()) {
+                    return true;
+                }
+                String lowerCaseFilter = newValue.toLowerCase();
+                if (pro.getName().toLowerCase().indexOf(lowerCaseFilter) != -1) {
+                    return true; // Filter matches first name.
+                } else if (String.valueOf(pro.getPrice()).indexOf(lowerCaseFilter) != -1) {
+                    return true; // Filter matches last name.
+                } else if (pro.getProperties().indexOf(lowerCaseFilter) != -1) {
+                    return true;
+                } else if (pro.getLevel().indexOf(lowerCaseFilter) != -1) {
+                    return true;
+                }
+                return false; // Does not match.
+            });
+        });
+        SortedList<Product> sortedData = new SortedList<>(filteredData);
+        sortedData.comparatorProperty().bind(tvProduct.comparatorProperty());
+        tvProduct.setItems(sortedData);
 
     }
 
