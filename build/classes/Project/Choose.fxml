@@ -74,12 +74,11 @@
             <Font name="System Bold Italic" size="25.0" />
          </font>
       </Text>
-      <ImageView fx:id="imageview" fitHeight="286.0" fitWidth="290.0" layoutX="17.0" layoutY="237.0" pickOnBounds="true" />
+      <ImageView fx:id="imageview" fitHeight="286.0" fitWidth="290.0" layoutX="13.0" layoutY="236.0" onMouseClicked="#onclickimage" pickOnBounds="true" />
       <Text fx:id="Price" fill="WHITE" layoutY="567.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="315.00000447034836">
          <font>
             <Font name="System Bold Italic" size="25.0" />
          </font>
       </Text>
-      <JFXButton layoutX="49.0" layoutY="624.0" prefHeight="31.0" prefWidth="192.0" style="-fx-background-color: #fbfbfb;" text="ADD ORDER" />
    </children>
 </AnchorPane>

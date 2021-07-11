@@ -64,7 +64,7 @@
                   </ImageView>
                </children>
             </HBox>
-            <JFXButton fx:id="setting" layoutX="50.0" layoutY="174.0" onAction="#btnsetting" prefHeight="63.0" prefWidth="255.0" style="-fx-background-radius: 50; -fx-background-color: #FF7F50;" text="EDIT PROFILE" textFill="WHITE">
+            <JFXButton fx:id="setting" layoutX="50.0" layoutY="182.0" onAction="#btnsetting" prefHeight="63.0" prefWidth="255.0" style="-fx-background-radius: 50; -fx-background-color: #FF7F50;" text="EDIT PROFILE" textFill="WHITE">
                <font>
                   <Font size="29.0" />
                </font>
@@ -84,12 +84,12 @@
                   <Font size="29.0" />
                </font>
             </JFXButton>
-            <Text layoutX="71.0" layoutY="391.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Follow us">
+            <Text layoutX="73.0" layoutY="429.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Follow us">
                <font>
                   <Font name="System Bold Italic" size="41.0" />
                </font>
             </Text>
-            <JFXButton fx:id="btnFeedback1" layoutX="50.0" layoutY="284.0" onAction="#btnFeedback" prefHeight="63.0" prefWidth="255.0" style="-fx-background-radius: 50; -fx-background-color: #FF7F50;" text="Feedback" textFill="WHITE">
+            <JFXButton fx:id="btnFeedback1" layoutX="50.0" layoutY="292.0" onAction="#btnFeedback" prefHeight="63.0" prefWidth="255.0" style="-fx-background-radius: 50; -fx-background-color: #FF7F50;" text="Feedback" textFill="WHITE">
                <font>
                   <Font size="29.0" />
                </font>
