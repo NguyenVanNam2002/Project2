@@ -41,7 +41,7 @@ public class Nagatice {
     public static final String PASSWORD_FXML = "Client_Password.fxml";
     public static final String INFORMATION_FXML = "Client_Infomation.fxml";
     public static final String VIEWC2_FXML = "Client_ViewC2.fxml";
-    public static final String CHOOSE_CATEGORY_FXML = "Client_Choose_Category.fxml";
+
      public static final String SEARCH_FXML = "Client_Search.fxml";
     
 
@@ -131,17 +131,13 @@ public class Nagatice {
         Client_Controller ctrl = loader.getController();
         ctrl.initialize(p);
     }
+    
     public void goToSearch(ProjectSignUp p, Product d) throws IOException {
         this.goTo(SEARCH_FXML);
         Client_Search  ctrl = loader.getController();
         ctrl.initialize(p, d);
     }
     
-    public void goToChooseCategory(ProjectSignUp p) throws IOException {
-        this.goTo(CHOOSE_CATEGORY_FXML);
-        Client_Chosse_Catgory ctrl = loader.getController();
-        ctrl.initialize(p);
-    }
     public void goToChoose(ProjectSignUp p , Category u) throws IOException {
         this.goTo(CHOOSE_FXML);
         Client_ChooseController ctrl = loader.getController();

@@ -48,28 +48,77 @@ public class ProductIndexUIController {
     private TableColumn<Product, String> tcCategory;
 
     @FXML
-    private JFXButton btnInsert;
-
-    @FXML
     private JFXButton btnUpdate;
 
     @FXML
     private JFXButton btnDelete;
 
     @FXML
-    private JFXButton back;
+    private ImageView image;
 
     @FXML
-    private ImageView image;
+    private JFXButton btnInsert;
+
     @FXML
     private Text u;
+
+    @FXML
+    private JFXButton Btnsearch;
+
     @FXML
     private TextField txtSearch;
+      @FXML
+    private JFXButton btncategory;
+
     @FXML
-    void btnBack(ActionEvent event) throws IOException {
-        Nagatice.getInstance().goAdmin();
+    private JFXButton btnfeedback;
+
+    @FXML
+    private JFXButton btncustomer;
+
+    @FXML
+    private JFXButton logout;
+
+    @FXML
+    private Text theviewname;
+
+    @FXML
+    private Text theviewprice;
+
+    @FXML
+    private Text theviewpropertis;
+    
+    @FXML
+    void btncategory(ActionEvent event) throws IOException {
+        Nagatice.getInstance().goToCategoryIndex();
     }
 
+    @FXML
+    void btncustomer(ActionEvent event) throws IOException {
+        Nagatice.getInstance().goToCustomerIndex();
+    }
+
+    @FXML
+    void btnfeedback(ActionEvent event) throws IOException {
+        Nagatice.getInstance().goToFeedbackIndex();
+    }
+
+    @FXML
+    void btnlogout(ActionEvent event) throws IOException {
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setHeaderText("Bạn chắc chắn muốn đăng xuất ?");
+        alert.setTitle("Lưu ý ");
+        Optional<ButtonType> confirmationResponse
+                = alert.showAndWait();
+        if (confirmationResponse.get() == ButtonType.OK) {
+            Nagatice.getInstance().goToIndex();
+        } 
+    }
+    
+     @FXML
+    void btnsearch(ActionEvent event) throws SQLException {
+        Search();
+    }
     @FXML
     void btnDeleteClick(ActionEvent event) {
         Product selectedProduct = tvProduct.getSelectionModel().getSelectedItem();
@@ -123,6 +172,9 @@ public class ProductIndexUIController {
                if (nul != null) {
                    Image myimage = new Image(getClass().getResourceAsStream(nul.getImg()));
                    image.setImage(myimage);
+                   theviewname.setText(nul.getName());
+                   theviewprice.setText(nul.getPrice().toString());
+                   theviewpropertis.setText(nul.getProperties());
                 }  
     }
 
@@ -163,7 +215,8 @@ public class ProductIndexUIController {
         tcCategory.setCellValueFactory((product) -> {
             return product.getValue().getLevelProperty();
         });
-        Search();
+        
+        
     }
     private void Search() throws SQLException {
         FilteredList<Product> filteredData = new FilteredList<>(Product.selectAll(), b -> true);
@@ -173,16 +226,16 @@ public class ProductIndexUIController {
                     return true;
                 }
                 String lowerCaseFilter = newValue.toLowerCase();
-                if (pro.getName().toLowerCase().indexOf(lowerCaseFilter) != -1) {
+                if (pro.getName().toLowerCase().contains(lowerCaseFilter)) {
                     return true; // Filter matches first name.
-                } else if (String.valueOf(pro.getPrice()).indexOf(lowerCaseFilter) != -1) {
+                } else if (String.valueOf(pro.getPrice()).contains(lowerCaseFilter)) {
                     return true; // Filter matches last name.
-                } else if (pro.getProperties().indexOf(lowerCaseFilter) != -1) {
+                } else if (pro.getProperties().contains(lowerCaseFilter)) {
                     return true;
-                } else if (pro.getLevel().indexOf(lowerCaseFilter) != -1) {
+                } else if (pro.getLevel().contains(lowerCaseFilter)) {
                     return true;
                 }
-                return false; // Does not match.
+                return false;
             });
         });
         SortedList<Product> sortedData = new SortedList<>(filteredData);
@@ -190,5 +243,5 @@ public class ProductIndexUIController {
         tvProduct.setItems(sortedData);
 
     }
-
+    
 }

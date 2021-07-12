@@ -44,14 +44,47 @@ public class CategoryUIController {
     @FXML
     private JFXButton btnDelete;
     
-      @FXML
-    private JFXButton BACK;
     
-      
-     @FXML
-    void btnbackHome(ActionEvent event) throws IOException {
-        Nagatice.getInstance().goAdmin();
+    
+      @FXML
+    private JFXButton btnproduct;
+
+    @FXML
+    private JFXButton btnfeedback;
+
+    @FXML
+    private JFXButton btncustomer;
+
+    @FXML
+    private JFXButton logout;
+
+    @FXML
+    void btncustomer(ActionEvent event) throws IOException {
+         Nagatice.getInstance().goToCustomerIndex();
     }
+
+    @FXML
+    void btnfeedback(ActionEvent event) throws IOException {
+        Nagatice.getInstance().goToFeedbackIndex();
+    }
+
+    @FXML
+    void btnproduct(ActionEvent event) throws IOException {
+        Nagatice.getInstance().goToIndexProduct();
+    }
+
+    @FXML
+    void btnlogout(ActionEvent event) throws IOException {
+         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setHeaderText("Bạn chắc chắn muốn đăng xuất ?");
+        alert.setTitle("Lưu ý ");
+        Optional<ButtonType> confirmationResponse
+                = alert.showAndWait();
+        if (confirmationResponse.get() == ButtonType.OK) {
+            Nagatice.getInstance().goToIndex();
+        } 
+    }
+    
     @FXML
     void btnInsertClick(ActionEvent event) throws IOException {
         Nagatice.getInstance().goCategoryToEdit(null);

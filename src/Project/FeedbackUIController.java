@@ -15,7 +15,6 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
-import static sun.plugin.javascript.navig.JSType.Navigator;
 
 /**
  *
@@ -26,8 +25,7 @@ public class FeedbackUIController {
     @FXML
     private TableView<Feedback> tvFeedback;
 
-    @FXML
-    private JFXButton btnInsert;
+    
 
     @FXML
     private TableColumn<Feedback, Integer> tcFbID;
@@ -38,19 +36,27 @@ public class FeedbackUIController {
     @FXML
     private TableColumn<Feedback, Integer> tcProductID;
 
+   @FXML
+    private JFXButton btnInsert;
+
     @FXML
     private JFXButton btnUpdate;
 
     @FXML
     private JFXButton btnDelete;
-    
-    @FXML
-    private JFXButton back;
+
+     @FXML
+    private JFXButton btncategory;
 
     @FXML
-    void btnBack(ActionEvent event) throws IOException {
-        Nagatice.getInstance().goAdmin();
-    }
+    private JFXButton btnproduct;
+
+    @FXML
+    private JFXButton btncustomer;
+
+    @FXML
+    private JFXButton logout;
+
 
     @FXML
     void btnInsertClick(ActionEvent event) throws IOException {
@@ -120,6 +126,32 @@ public class FeedbackUIController {
         alert.setTitle("Please select a feedback");
         alert.setHeaderText("A feedback must be selected for the operation");
         alert.showAndWait();
+    }
+   @FXML
+    void btncategory(ActionEvent event) throws IOException {
+        Nagatice.getInstance().goToCategoryIndex();
+    }
+
+    @FXML
+    void btncustomer(ActionEvent event) throws IOException {
+        Nagatice.getInstance().goToCustomerIndex();
+    }
+
+    @FXML
+    void btnproduct(ActionEvent event) throws IOException {
+        Nagatice.getInstance().goToIndexProduct();
+    }
+
+    @FXML
+    void btnlogout(ActionEvent event) throws IOException {
+         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setHeaderText("Bạn chắc chắn muốn đăng xuất ?");
+        alert.setTitle("Lưu ý ");
+        Optional<ButtonType> confirmationResponse
+                = alert.showAndWait();
+        if (confirmationResponse.get() == ButtonType.OK) {
+            Nagatice.getInstance().goToIndex();
+        } 
     }
 
 }

@@ -5,6 +5,7 @@
  */
 package  Project;
 
+import Project.Data.Category;
 import Project.Data.Product;
 import Project.Data.ProjectSignUp;
 import com.jfoenix.controls.JFXButton;
@@ -21,34 +22,56 @@ import javafx.scene.text.Text;
 public class Client_Controller {
     private ProjectSignUp psu;
     @FXML
-    private JFXButton btnMenu;
-
-    @FXML
-    private JFXButton btnFeedback;
-    
-    @FXML
-    private JFXButton btnSearch;
-    
-     @FXML
-    private TextField productname;
-    @FXML
     private Text user;
+
     @FXML
     private JFXButton setting;
-    @FXML
-    void btnFeedback(ActionEvent event) {
 
+    @FXML
+    private JFXButton btnDrink;
+
+    @FXML
+    private JFXButton btnFeedback1;
+
+    @FXML
+    private JFXButton btnSearch;
+
+    @FXML
+    private TextField productname;
+
+    @FXML
+    private JFXButton Food;
+    
+    @FXML
+    private Text drink;
+
+    @FXML
+    private Text food;
+
+    @FXML
+    void btnDrink(ActionEvent event) throws IOException {
+         ProjectSignUp menus = extractSignUpFromFields();
+        Category cate = extractDrinkFoodFromFields();
+        Nagatice.getInstance().goToChoose(menus,cate);
+    }
+
+    @FXML
+    void btnFeedback(ActionEvent event) throws IOException {
+        
+    }
+
+    @FXML
+    void btnFoodclik(ActionEvent event) throws IOException {
+        ProjectSignUp menus = extractSignUpFromFields();
+        Category cate = extractFoodFromFields();
+        Nagatice.getInstance().goToChoose(menus,cate);
     }
     @FXML
     void btnsetting(ActionEvent event) throws IOException {
         ProjectSignUp account = extractSignUpFromFields();
         Nagatice.getInstance().goToSeting(account);
     }
-    @FXML
-    void btnMenuClick(ActionEvent event) throws IOException {
-        ProjectSignUp account = extractSignUpFromFields();
-        Nagatice.getInstance().goToChooseCategory(account);
-    }
+    
 
     @FXML
     void btnSearchClick(ActionEvent event) throws IOException {
@@ -64,6 +87,13 @@ public class Client_Controller {
         }
     }
     
+    public void initialize(){
+        food.setText("Food");
+        drink.setText("Drink");
+        food.setVisible(false);
+        drink.setVisible(false);
+    }
+    
     private ProjectSignUp extractSignUpFromFields() {
         ProjectSignUp sign = new ProjectSignUp(); 
         sign.setAccount(user.getText());
@@ -74,5 +104,15 @@ public class Client_Controller {
         Product pro = new Product(); 
         pro.setName(productname.getText());
         return pro;
+    }
+    private Category extractFoodFromFields() {
+        Category ca = new Category(); 
+         ca.setCat_name(food.getText());
+        return  ca;
+    }
+    private Category extractDrinkFoodFromFields() {
+        Category ca = new Category(); 
+         ca.setCat_name(drink.getText());
+        return  ca;
     }
 }

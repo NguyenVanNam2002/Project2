@@ -85,7 +85,7 @@ public class Client_ChooseController {
     @FXML
     void btnmenu(ActionEvent event) throws IOException {
         ProjectSignUp account = extractSignUpFromFields();
-        Nagatice.getInstance().goToChooseCategory(account);
+        Nagatice.getInstance().goToClient(account);
     }
 
    

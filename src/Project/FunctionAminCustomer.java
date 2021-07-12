@@ -29,8 +29,7 @@ public class FunctionAminCustomer {
     @FXML
     private JFXButton delete;
 
-    @FXML
-    private JFXButton back;
+   
 
     @FXML
     private TableView<ProjectSignUp> Tableview;
@@ -49,10 +48,43 @@ public class FunctionAminCustomer {
 
     @FXML
     private TableColumn<ProjectSignUp, String> address;
+    @FXML
+    private JFXButton btnproduct;
 
     @FXML
-    void btnback(ActionEvent event) throws IOException {
-        Nagatice.getInstance().goAdmin();
+    private JFXButton btncategory;
+
+    @FXML
+    private JFXButton btnfeedback;
+
+    @FXML
+    private JFXButton logout;
+
+     @FXML
+    void btncategory(ActionEvent event) throws IOException {
+        Nagatice.getInstance().goToCategoryIndex();
+    }
+
+    @FXML
+    void btnfeedback(ActionEvent event) throws IOException {
+        Nagatice.getInstance().goToFeedbackIndex();
+    }
+
+    @FXML
+    void btnproduct(ActionEvent event) throws IOException {
+        Nagatice.getInstance().goToIndexProduct();
+    }
+
+    @FXML
+    void btnlogout(ActionEvent event) throws IOException {
+         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setHeaderText("Bạn chắc chắn muốn đăng xuất ?");
+        alert.setTitle("Lưu ý ");
+        Optional<ButtonType> confirmationResponse
+                = alert.showAndWait();
+        if (confirmationResponse.get() == ButtonType.OK) {
+            Nagatice.getInstance().goToIndex();
+        } 
     }
 
     @FXML

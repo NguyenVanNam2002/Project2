@@ -69,8 +69,9 @@ public class FunctionLogin {
                     }
                 }else if(Requierd){
                     if(Sign.getSelectionModel().getSelectedItem().toString() == "Admin"){
-                        Nagatice.getInstance().goAdmin();
-                    }else if(Sign.getSelectionModel().getSelectedItem().toString() == "Client"){
+                        Nagatice.getInstance().goToIndexProduct();
+                    }else if(
+                        Sign.getSelectionModel().getSelectedItem().toString() == "Client"){
                         Nagatice.getInstance().goToClient(login);
                     }  
                 } else{
@@ -152,7 +153,6 @@ public class FunctionLogin {
     
     private ProjectSignUp extractSignUpFromFields() {
         ProjectSignUp sign = new ProjectSignUp(); 
-        
         sign.setAccount(account.getText());
         String b =password.getText();
         sign.setPassword(md5(b));
