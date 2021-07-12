@@ -107,7 +107,7 @@
                         <Font size="13.0" />
                      </font>
                   </JFXButton>
-                  <TextField alignment="CENTER" focusTraversable="false" prefHeight="43.0" prefWidth="149.0" promptText="Type here to search" style="-fx-background-color: rgba(0,0,0,0);">
+                  <TextField fx:id="productname" alignment="CENTER" focusTraversable="false" prefHeight="43.0" prefWidth="149.0" promptText="Type here to search" style="-fx-background-color: rgba(0,0,0,0);">
                      <font>
                         <Font size="13.0" />
                      </font>

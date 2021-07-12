@@ -5,11 +5,13 @@
  */
 package  Project;
 
+import Project.Data.Product;
 import Project.Data.ProjectSignUp;
 import com.jfoenix.controls.JFXButton;
 import java.io.IOException;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
 
 /**
@@ -27,6 +29,8 @@ public class Client_Controller {
     @FXML
     private JFXButton btnSearch;
     
+     @FXML
+    private TextField productname;
     @FXML
     private Text user;
     @FXML
@@ -47,8 +51,10 @@ public class Client_Controller {
     }
 
     @FXML
-    void btnSearchClick(ActionEvent event) {
-
+    void btnSearchClick(ActionEvent event) throws IOException {
+        ProjectSignUp account = extractSignUpFromFields();
+        Product name = extractProductFromFields();
+        Nagatice.getInstance().goToSearch(account, name);
     }
     
     public void initialize(ProjectSignUp p){
@@ -62,5 +68,11 @@ public class Client_Controller {
         ProjectSignUp sign = new ProjectSignUp(); 
         sign.setAccount(user.getText());
         return sign;
+    }
+    
+    private Product extractProductFromFields() {
+        Product pro = new Product(); 
+        pro.setName(productname.getText());
+        return pro;
     }
 }

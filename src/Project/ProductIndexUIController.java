@@ -117,15 +117,13 @@ public class ProductIndexUIController {
     }
 
     
-      @FXML
+    @FXML
     void onMouseClick(MouseEvent event) {
         Product nul = tvProduct.getSelectionModel().getSelectedItem();
                if (nul != null) {
                    Image myimage = new Image(getClass().getResourceAsStream(nul.getImg()));
                    image.setImage(myimage);
-                   
-               }
-               
+                }  
     }
 
 

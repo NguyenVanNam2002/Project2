@@ -41,14 +41,14 @@ public class Client_Chosse_Catgory {
     @FXML
     void clickDrink(MouseEvent event) throws IOException {
         ProjectSignUp menus = extractPasswordFromFields();
-        Category cate = extractFoodFromFields();
+        Category cate = extractDrinkFoodFromFields();
         Nagatice.getInstance().goToChoose(menus,cate);
     }
 
     @FXML
     void clickFood(MouseEvent event) throws IOException {
         ProjectSignUp menus = extractPasswordFromFields();
-        Category cate = extractDrinkFoodFromFields();
+        Category cate = extractFoodFromFields();
         Nagatice.getInstance().goToChoose(menus,cate);
     }
     public void initialize(ProjectSignUp p) {

@@ -57,3 +57,4 @@ CREATE TABLE account_client(
 );
 
 SELECT * FROM account_client;
+SELECT * FROM products WHERE `Name` LIKE '%a%';

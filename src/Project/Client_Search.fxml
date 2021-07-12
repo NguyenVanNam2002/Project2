@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane id="AnchorPane" prefHeight="694.0" prefWidth="1143.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Project.Client_Search">
+   <children>
+      <Pane layoutY="-1.0" prefHeight="129.0" prefWidth="1150.0" style="-fx-background-color: #463e3e;">
+         <children>
+            <Text fill="WHITE" layoutX="420.0" layoutY="48.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Snack Shop Menu" wrappingWidth="290.22265625">
+               <font>
+                  <Font name="System Bold Italic" size="34.0" />
+               </font>
+            </Text>
+            <ImageView fitHeight="77.0" fitWidth="87.0" layoutX="704.0" layoutY="-5.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../img/hamburger_96px.png" />
+               </image>
+            </ImageView>
+            <FontAwesomeIconView fill="#f2f0f0" glyphName="USER" layoutX="845.0" layoutY="120.0" size="30" text="" />
+            <Text fx:id="user" fill="#fcfcfc" layoutX="869.0" layoutY="117.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="266.99999409914017">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Text>
+            <Text fx:id="id" layoutX="37.0" layoutY="30.0" strokeType="OUTSIDE" strokeWidth="0.0" />
+            <JFXButton fx:id="menu" layoutY="70.0" onAction="#btnmenu" prefHeight="55.0" prefWidth="216.0" style="-fx-background-color: #0096FF; -fx-background-radius: 50;" text="Back Home Fage" textFill="WHITE">
+               <font>
+                  <Font name="System Bold Italic" size="20.0" />
+               </font>
+               <graphic>
+                  <FontAwesomeIconView fill="WHITE" glyphName="BARS" size="30" text="" />
+               </graphic>
+            </JFXButton>
+         </children>
+      </Pane>
+      <ImageView fitHeight="577.0" fitWidth="331.0" layoutX="-6.0" layoutY="129.0" pickOnBounds="true">
+         <image>
+            <Image url="@../img/banner.jpg" />
+         </image>
+      </ImageView>
+      <HBox layoutX="323.0" layoutY="128.0" prefHeight="586.0" prefWidth="827.0" style="-fx-background-color: white;">
+         <children>
+            <ScrollPane prefHeight="582.0" prefWidth="827.0" style="-fx-background-color: white;">
+               <HBox.margin>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </HBox.margin>
+               <content>
+                  <GridPane fx:id="grid" prefHeight="13.0" prefWidth="3.0">
+                     <rowConstraints>
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" />
+                     </rowConstraints>
+                  </GridPane>
+               </content>
+            </ScrollPane>
+         </children>
+      </HBox>
+      <Text fx:id="name" fill="WHITE" layoutX="10.0" layoutY="202.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="315.00000447034836">
+         <font>
+            <Font name="System Bold Italic" size="25.0" />
+         </font>
+      </Text>
+      <ImageView fx:id="imageview" fitHeight="286.0" fitWidth="290.0" layoutX="23.0" layoutY="208.0" pickOnBounds="true" />
+      <Text fx:id="Price" fill="WHITE" layoutX="10.0" layoutY="527.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="315.00000447034836">
+         <font>
+            <Font name="System Bold Italic" size="25.0" />
+         </font>
+      </Text>
+      <HBox layoutX="2.0" layoutY="129.0" prefHeight="40.0" prefWidth="315.0" style="-fx-background-radius: 100; -fx-background-color: white;" styleClass="search-box-" stylesheets="@css_client.css">
+         <children>
+            <JFXButton fx:id="btnSearch" onAction="#btnSearchClick" prefHeight="43.0" prefWidth="57.0" style="-fx-background-color: #0096FF; -fx-background-radius: 50;" styleClass="search-button-" text="Search" textFill="WHITE">
+               <font>
+                  <Font size="13.0" />
+               </font>
+            </JFXButton>
+            <TextField fx:id="productname" alignment="CENTER" focusTraversable="false" prefHeight="43.0" prefWidth="149.0" promptText="Type here to search" style="-fx-background-color: rgba(0,0,0,0);">
+               <font>
+                  <Font size="13.0" />
+               </font>
+            </TextField>
+         </children>
+      </HBox>
+      <TextArea fx:id="properties" layoutX="9.0" layoutY="534.0" prefHeight="121.0" prefWidth="301.0" />
+      <JFXButton fx:id="add" layoutX="102.0" layoutY="671.0" onAction="#btnadd" prefHeight="24.0" prefWidth="115.0" style="-fx-background-color: white;" text="ADD ORDER" />
+   </children>
+</AnchorPane>
