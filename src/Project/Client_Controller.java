@@ -30,8 +30,7 @@ public class Client_Controller {
     @FXML
     private JFXButton btnDrink;
 
-    @FXML
-    private JFXButton btnFeedback1;
+
 
     @FXML
     private JFXButton btnSearch;
@@ -55,10 +54,6 @@ public class Client_Controller {
         Nagatice.getInstance().goToChoose(menus,cate);
     }
 
-    @FXML
-    void btnFeedback(ActionEvent event) throws IOException {
-        
-    }
 
     @FXML
     void btnFoodclik(ActionEvent event) throws IOException {

@@ -64,7 +64,7 @@
                   </ImageView>
                </children>
             </HBox>
-            <JFXButton fx:id="setting" layoutX="43.0" layoutY="270.0" onAction="#btnsetting" prefHeight="63.0" prefWidth="255.0" style="-fx-background-radius: 50; -fx-background-color: #FF7F50;" text="EDIT PROFILE" textFill="WHITE">
+            <JFXButton fx:id="setting" layoutX="43.0" layoutY="301.0" onAction="#btnsetting" prefHeight="63.0" prefWidth="255.0" style="-fx-background-radius: 50; -fx-background-color: #FF7F50;" text="EDIT PROFILE" textFill="WHITE">
                <font>
                   <Font size="29.0" />
                </font>
@@ -72,11 +72,14 @@
                   <Insets />
                </opaqueInsets>
                <graphic>
-                  <FontAwesomeIconView fill="WHITE" glyphName="COG" size="30" />
+                  <ImageView fitHeight="46.0" fitWidth="38.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../settings_64px.png" />
+                     </image>
+                  </ImageView>
                </graphic>
             </JFXButton>
-            <FontAwesomeIconView fill="WHITE" glyphName="COMMENTS" layoutX="-82.0" layoutY="-12.0" size="32" text="" wrappingWidth="36.0" />
-            <JFXButton fx:id="btnDrink" layoutX="43.0" layoutY="190.0" onAction="#btnDrink" prefHeight="63.0" prefWidth="255.0" style="-fx-background-radius: 50; -fx-background-color: #FF7F50;" text="Drink" textFill="#f8f8f8">
+            <JFXButton fx:id="btnDrink" layoutX="43.0" layoutY="197.0" onAction="#btnDrink" prefHeight="63.0" prefWidth="255.0" style="-fx-background-radius: 50; -fx-background-color: #FF7F50;" text="Drink" textFill="#f8f8f8">
                <font>
                   <Font size="29.0" />
                </font>
@@ -86,17 +89,6 @@
                   <Font name="System Bold Italic" size="41.0" />
                </font>
             </Text>
-            <JFXButton fx:id="btnFeedback1" layoutX="43.0" layoutY="359.0" onAction="#btnFeedback" prefHeight="63.0" prefWidth="255.0" style="-fx-background-radius: 50; -fx-background-color: #FF7F50;" text="Feedback" textFill="WHITE">
-               <font>
-                  <Font size="29.0" />
-               </font>
-               <graphic>
-                  <FontAwesomeIconView fill="WHITE" glyphName="COMMENTS" size="32" text="" wrappingWidth="36.0" />
-               </graphic>
-               <opaqueInsets>
-                  <Insets />
-               </opaqueInsets>
-            </JFXButton>
             <HBox layoutX="882.0" layoutY="7.0" prefHeight="40.0" prefWidth="283.0" style="-fx-background-radius: 100; -fx-background-color: white;" styleClass="search-box-" stylesheets="@css_client.css">
                <children>
                   <JFXButton fx:id="btnSearch" onAction="#btnSearchClick" prefHeight="43.0" prefWidth="57.0" style="-fx-background-color: #0096FF; -fx-background-radius: 50;" styleClass="search-button-" text="Search" textFill="WHITE">
@@ -128,6 +120,17 @@
             </JFXButton>
             <Text fx:id="drink" layoutX="490.0" layoutY="63.0" strokeType="OUTSIDE" strokeWidth="0.0" />
             <Text fx:id="food" layoutX="490.0" layoutY="100.0" strokeType="OUTSIDE" strokeWidth="0.0" />
+            <ImageView fitHeight="49.0" fitWidth="43.0" layoutX="89.0" layoutY="104.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../restaurant_30px.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="50.0" fitWidth="43.0" layoutX="89.0" layoutY="197.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../beer_glass_40px.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="49.0" fitWidth="56.0" layoutX="58.0" layoutY="368.0" pickOnBounds="true" preserveRatio="true" />
          </children>
       </Pane>
    </children>

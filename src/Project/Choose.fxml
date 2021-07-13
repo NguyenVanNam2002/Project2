@@ -48,7 +48,7 @@
          </children></Pane>
       <ImageView fitHeight="639.0" fitWidth="315.0" layoutY="62.0" pickOnBounds="true">
          <image>
-            <Image url="@../img/banner.jpg" />
+            <Image url="@../img/banner%20j.jpg" />
          </image>
       </ImageView>
       <HBox layoutX="313.0" layoutY="65.0" prefHeight="639.0" prefWidth="827.0">
@@ -76,6 +76,11 @@
       <Text fx:id="theprice" fill="WHITE" layoutY="567.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="315.00000447034836">
          <font>
             <Font name="System Bold Italic" size="25.0" />
+         </font>
+      </Text>
+      <Text fx:id="categoryname" fill="WHITE" layoutX="13.0" layoutY="349.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="315.0000048279762">
+         <font>
+            <Font size="85.0" />
          </font>
       </Text>
    </children>

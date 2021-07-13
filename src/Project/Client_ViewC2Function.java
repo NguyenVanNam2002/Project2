@@ -42,7 +42,7 @@ public class Client_ViewC2Function {
     private ImageView imageview;
 
     @FXML
-    private TextArea proties;
+    private Text proties;
     @FXML
     private JFXTextField category;
     @FXML
@@ -56,17 +56,11 @@ public class Client_ViewC2Function {
 
     @FXML
     void btnHome(ActionEvent event) throws IOException {
-        ProjectSignUp acc = extractPasswordFromFields();
-        Nagatice.getInstance().goToClient(acc);
-    }
-
-    @FXML
-    void btnmenu(ActionEvent event) throws IOException {
-        ProjectSignUp menus = extractPasswordFromFields();
+       ProjectSignUp menus = extractPasswordFromFields();
         Category cate = extractFromFields();
         Nagatice.getInstance().goToChoose(menus,cate);
     }
-    
+
      public void initialize(ProjectSignUp p , Product d){
         this.psu = p;
         this.pd = d;

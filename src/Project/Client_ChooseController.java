@@ -15,6 +15,8 @@ import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -56,9 +58,10 @@ public class Client_ChooseController {
 
     @FXML
     private Text theprice;
-    @FXML
-    private JFXComboBox<String> combobox;
     
+    @FXML
+    private Text categoryname;
+
     
     @FXML
     void onclickimage(MouseEvent event) throws IOException {
@@ -98,6 +101,7 @@ public class Client_ChooseController {
             user.setText(p.getAccount());
         }
         if(this.cate != null){
+            categoryname.setText(u.getCat_name());
             where(u.getCat_name());
         }
     }
@@ -126,10 +130,19 @@ public class Client_ChooseController {
         } catch (Exception e) {
             System.err.println(e.getMessage());
         }
-
+        
         if (list.size() > 0) {
             myListener = (Product snack) -> {
                 setChosenSnack(snack);
+                if(thename.getText() != null){
+                    ProjectSignUp acc = extractSignUpFromFields();
+                    Product ea = extractProductFromFields();
+                    try {
+                        Nagatice.getInstance().goToViewC2(acc, ea);
+                    } catch (IOException ex) {
+                        Logger.getLogger(Client_ChooseController.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                }
             };
         }
         

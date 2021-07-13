@@ -18,33 +18,36 @@
 
 <AnchorPane id="AnchorPane" prefHeight="694.0" prefWidth="1143.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Project.Client_Search">
    <children>
-      <Pane layoutX="323.0" prefHeight="129.0" prefWidth="815.0" style="-fx-background-color: #463e3e;">
+      <Pane layoutX="-5.0" prefHeight="70.0" prefWidth="1153.0" style="-fx-background-color: #463e3e;">
          <children>
-            <Text fill="WHITE" layoutX="104.0" layoutY="78.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Snack Shop Menu" wrappingWidth="290.22265625">
+            <Text fill="WHITE" layoutX="409.0" layoutY="48.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Snack Shop Menu" wrappingWidth="290.22265625">
                <font>
                   <Font name="System Bold Italic" size="34.0" />
                </font>
             </Text>
-            <ImageView fitHeight="77.0" fitWidth="87.0" layoutX="384.0" layoutY="25.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="45.0" fitWidth="64.0" layoutX="689.0" layoutY="11.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../img/hamburger_96px.png" />
                </image>
             </ImageView>
-            <FontAwesomeIconView fill="#f2f0f0" glyphName="USER" layoutX="461.0" layoutY="114.0" size="30" text="" />
-            <Text fx:id="user" fill="#fcfcfc" layoutX="485.0" layoutY="109.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="314.9999842643738">
+            <FontAwesomeIconView fill="#f2f0f0" glyphName="USER" layoutX="804.0" layoutY="44.0" size="30" text="" />
+            <Text fx:id="user" fill="#fcfcfc" layoutX="828.0" layoutY="39.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="314.9999842643738">
                <font>
                   <Font size="18.0" />
                </font>
             </Text>
             <Text fx:id="id" layoutX="37.0" layoutY="30.0" strokeType="OUTSIDE" strokeWidth="0.0" />
+            <JFXButton fx:id="menu" layoutX="37.0" layoutY="6.0" onAction="#btnmenu" prefHeight="55.0" prefWidth="216.0" style="-fx-background-color: #0096FF; -fx-background-radius: 50;" text="Back" textFill="WHITE">
+               <font>
+                  <Font name="System Bold Italic" size="20.0" />
+               </font>
+               <graphic>
+                  <FontAwesomeIconView fill="WHITE" glyphName="BARS" size="30" text="" />
+               </graphic>
+            </JFXButton>
          </children>
       </Pane>
-      <ImageView fitHeight="708.0" fitWidth="331.0" layoutX="-6.0" layoutY="-2.0" pickOnBounds="true">
-         <image>
-            <Image url="@../img/banner.jpg" />
-         </image>
-      </ImageView>
-      <HBox layoutX="341.0" layoutY="189.0" prefHeight="495.0" prefWidth="779.0" style="-fx-background-color: white;">
+      <HBox layoutX="341.0" layoutY="133.0" prefHeight="551.0" prefWidth="779.0" style="-fx-background-color: white;">
          <children>
             <ScrollPane prefHeight="535.0" prefWidth="804.0" style="-fx-background-color: white;">
                <HBox.margin>
@@ -60,18 +63,18 @@
             </ScrollPane>
          </children>
       </HBox>
-      <Text fx:id="name" fill="WHITE" layoutX="10.0" layoutY="202.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="315.00000447034836">
+      <Text fx:id="name" layoutX="20.0" layoutY="160.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="315.00000447034836">
          <font>
             <Font name="System Bold Italic" size="25.0" />
          </font>
       </Text>
-      <ImageView fx:id="imageview" fitHeight="286.0" fitWidth="290.0" layoutX="23.0" layoutY="155.0" pickOnBounds="true" />
-      <Text fx:id="Price" fill="WHITE" layoutX="10.0" layoutY="527.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="315.00000447034836">
+      <ImageView fx:id="imageview" fitHeight="286.0" fitWidth="301.0" layoutX="20.0" layoutY="224.0" pickOnBounds="true" />
+      <Text fx:id="Price" layoutX="20.0" layoutY="217.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="315.00000447034836">
          <font>
             <Font name="System Bold Italic" size="25.0" />
          </font>
       </Text>
-      <HBox layoutX="811.0" layoutY="135.0" prefHeight="40.0" prefWidth="315.0" style="-fx-background-radius: 100; -fx-background-color: white;" styleClass="search-box-" stylesheets="@css_client.css">
+      <HBox layoutX="819.0" layoutY="77.0" prefHeight="40.0" prefWidth="315.0" style="-fx-background-radius: 100; -fx-background-color: white;" styleClass="search-box-" stylesheets="@css_client.css">
          <children>
             <JFXButton fx:id="btnSearch" onAction="#btnSearchClick" prefHeight="43.0" prefWidth="57.0" style="-fx-background-color: #0096FF; -fx-background-radius: 50;" styleClass="search-button-" text="Search" textFill="WHITE">
                <font>
@@ -85,15 +88,7 @@
             </TextField>
          </children>
       </HBox>
-      <TextArea fx:id="properties" layoutX="9.0" layoutY="473.0" prefHeight="121.0" prefWidth="301.0" />
-      <JFXButton fx:id="add" layoutX="102.0" layoutY="614.0" onAction="#btnadd" prefHeight="24.0" prefWidth="115.0" style="-fx-background-color: white;" text="ADD ORDER" />
-      <JFXButton fx:id="menu" layoutX="43.0" layoutY="74.0" onAction="#btnmenu" prefHeight="55.0" prefWidth="216.0" style="-fx-background-color: #0096FF; -fx-background-radius: 50;" text="Back" textFill="WHITE">
-         <font>
-            <Font name="System Bold Italic" size="20.0" />
-         </font>
-         <graphic>
-            <FontAwesomeIconView fill="WHITE" glyphName="BARS" size="30" text="" />
-         </graphic>
-      </JFXButton>
+      <TextArea fx:id="properties" layoutX="18.0" layoutY="517.0" prefHeight="121.0" prefWidth="301.0" />
+      <JFXButton fx:id="add" layoutX="102.0" layoutY="649.0" onAction="#btnadd" prefHeight="24.0" prefWidth="115.0" style="-fx-background-color: #a48787;" text="ADD ORDER" textFill="WHITE" />
    </children>
 </AnchorPane>
