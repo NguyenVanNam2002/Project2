@@ -35,7 +35,7 @@ CREATE TABLE feedback(
 );
 alter table feedback
 add foreign key (ProductID) references products(ProductID);
-
+SELECT * FROM feedback;
 CREATE TABLE account_admin(
 	accountadmin VARCHAR(40) PRIMARY KEY ,
 	passwordadmin VARCHAR(32) NOT NULL ,

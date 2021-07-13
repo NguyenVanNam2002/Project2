@@ -60,7 +60,12 @@ public class Client_ViewC2Function {
         Category cate = extractFromFields();
         Nagatice.getInstance().goToChoose(menus,cate);
     }
-
+    @FXML
+    void btnfeedback(ActionEvent event) throws IOException {
+        ProjectSignUp acc = extractPasswordFromFields();
+        Product ea = extractProductFromFields();
+        Nagatice.getInstance().goFeedbackClient(acc, ea);
+    }
      public void initialize(ProjectSignUp p , Product d){
         this.psu = p;
         this.pd = d;
@@ -72,6 +77,12 @@ public class Client_ViewC2Function {
             infomaitonselect(d.getName());
         }
     }
+     private Product extractProductFromFields() {
+        Product sign = new Product();
+        sign.setName(thename.getText());
+        return sign;
+    }
+
     private ProjectSignUp extractPasswordFromFields() {
         ProjectSignUp sign = new ProjectSignUp(); 
         sign.setAccount(user.getText());

@@ -13,14 +13,13 @@ import java.io.IOException;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
-import static sun.plugin.javascript.navig.JSType.Navigator;
 
 /**
  *
  * @author icom
  */
 public class FeedBackEditController {
-
+// đoạn nao >
     @FXML
     private JFXTextField txtProductID;
 
@@ -48,14 +47,7 @@ public class FeedBackEditController {
 
     private boolean validation() {
         String msg = "";
-        try {
-            Integer.parseInt(txtProductID.getText());
-            
-        } catch (NumberFormatException e) {
-            msg+="ProductID must be an integer number";
-            lbMessage.setText(msg);
-            return false;
-        }
+       
 
         if (txtContent.getText().isEmpty()) {
             msg += "Feedback content must be not null";
@@ -109,7 +101,7 @@ public class FeedBackEditController {
         } else { //update an existing book
             msg = "Update a feedback";
             txtContent.setText(editfeedback.getContent());
-            txtProductID.setText(Integer.toString(editfeedback.getProductID()));
+            txtProductID.setText(editfeedback.getProductID());
         }
 
         lbMessage.setText(msg);
@@ -118,7 +110,7 @@ public class FeedBackEditController {
     private Feedback extractFeedbackFromFields() {
         Feedback feedback = new Feedback();
         feedback.setContent(txtContent.getText());
-        feedback.setProductID(Integer.parseInt(txtProductID.getText()));
+        feedback.setProductID(txtProductID.getText());
         return feedback;
     }
 }

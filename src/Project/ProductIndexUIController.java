@@ -137,7 +137,6 @@ public class ProductIndexUIController {
             if (confirmationResponse.get() == ButtonType.OK) {
                 Product deleteProduct = tvProduct.getSelectionModel().getSelectedItem();
                 boolean result = Product.delete(deleteProduct);
-
                 if (result) {
                     tvProduct.getItems().remove(deleteProduct);
                     System.out.println("A Product is Deleted ");

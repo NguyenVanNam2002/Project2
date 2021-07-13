@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane id="AnchorPane" prefHeight="743.0" prefWidth="1150.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Project.Client_feedback">
+   <children>
+      <Pane layoutY="-1.0" prefHeight="76.0" prefWidth="1150.0" style="-fx-background-color: #463e3e;">
+         <children>
+            <Text fill="WHITE" layoutX="342.0" layoutY="48.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Snack Shop Menu" wrappingWidth="290.22265625">
+               <font>
+                  <Font name="System Bold Italic" size="34.0" />
+               </font>
+            </Text>
+            <ImageView fitHeight="77.0" fitWidth="87.0" layoutX="626.0" layoutY="-5.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../img/hamburger_96px.png" />
+               </image>
+            </ImageView>
+            <FontAwesomeIconView fill="#f2f0f0" glyphName="USER" layoutX="803.0" layoutY="34.0" size="30" text="" />
+            <Text fx:id="user" fill="#fcfcfc" layoutX="827.0" layoutY="31.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="322.99999409914017">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Text>
+            <Text fx:id="id" layoutX="37.0" layoutY="30.0" strokeType="OUTSIDE" strokeWidth="0.0" />
+            <JFXButton fx:id="Home" layoutX="14.0" layoutY="6.0" onAction="#btnHome" prefHeight="55.0" prefWidth="192.0" style="-fx-background-color: #0096FF; -fx-background-radius: 50;" text="Back" textFill="WHITE">
+               <font>
+                  <Font name="System Bold Italic" size="20.0" />
+               </font>
+               <graphic>
+                  <FontAwesomeIconView fill="WHITE" glyphName="BARS" size="30" text="" />
+               </graphic>
+            </JFXButton>
+         </children>
+      </Pane>
+      <ImageView fitHeight="667.0" fitWidth="1150.0" layoutX="-1.0" layoutY="76.0" pickOnBounds="true">
+         <image>
+            <Image url="@../img/666.jpg" />
+         </image>
+      </ImageView>
+      <ScrollPane layoutX="198.0" layoutY="86.0" prefHeight="647.0" prefWidth="804.0">
+         <content>
+            <Pane prefHeight="605.0" prefWidth="799.0" style="-fx-background-color: white;">
+               <children>
+                  <ImageView fx:id="imageview" fitHeight="286.0" fitWidth="290.0" layoutX="22.0" layoutY="23.0" pickOnBounds="true" />
+                  <JFXButton fx:id="feedback" layoutX="374.0" layoutY="528.0" onAction="#btnfeedback" prefHeight="31.0" prefWidth="94.0" style="-fx-background-color: #968f8f;" text="Gửi" textFill="WHITE" />
+                  <TextArea fx:id="conten" layoutX="356.0" layoutY="94.0" prefHeight="209.0" prefWidth="429.0" wrapText="true" />
+                  <Text layoutX="362.0" layoutY="73.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ý Kiến của bạn về sản phẩm" wrappingWidth="191.9999976158142" />
+                  <Text fx:id="nameproduct" layoutX="33.0" layoutY="345.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="306.6708984375" />
+                  <Text fx:id="succes" layoutX="190.0" layoutY="489.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="462.6708984375" />
+               </children>
+            </Pane>
+         </content>
+      </ScrollPane>
+   </children>
+</AnchorPane>

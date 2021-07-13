@@ -34,7 +34,7 @@ public class FeedbackUIController {
     private TableColumn<Feedback, String> tcContent;
 
     @FXML
-    private TableColumn<Feedback, Integer> tcProductID;
+    private TableColumn<Feedback, String> tcProductID;
 
    @FXML
     private JFXButton btnInsert;
@@ -57,13 +57,6 @@ public class FeedbackUIController {
     @FXML
     private JFXButton logout;
 
-
-    @FXML
-    void btnInsertClick(ActionEvent event) throws IOException {
-        Nagatice.getInstance().goFeedbackToEdit(null);
-    }
-
- 
     public void initialize() {
 
         System.out.println("#FeedBackController initialized!");

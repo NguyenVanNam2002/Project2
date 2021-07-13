@@ -26,12 +26,12 @@ import javafx.collections.ObservableList;
 public class Feedback {
     private ObjectProperty<Integer> FbID;
     private StringProperty Content;
-    private ObjectProperty<Integer> ProductID;
+    private StringProperty ProductID;
 
     public Feedback() {
         FbID = new SimpleObjectProperty<>(null);
         Content = new SimpleStringProperty();
-        ProductID = new SimpleObjectProperty<>(null);
+        ProductID = new SimpleStringProperty();
     }
 
     public Integer getFbID() {
@@ -42,7 +42,7 @@ public class Feedback {
         return Content.get();
     }
 
-    public Integer getProductID() {
+    public String getProductID() {
         return ProductID.get();
     }
 
@@ -55,7 +55,7 @@ public class Feedback {
         this.Content.set(Content);
     }
 
-    public void setProductID(int ProductID) {
+    public void setProductID(String ProductID) {
         this.ProductID.set(ProductID);
     }
 
@@ -67,7 +67,7 @@ public class Feedback {
         return this.Content;
     }
 
-    public ObjectProperty<Integer> getProductIDProperty() {
+    public StringProperty getProductIDProperty() {
         return this.ProductID;
     }
 
@@ -79,12 +79,12 @@ public class Feedback {
         try (
                 Connection conn = DbProject.getConnection();
                 Statement stmt = conn.createStatement();
-                ResultSet rs = stmt.executeQuery("SELECT * FROM feedback");) {
+                ResultSet rs = stmt.executeQuery("SELECT feedback.* , products.* FROM feedback  join products on feedback.ProductID = products.ProductID");) {
             while (rs.next()) {
                 Feedback f = new Feedback();
                 f.setFbID(rs.getInt("FbID")); //"id" is column name in table book
                 f.setContent(rs.getString("Content")); //"title" is column name in table book
-                f.setProductID(rs.getInt("ProductID")); //"page" is column name in table book
+                f.setProductID(rs.getString("products.Name")); //"page" is column name in table book
 
 
                 feedbacks.add(f);
@@ -99,16 +99,26 @@ public class Feedback {
     }
 
     public static Feedback insert(Feedback newfeedback) throws SQLException {
+        String pro = newfeedback.getProductID();
         String sql = "INSERT into feedback (Content, ProductID) "
                 + "VALUES (?, ?)";
         ResultSet key = null;
+        int productID =0;
         try (
                 Connection conn = DbProject.getConnection();
                 PreparedStatement stmt
-                = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);) {
-
+                = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+                Statement stsm = conn.createStatement();
+                ResultSet result = stsm.executeQuery("SELECT ProductID FROM products WHERE Name = '" + pro + "'");
+            
+                
+                ) {
+                    
+            if(result.next()){
+                productID = result.getInt("ProductID");
+            }
             stmt.setString(1, newfeedback.getContent());
-            stmt.setInt(2, newfeedback.getProductID());
+            stmt.setInt(2, productID);
 
             int rowInserted = stmt.executeUpdate();
 
@@ -134,18 +144,23 @@ public class Feedback {
     }
 
     public static boolean update(Feedback updatefeedback) {
+        String pro = updatefeedback.getProductID();
         String sql = "UPDATE feedback SET "
                 + "Content = ?, "
                 + "ProductID = ? "
                 + "WHERE FbID = ?";
-
+        int productID =0;
         try (
                 Connection conn = DbProject.getConnection();
                 PreparedStatement stmt = conn.prepareStatement(sql);
-                ) {
-
+                 Statement stsm = conn.createStatement();
+                ResultSet result = stsm.executeQuery("SELECT ProductID FROM products WHERE Name = '" + pro + "'");
+            ) {
+             if(result.next()){
+                productID = result.getInt("ProductID");
+            }
             stmt.setString(1, updatefeedback.getContent());
-            stmt.setInt(2, updatefeedback.getProductID());
+            stmt.setInt(2, productID);
             stmt.setInt(3, updatefeedback.getFbID());
             
 

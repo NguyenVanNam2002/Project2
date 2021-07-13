@@ -62,13 +62,6 @@ public class Client_ChooseController {
     @FXML
     private Text categoryname;
 
-    
-    @FXML
-    void onclickimage(MouseEvent event) throws IOException {
-        ProjectSignUp acc = extractSignUpFromFields();
-        Product ea = extractProductFromFields();
-        Nagatice.getInstance().goToViewC2(acc, ea);
-    }
     ObservableList<Product> list = FXCollections.observableArrayList();
 
     private Product extractProductFromFields() {
