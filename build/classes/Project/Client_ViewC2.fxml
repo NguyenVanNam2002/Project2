@@ -4,6 +4,7 @@
 <?import com.jfoenix.controls.JFXTextField?>
 <?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
 <?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.Spinner?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -20,18 +21,17 @@
                   <Font name="System Bold Italic" size="34.0" />
                </font>
             </Text>
-            <ImageView fitHeight="77.0" fitWidth="87.0" layoutX="626.0" layoutY="-5.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="55.0" fitWidth="77.0" layoutX="625.0" layoutY="11.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../img/hamburger_96px.png" />
                </image>
             </ImageView>
-            <FontAwesomeIconView fill="#f2f0f0" glyphName="USER" layoutX="803.0" layoutY="34.0" size="30" text="" />
-            <Text fx:id="user" fill="#fcfcfc" layoutX="827.0" layoutY="31.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="322.99999409914017">
+            <FontAwesomeIconView fill="#f2f0f0" glyphName="USER" layoutX="803.0" layoutY="49.0" size="30" text="" />
+            <Text fx:id="user" fill="#fcfcfc" layoutX="827.0" layoutY="46.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="322.99999409914017">
                <font>
                   <Font size="18.0" />
                </font>
             </Text>
-            <Text fx:id="id" layoutX="37.0" layoutY="30.0" strokeType="OUTSIDE" strokeWidth="0.0" />
             <JFXButton fx:id="Home" layoutX="14.0" layoutY="6.0" onAction="#btnHome" prefHeight="55.0" prefWidth="192.0" style="-fx-background-color: #0096FF; -fx-background-radius: 50;" text="Back" textFill="WHITE">
                <font>
                   <Font name="System Bold Italic" size="20.0" />
@@ -52,7 +52,7 @@
             <Pane prefHeight="605.0" prefWidth="799.0" style="-fx-background-color: white;">
                <children>
                   <ImageView fx:id="imageview" fitHeight="286.0" fitWidth="290.0" layoutX="22.0" layoutY="23.0" pickOnBounds="true" />
-                  <JFXButton layoutX="61.0" layoutY="519.0" prefHeight="55.0" prefWidth="178.0" style="-fx-background-color: #866161;" text="Add Order" textFill="WHITE" />
+                  <JFXButton fx:id="order" layoutX="61.0" layoutY="519.0" onAction="#btnorder" prefHeight="55.0" prefWidth="178.0" style="-fx-background-color: #866161;" text="Add Order" textFill="WHITE" />
                   <JFXButton layoutX="560.0" layoutY="519.0" onAction="#btnfeedback" prefHeight="55.0" prefWidth="178.0" style="-fx-background-color: #866161;" text="Feedback" textFill="WHITE" />
                   <JFXTextField fx:id="thename" layoutX="423.0" layoutY="75.0" prefHeight="31.0" prefWidth="330.0" />
                   <JFXTextField fx:id="theprice" layoutX="423.0" layoutY="186.0" prefHeight="31.0" prefWidth="163.0" />
@@ -62,6 +62,11 @@
                   <Text layoutX="321.0" layoutY="218.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Giá" />
                   <Text layoutX="321.0" layoutY="266.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Giới Thiệu" />
                   <Text fx:id="proties" layoutX="423.0" layoutY="265.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="349.6708984375" />
+                  <Spinner fx:id="sprinner" editable="true" layoutX="400.0" layoutY="365.0" />
+                  <Text layoutX="321.0" layoutY="386.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Quantitty" />
+                  <Text fx:id="id" layoutX="321.0" layoutY="59.0" strokeType="OUTSIDE" strokeWidth="0.0" />
+                  <Text fx:id="ordersucess" fill="RED" layoutX="259.0" layoutY="449.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="311.6708984375" />
+                  <Text layoutX="572.0" layoutY="161.0" strokeType="OUTSIDE" strokeWidth="0.0" text="VNĐ" />
                </children>
             </Pane>
          </content>

@@ -58,3 +58,22 @@ CREATE TABLE account_client(
 
 SELECT * FROM account_client;
 SELECT * FROM products WHERE `Name` LIKE '%a%';
+
+Create table order_detail(
+	order_ID INT AUTO_INCREMENT ,
+	ProductID int,
+	Client_ID varchar(50) ,
+	Total_price varchar(45),
+	Quantity int,
+	Indate datetime,
+	Primary key (order_ID,ProductID,Client_ID)
+);
+Alter table order_detail
+Add foreign key (Client_ID) references account_client(accounts);
+
+Alter table order_detail
+Add foreign key (ProductID) references products(ProductID);
+SELECT * FROM order_detail;
+
+INSERT INTO order_detail(ProductID, Client_ID , Total_price, Quantity , Indate)
+VALUES (15,'Namoizoioi@gmail.com',"100000",10,"2021-06-04 16:08:25");
