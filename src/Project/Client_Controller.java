@@ -88,7 +88,11 @@ public class Client_Controller {
         food.setVisible(false);
         drink.setVisible(false);
     }
-    
+    @FXML
+    void btnShopping(ActionEvent event) throws IOException {
+        ProjectSignUp shop = extractSignUpFromFields();
+        Nagatice.getInstance().goToShopping(shop);
+    }
     private ProjectSignUp extractSignUpFromFields() {
         ProjectSignUp sign = new ProjectSignUp(); 
         sign.setAccount(user.getText());

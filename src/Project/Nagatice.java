@@ -33,7 +33,7 @@ public class Nagatice {
     public static final String Customer_index_FXML = "CustomerIndex.fxml";
     public static final String PRODUCT_INDEX_FXML = "ProductIndexUI.fxml";
     public static final String PRODUCT_EDIT_FXML = "ProductEditUI.fxml";
-
+    public static final String SHOPPING_ADMIN_FXML = "Admin_ShoppingCart.fxml";
     // Client
     public static final String CLIENT_FXML = "Client_user.fxml";
     public static final String CHOOSE_FXML = "Choose.fxml";
@@ -43,6 +43,7 @@ public class Nagatice {
     public static final String VIEWC2_FXML = "Client_ViewC2.fxml";
     public static final String SEARCH_FXML = "Client_Search.fxml";
     public static final String FEED_BACK_CLIENT_FXML = "FXML.fxml";
+    public static final String SHOPPING_CLIENT_FXML = "Shoping_Cart.fxml";
     
 
     private FXMLLoader loader;
@@ -114,7 +115,9 @@ public class Nagatice {
     public void goToIndexProduct() throws IOException {
         this.goTo(PRODUCT_INDEX_FXML);
     }
-
+    public void goToOrderAdmin() throws IOException {
+        this.goTo(SHOPPING_ADMIN_FXML);
+    }
     public void goToEditProduct(Product editProduct) throws IOException {
         this.goTo(PRODUCT_EDIT_FXML);
         ProductEditUIController ctrl = loader.getController();
@@ -171,5 +174,10 @@ public class Nagatice {
         ctrl.initialize(p);
     }
     
+    public void goToShopping(ProjectSignUp p) throws IOException {
+        this.goTo(SHOPPING_CLIENT_FXML);
+        Shopping_cart  ctrl = loader.getController();
+        ctrl.initialize(p);
+    }
    
 }

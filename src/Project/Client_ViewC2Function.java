@@ -159,7 +159,7 @@ public class Client_ViewC2Function {
     private Order extactFromfiled(){
         Order or = new Order();
         or.setAccount(user.getText());
-        or.setProductID(Integer.parseInt(id.getText()));
+        or.setProductID(id.getText());
         or.setQuantity(sprinner.getValue());
         int d = Integer.parseInt(theprice.getText()) * sprinner.getValue();
         or.setTotalPrice(d);

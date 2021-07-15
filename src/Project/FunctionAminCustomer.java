@@ -5,7 +5,6 @@
  */
 package Project;
 
-import Project.Data.Category;
 import Project.Data.ProjectSignUp;
 import Project.Data.ProjectSignUpDAOImpl;
 import Project.Data.ProjectSignUpDAP;
@@ -64,7 +63,10 @@ public class FunctionAminCustomer {
     void btncategory(ActionEvent event) throws IOException {
         Nagatice.getInstance().goToCategoryIndex();
     }
-
+    @FXML
+    void btnorder(ActionEvent event) throws IOException {
+        Nagatice.getInstance().goToOrderAdmin();
+    }
     @FXML
     void btnfeedback(ActionEvent event) throws IOException {
         Nagatice.getInstance().goToFeedbackIndex();

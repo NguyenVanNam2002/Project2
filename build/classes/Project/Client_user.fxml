@@ -28,6 +28,15 @@
                <font>
                   <Font size="20.0" />
                </font></Text>
+            <JFXButton layoutX="921.0" layoutY="46.0" onAction="#btnShopping" prefHeight="72.0" prefWidth="211.0" style="-fx-background-color: white;" text="Shopping Cart">
+               <graphic>
+                  <ImageView fitHeight="62.0" fitWidth="76.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../favorite_cart_100px.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </JFXButton>
          </children></Pane>
       <Pane layoutX="-3.0" layoutY="120.0" prefHeight="665.0" prefWidth="1179.0">
          <children>

@@ -6,6 +6,8 @@
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
@@ -14,14 +16,13 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="794.0" prefWidth="1120.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Project.FunctionAminCustomer">
    <children>
-      <Pane layoutX="1.0" layoutY="7.0" prefHeight="787.0" prefWidth="1120.0" style="-fx-background-color: white;">
+      <Pane layoutX="1.0" prefHeight="794.0" prefWidth="1120.0" style="-fx-background-color: white;">
          <children>
             <Text layoutX="414.0" layoutY="64.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Customer">
                <font>
                   <Font name="System Bold Italic" size="59.0" />
                </font>
             </Text>
-            <FontAwesomeIconView glyphName="USER" layoutX="698.0" layoutY="62.0" size="45" />
             <JFXButton fx:id="delete" layoutX="619.0" layoutY="711.0" onAction="#btndelete" prefHeight="62.0" prefWidth="116.0" style="-fx-background-color: #4bc9da;" text="Delete" textFill="#f3f7f8">
                <font>
                   <Font name="System Bold Italic" size="15.0" />
@@ -40,13 +41,14 @@
                   <TableColumn fx:id="address" prefWidth="199.0" text="Địa chỉ" />
                </columns>
             </TableView>
-            <VBox layoutY="-9.0" prefHeight="794.0" prefWidth="116.0" style="-fx-background-color: #ae9b9b;">
+            <VBox layoutY="-9.0" prefHeight="804.0" prefWidth="116.0" style="-fx-background-color: #ae9b9b;">
                <children>
                   <FontAwesomeIconView glyphName="USER" size="60">
                      <VBox.margin>
                         <Insets left="35.0" top="25.0" />
                      </VBox.margin>
                   </FontAwesomeIconView>
+                  <JFXButton onAction="#btnorder" prefHeight="47.0" prefWidth="116.0" style="-fx-background-color: #99c1c2;" text="Order" />
                   <JFXButton fx:id="btnproduct" onAction="#btnproduct" prefHeight="42.0" prefWidth="118.0" style="-fx-background-color: #99c1c2;" text="Sản phẩm">
                      <VBox.margin>
                         <Insets top="10.0" />
@@ -74,6 +76,11 @@
                   </JFXButton>
                </children>
             </VBox>
+            <ImageView fitHeight="72.0" fitWidth="87.0" layoutX="677.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../user_64px.png" />
+               </image>
+            </ImageView>
          </children>
       </Pane>
    </children>

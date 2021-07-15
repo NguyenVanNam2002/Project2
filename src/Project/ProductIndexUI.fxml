@@ -7,6 +7,7 @@
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
@@ -55,6 +56,7 @@
                   <Insets left="35.0" top="25.0" />
                </VBox.margin>
             </FontAwesomeIconView>
+            <JFXButton onAction="#btnorder" prefHeight="47.0" prefWidth="116.0" style="-fx-background-color: #99c1c2;" text="Order" />
             <JFXButton prefHeight="42.0" prefWidth="118.0" style="-fx-background-color: white;" text="Sản phẩm">
                <VBox.margin>
                   <Insets top="10.0" />
@@ -85,10 +87,15 @@
       <Text fx:id="theviewname" layoutX="469.0" layoutY="163.0" strokeType="OUTSIDE" strokeWidth="0.0" />
       <Text fx:id="theviewprice" layoutX="469.0" layoutY="233.0" strokeType="OUTSIDE" strokeWidth="0.0" />
       <Text fx:id="theviewpropertis" layoutX="469.0" layoutY="303.0" strokeType="OUTSIDE" strokeWidth="0.0" />
-      <Text layoutX="452.0" layoutY="55.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Product" wrappingWidth="192.6708984375">
+      <Text layoutX="403.0" layoutY="69.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Product" wrappingWidth="214.6708984375">
          <font>
-            <Font name="System Bold Italic" size="44.0" />
+            <Font name="System Bold Italic" size="57.0" />
          </font>
       </Text>
+      <ImageView fitHeight="75.0" fitWidth="99.0" layoutX="618.0" layoutY="1.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../paella_40px.png" />
+         </image>
+      </ImageView>
    </children>
 </AnchorPane>

@@ -47,6 +47,7 @@
                   <Insets left="35.0" top="25.0" />
                </VBox.margin>
             </FontAwesomeIconView>
+            <JFXButton onAction="#btnorder" prefHeight="47.0" prefWidth="116.0" style="-fx-background-color: #99c1c2;" text="Order" />
             <JFXButton fx:id="btnproduct" onAction="#btnproduct" prefHeight="42.0" prefWidth="118.0" style="-fx-background-color: #99c1c2;" text="Sản phẩm">
                <VBox.margin>
                   <Insets top="10.0" />

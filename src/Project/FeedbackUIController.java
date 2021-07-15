@@ -134,7 +134,10 @@ public class FeedbackUIController {
     void btnproduct(ActionEvent event) throws IOException {
         Nagatice.getInstance().goToIndexProduct();
     }
-
+    @FXML
+    void btnorder(ActionEvent event) throws IOException {
+        Nagatice.getInstance().goToOrderAdmin();
+    }
     @FXML
     void btnlogout(ActionEvent event) throws IOException {
          Alert alert = new Alert(Alert.AlertType.CONFIRMATION);

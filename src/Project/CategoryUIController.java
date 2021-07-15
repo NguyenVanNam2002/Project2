@@ -57,7 +57,10 @@ public class CategoryUIController {
 
     @FXML
     private JFXButton logout;
-
+    @FXML
+    void btnorder(ActionEvent event) throws IOException {
+        Nagatice.getInstance().goToOrderAdmin();
+    }
     @FXML
     void btncustomer(ActionEvent event) throws IOException {
          Nagatice.getInstance().goToCustomerIndex();

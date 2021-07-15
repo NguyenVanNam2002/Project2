@@ -87,7 +87,10 @@ public class ProductIndexUIController {
 
     @FXML
     private Text theviewpropertis;
-    
+    @FXML
+    void btnorder(ActionEvent event) throws IOException {
+        Nagatice.getInstance().goToOrderAdmin();
+    }
     @FXML
     void btncategory(ActionEvent event) throws IOException {
         Nagatice.getInstance().goToCategoryIndex();

@@ -77,3 +77,6 @@ SELECT * FROM order_detail;
 
 INSERT INTO order_detail(ProductID, Client_ID , Total_price, Quantity , Indate)
 VALUES (15,'Namoizoioi@gmail.com',"100000",10,"2021-06-04 16:08:25");
+
+SELECT o.*,p.* FROM  order_detail as o join products as p on o.ProductID = p.ProductID WHERE Client_ID = 'namoizoioi@gmail.com';
+SELECT p.*,c.* FROM products as p join category as c on p.CategoryID = c.CategoryID

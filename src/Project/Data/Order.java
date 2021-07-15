@@ -17,7 +17,7 @@ import javafx.beans.property.StringProperty;
 public class Order {
     private ObjectProperty<Integer> id ;
     private StringProperty account;
-    private ObjectProperty<Integer> productID;
+    private StringProperty productID;
     private ObjectProperty<Integer> quantity;
     private ObjectProperty<Integer> total_price;
     private StringProperty date;
@@ -25,7 +25,7 @@ public class Order {
     public Order(){
         id = new SimpleObjectProperty<>(null);
         account = new SimpleStringProperty();
-        productID = new SimpleObjectProperty<>(null);
+        productID = new SimpleStringProperty();
         quantity = new SimpleObjectProperty<>();
         total_price = new SimpleObjectProperty<>();
         date = new SimpleStringProperty();
@@ -39,7 +39,7 @@ public class Order {
         return  account.get();
     }
     
-    public Integer getProductID(){
+    public String getProductID(){
         return  productID.get();
     }
     
@@ -61,7 +61,7 @@ public class Order {
     public  void setAccount(String account){
         this.account.set(account);
     }
-    public void setProductID(int productID){
+    public void setProductID(String productID){
         this.productID.set(productID);
     }
     public void setQuantity(int quantity){
@@ -78,7 +78,7 @@ public class Order {
        return this.id;
     }
     
-    public ObjectProperty<Integer> getProductIDProperty(){
+    public StringProperty getProductIDProperty(){
        return this.productID;
     }
     

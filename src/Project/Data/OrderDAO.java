@@ -5,11 +5,14 @@
  */
 package Project.Data;
 
+import javafx.collections.ObservableList;
+
 /**
  *
  * @author Admin
  */
 public interface OrderDAO {
     public  Order insert(Order order);
-    
+    public  ObservableList<Order> selectShopingcart( String a );
+    public  ObservableList<Order> selectShopingcartALL();
 }

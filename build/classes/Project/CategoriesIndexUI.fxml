@@ -6,6 +6,8 @@
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
@@ -33,7 +35,6 @@
             <Font name="System Bold Italic" size="34.0" />
          </font>
       </Text>
-      <FontAwesomeIconView glyphName="COMMENTS" layoutX="718.0" layoutY="102.0" size="32" text="" wrappingWidth="36.0" />
       <ScrollPane layoutX="152.0" layoutY="221.0" prefHeight="503.0" prefWidth="763.0">
         <content>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="200.0" prefWidth="200.0" />
@@ -52,6 +53,7 @@
                   <Insets left="35.0" top="25.0" />
                </VBox.margin>
             </FontAwesomeIconView>
+            <JFXButton onAction="#btnorder" prefHeight="47.0" prefWidth="116.0" style="-fx-background-color: #99c1c2;" text="Order" />
             <JFXButton fx:id="btnproduct" onAction="#btnproduct" prefHeight="42.0" prefWidth="118.0" style="-fx-background-color: #99c1c2;" text="Sản phẩm">
                <VBox.margin>
                   <Insets top="10.0" />
@@ -79,5 +81,10 @@
             </JFXButton>
          </children>
       </VBox>
+      <ImageView fitHeight="70.0" fitWidth="94.0" layoutX="715.0" layoutY="55.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../categorize_64px.png" />
+         </image>
+      </ImageView>
    </children>
 </AnchorPane>
