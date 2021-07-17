@@ -15,18 +15,18 @@
    <children>
       <Pane layoutY="-1.0" prefHeight="76.0" prefWidth="1150.0" style="-fx-background-color: #463e3e;">
          <children>
-            <Text fill="WHITE" layoutX="342.0" layoutY="48.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Snack Shop Menu" wrappingWidth="290.22265625">
+            <Text fill="WHITE" layoutX="381.0" layoutY="46.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Snack Shop Menu" wrappingWidth="290.22265625">
                <font>
                   <Font name="System Bold Italic" size="34.0" />
                </font>
             </Text>
-            <ImageView fitHeight="77.0" fitWidth="87.0" layoutX="626.0" layoutY="-5.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="63.0" fitWidth="77.0" layoutX="665.0" layoutY="7.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../img/hamburger_96px.png" />
                </image>
             </ImageView>
-            <FontAwesomeIconView fill="#f2f0f0" glyphName="USER" layoutX="803.0" layoutY="34.0" size="30" text="" />
-            <Text fx:id="user" fill="#fcfcfc" layoutX="827.0" layoutY="31.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="322.99999409914017">
+            <FontAwesomeIconView fill="#f2f0f0" glyphName="USER" layoutX="856.0" layoutY="49.0" size="30" text="" />
+            <Text fx:id="user" fill="#fcfcfc" layoutX="880.0" layoutY="46.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="263.99999409914017">
                <font>
                   <Font size="18.0" />
                </font>
@@ -38,6 +38,15 @@
                </font>
                <graphic>
                   <FontAwesomeIconView fill="WHITE" glyphName="BARS" size="30" text="" />
+               </graphic>
+            </JFXButton>
+            <JFXButton layoutX="744.0" layoutY="6.0" onAction="#btnShopping" prefHeight="31.0" prefWidth="77.0">
+               <graphic>
+                  <ImageView fitHeight="55.0" fitWidth="64.0" pickOnBounds="true">
+                     <image>
+                        <Image url="@../favorite_cart_100px.png" />
+                     </image>
+                  </ImageView>
                </graphic>
             </JFXButton>
          </children>

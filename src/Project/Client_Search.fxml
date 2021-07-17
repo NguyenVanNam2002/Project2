@@ -4,6 +4,7 @@
 <?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.Spinner?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
@@ -30,8 +31,8 @@
                   <Image url="@../img/hamburger_96px.png" />
                </image>
             </ImageView>
-            <FontAwesomeIconView fill="#f2f0f0" glyphName="USER" layoutX="804.0" layoutY="44.0" size="30" text="" />
-            <Text fx:id="user" fill="#fcfcfc" layoutX="828.0" layoutY="39.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="314.9999842643738">
+            <FontAwesomeIconView fill="#f2f0f0" glyphName="USER" layoutX="875.0" layoutY="50.0" size="30" text="" />
+            <Text fx:id="user" fill="#fcfcfc" layoutX="899.0" layoutY="48.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="253.99998426437378">
                <font>
                   <Font size="18.0" />
                </font>
@@ -43,6 +44,15 @@
                </font>
                <graphic>
                   <FontAwesomeIconView fill="WHITE" glyphName="BARS" size="30" text="" />
+               </graphic>
+            </JFXButton>
+            <JFXButton layoutX="765.0" layoutY="3.0" onAction="#btnShopping" prefHeight="31.0" prefWidth="77.0">
+               <graphic>
+                  <ImageView fitHeight="55.0" fitWidth="64.0" pickOnBounds="true">
+                     <image>
+                        <Image url="@../favorite_cart_100px.png" />
+                     </image>
+                  </ImageView>
                </graphic>
             </JFXButton>
          </children>
@@ -63,13 +73,13 @@
             </ScrollPane>
          </children>
       </HBox>
-      <Text fx:id="name" layoutX="20.0" layoutY="160.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="315.00000447034836">
+      <Text fx:id="name" layoutX="20.0" layoutY="150.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="315.00000447034836">
          <font>
             <Font name="System Bold Italic" size="25.0" />
          </font>
       </Text>
-      <ImageView fx:id="imageview" fitHeight="286.0" fitWidth="301.0" layoutX="20.0" layoutY="224.0" pickOnBounds="true" />
-      <Text fx:id="Price" layoutX="20.0" layoutY="217.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="315.00000447034836">
+      <ImageView fx:id="imageview" fitHeight="286.0" fitWidth="301.0" layoutX="18.0" layoutY="195.0" pickOnBounds="true" />
+      <Text fx:id="Price" layoutX="69.0" layoutY="186.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="216.0000205039978">
          <font>
             <Font name="System Bold Italic" size="25.0" />
          </font>
@@ -88,7 +98,14 @@
             </TextField>
          </children>
       </HBox>
-      <TextArea fx:id="properties" layoutX="18.0" layoutY="517.0" prefHeight="121.0" prefWidth="301.0" />
+      <TextArea fx:id="properties" layoutX="27.0" layoutY="481.0" prefHeight="121.0" prefWidth="301.0" />
       <JFXButton fx:id="add" layoutX="102.0" layoutY="649.0" onAction="#btnadd" prefHeight="24.0" prefWidth="115.0" style="-fx-background-color: #a48787;" text="ADD ORDER" textFill="WHITE" />
+      <Spinner fx:id="sprinner" editable="true" layoutX="106.0" layoutY="608.0" />
+      <Text layoutX="27.0" layoutY="629.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Quantitty" />
+      <Text layoutX="285.0" layoutY="186.0" strokeType="OUTSIDE" strokeWidth="0.0" text="VNĐ">
+         <font>
+            <Font size="25.0" />
+         </font>
+      </Text>
    </children>
 </AnchorPane>

@@ -23,8 +23,8 @@ public class OrderDAOImpl implements OrderDAO{
     DbType data = DbType.SQL;
     
     public  Order insert(Order order){
-        String sql = "INSERT INTO order_detail(ProductID, Client_ID , Total_price, Quantity , Indate) "
-                + " VALUES (? , ? , ? , ?, ? )";
+        String sql = "INSERT INTO order_detail(ProductID, Client_ID , Total_price, Quantity) "
+                + " VALUES (? , ? , ? , ? )";
         ResultSet key = null;
         try (Connection con = DbProject.getConnection(data);
             PreparedStatement stmt = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
@@ -33,7 +33,6 @@ public class OrderDAOImpl implements OrderDAO{
             stmt.setString(2, order.getAccount());
             stmt.setString(3, order.getTotalPrice().toString());
             stmt.setInt(4, order.getQuantity());
-            stmt.setString(5, order.getDate());
             int row = stmt.executeUpdate();
             if(row ==1 ){
                 key = stmt.getGeneratedKeys();

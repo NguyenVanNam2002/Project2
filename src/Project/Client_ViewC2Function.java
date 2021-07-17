@@ -13,17 +13,13 @@ import Project.Data.Product;
 import Project.Data.ProjectSignUp;
 import Project.DbProject.DbProject;
 import com.jfoenix.controls.JFXButton;
-import com.jfoenix.controls.JFXTextField;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.time.LocalDateTime;
-import java.util.Optional;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Alert;
-import javafx.scene.control.ButtonType;
 import javafx.scene.control.Spinner;
 import javafx.scene.control.SpinnerValueFactory;
 import javafx.scene.image.Image;
@@ -55,40 +51,38 @@ public class Client_ViewC2Function {
  
     @FXML
     private ImageView imageview;
+ @FXML
+    private Text thename;
+
+    @FXML
+    private Text category;
+
+    @FXML
+    private Text theprice;
 
     @FXML
     private Text proties;
     @FXML
-    private JFXTextField category;
-    @FXML
-    private JFXTextField thename;
-    @FXML
     private Text ordersucess;
-    @FXML
-    private JFXTextField theprice;
+   
 
     @FXML
     private JFXButton menu;
-    
+    @FXML
+    void btnShopping(ActionEvent event) throws IOException {
+        ProjectSignUp osu = extractPasswordFromFields();
+        Nagatice.getInstance().goToShopping(osu);
+    }
     @FXML
     void btnorder(ActionEvent event) {
-        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-        alert.setHeaderText("Bạn chắc chắn muốn order ? ");
-        alert.setTitle("Lưu ý ");
-        Optional<ButtonType> confirmationResponse
-                = alert.showAndWait();
-        if (confirmationResponse.get() == ButtonType.OK) {
-            try {
+        try {
                 Order ord = extactFromfiled();
                 ord = od.insert(ord);
                 ordersucess.setText("Bạn order thành công");
             } catch (Exception e) {
                 ordersucess.setText("Bạn order thất bại , hệ thống đang bảo trì");
             }
-            
-            
-        } 
-    }
+     }
     @FXML
     void btnHome(ActionEvent event) throws IOException {
        ProjectSignUp menus = extractPasswordFromFields();
@@ -113,7 +107,17 @@ public class Client_ViewC2Function {
         }
     }
      public void initialize(){
-       sprinner.setValueFactory(valueFactory);
+          String[] styleClasses = new String[] { "", 
+                Spinner.STYLE_CLASS_SPLIT_ARROWS_HORIZONTAL
+ 
+        };
+       
+       
+       for (String styleClass : styleClasses) {
+            sprinner.setValueFactory(valueFactory);
+             sprinner.getStyleClass().add(styleClass);
+        }
+       
        id.setVisible(false);
     }
      private Product extractProductFromFields() {
@@ -164,10 +168,10 @@ public class Client_ViewC2Function {
         int d = Integer.parseInt(theprice.getText()) * sprinner.getValue();
         or.setTotalPrice(d);
         
-        LocalDateTime now = LocalDateTime.now();
-        String b = now.toString();
-        or.setDate(b);
-        
+//        LocalDateTime now = LocalDateTime.now();
+//        String b = now.toString();
+//        or.setDate(b);
+//        
         return or;
         
     }

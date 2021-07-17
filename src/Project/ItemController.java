@@ -13,7 +13,8 @@ public class ItemController {
     @FXML
     private ImageView img;
 
-    
+    @FXML
+    private Text name;
     private Product p;
     
     @FXML
@@ -25,7 +26,7 @@ public class ItemController {
     public void setData(Product fruit , MyListener myListener ) {
         this.p= fruit;
         this.myListener = myListener;
-        
+        name.setText(fruit.getName());
         Image image = new Image(getClass().getResourceAsStream(fruit.getImg()));
         img.setImage(image);
     }

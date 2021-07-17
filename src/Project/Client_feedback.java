@@ -59,7 +59,11 @@ public class Client_feedback {
         Product pro = extractProductFromFields();
         Nagatice.getInstance().goToViewC2(menus,pro);
     }
-
+    @FXML
+    void btnShopping(ActionEvent event) throws IOException {
+        ProjectSignUp osu = extractPasswordFromFields();
+        Nagatice.getInstance().goToShopping(osu);
+    }
     @FXML
     void btnfeedback(ActionEvent event) {
         

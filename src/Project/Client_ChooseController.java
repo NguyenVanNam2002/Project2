@@ -10,7 +10,6 @@ import Project.Data.Product;
 import Project.Data.ProjectSignUp;
 import Project.DbProject.DbProject;
 import com.jfoenix.controls.JFXButton;
-import com.jfoenix.controls.JFXComboBox;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -25,7 +24,6 @@ import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Region;
@@ -77,7 +75,11 @@ public class Client_ChooseController {
         imageview.setImage(image);
 
     }
-
+    @FXML
+    void btnShopping(ActionEvent event) throws IOException {
+        ProjectSignUp osu = extractSignUpFromFields();
+        Nagatice.getInstance().goToShopping(osu);
+    }
     @FXML
     void btnmenu(ActionEvent event) throws IOException {
         ProjectSignUp account = extractSignUpFromFields();
@@ -149,7 +151,7 @@ public class Client_ChooseController {
 
                 ItemController itemController = fxmlLoader.getController();
                 itemController.setData(list.get(i), myListener);
-                if (column == 4) {
+                if (column == 3) {
                     column = 0;
                     row++;
                 }

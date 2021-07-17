@@ -3,14 +3,20 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/Admin/OneDrive/Documents/NetBeansProjects/Project2/src/Project/InPlay.java</file>
+            <file>file:/C:/Users/Admin/OneDrive/Documents/NetBeansProjects/Project2/src/Project/Client_Search.java</file>
             <file>file:/C:/Users/Admin/OneDrive/Documents/NetBeansProjects/Project2/src/Project/Shopping_cart.java</file>
-            <file>file:/C:/Users/Admin/OneDrive/Documents/NetBeansProjects/Project2/src/Project/Data/OrderDAOImpl.java</file>
-            <file>file:/C:/Users/Admin/OneDrive/Documents/NetBeansProjects/Project2/src/Project/Data/Order.java</file>
             <file>file:/C:/Users/Admin/OneDrive/Documents/NetBeansProjects/Project2/src/Project/FeedbackUIController.java</file>
             <file>file:/C:/Users/Admin/OneDrive/Documents/NetBeansProjects/Project2/src/Project/Admin_ShoppingCart.java</file>
-            <file>file:/C:/Users/Admin/OneDrive/Documents/NetBeansProjects/Project2/src/Project/ProductIndexUIController.java</file>
             <file>file:/C:/Users/Admin/OneDrive/Documents/NetBeansProjects/Project2/src/Project/Shoping_Cart.fxml</file>
+            <file>file:/C:/Users/Admin/OneDrive/Documents/NetBeansProjects/Project2/src/Project/Client_ViewC2Function.java</file>
+            <file>file:/C:/Users/Admin/OneDrive/Documents/NetBeansProjects/Project2/src/Project/Client_setting.java</file>
+            <file>file:/C:/Users/Admin/OneDrive/Documents/NetBeansProjects/Project2/src/Project/InPlay.java</file>
+            <file>file:/C:/Users/Admin/OneDrive/Documents/NetBeansProjects/Project2/src/Project/Client_feedback.java</file>
+            <file>file:/C:/Users/Admin/OneDrive/Documents/NetBeansProjects/Project2/src/Project/Data/OrderDAOImpl.java</file>
+            <file>file:/C:/Users/Admin/OneDrive/Documents/NetBeansProjects/Project2/src/Project/ItemController.java</file>
+            <file>file:/C:/Users/Admin/OneDrive/Documents/NetBeansProjects/Project2/src/Project/Data/Order.java</file>
+            <file>file:/C:/Users/Admin/OneDrive/Documents/NetBeansProjects/Project2/src/Project/ProductIndexUIController.java</file>
+            <file>file:/C:/Users/Admin/OneDrive/Documents/NetBeansProjects/Project2/src/Project/Client_ChooseController.java</file>
             <file>file:/C:/Users/Admin/OneDrive/Documents/NetBeansProjects/Project2/src/Project/Data/OrderDAO.java</file>
         </group>
     </open-files>

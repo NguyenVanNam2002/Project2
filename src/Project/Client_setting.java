@@ -33,7 +33,11 @@ public class Client_setting {
     private JFXButton newpassword;
      @FXML
     private JFXButton information;
-
+     @FXML
+    void btnShopping(ActionEvent event) throws IOException {
+        ProjectSignUp osu = extractSignUpFromFields();
+        Nagatice.getInstance().goToShopping(osu);
+    }
     @FXML
     void btnInformation(ActionEvent event) throws IOException {
         ProjectSignUp informations = extractSignUpFromFields();

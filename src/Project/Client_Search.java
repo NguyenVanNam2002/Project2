@@ -5,6 +5,9 @@
  */
 package Project;
 
+import Project.Data.Order;
+import Project.Data.OrderDAO;
+import Project.Data.OrderDAOImpl;
 import Project.Data.Product;
 import Project.Data.ProjectSignUp;
 import Project.DbProject.DbProject;
@@ -13,12 +16,15 @@ import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.time.LocalDateTime;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
+import javafx.scene.control.Spinner;
+import javafx.scene.control.SpinnerValueFactory;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
@@ -33,11 +39,18 @@ import javafx.scene.text.Text;
  * @author Admin
  */
 public class Client_Search {
+    private OrderDAO od = new OrderDAOImpl();
     private ProjectSignUp psu;
     private Product pd;
+    final int initialValue = 1;
     @FXML
     private Text user;
-
+    @FXML
+    private Spinner<Integer> sprinner;
+     
+    SpinnerValueFactory<Integer> valueFactory = 
+               new SpinnerValueFactory.IntegerSpinnerValueFactory(1, 50, initialValue);
+ 
     @FXML
     private Text id;
 
@@ -65,10 +78,20 @@ public class Client_Search {
     private TextArea properties;
       @FXML
     private JFXButton add;
-
+    @FXML
+    void btnShopping(ActionEvent event) throws IOException {
+        ProjectSignUp osu = extractSignUpFromFields();
+        Nagatice.getInstance().goToShopping(osu);
+    }
     @FXML
     void btnadd(ActionEvent event) {
-
+        try {
+                Order ord = extactFromfiled();
+                ord = od.insert(ord);
+//                ordersucess.setText("Bạn order thành công");
+            } catch (Exception e) {
+//                ordersucess.setText("Bạn order thất bại , hệ thống đang bảo trì");
+            }
     }
     ObservableList<Product> lis = FXCollections.observableArrayList();
     private MyListener myListener;
@@ -108,9 +131,13 @@ public class Client_Search {
        
 
     }
+     public void initialize(){
+       sprinner.setValueFactory(valueFactory);
+    }
     private void setChosenSnack(Product snack) {
+        id.setText(snack.getID().toString());
         name.setText(snack.getName());
-        Price.setText(snack.getPrice().toString() + " VND");
+        Price.setText(snack.getPrice().toString());
         Image image = new Image(getClass().getResourceAsStream(snack.getImg()));
         imageview.setImage(image);
         properties.setText(snack.getProperties());
@@ -126,6 +153,7 @@ public class Client_Search {
             ResultSet rs = stmt.executeQuery();
             while (rs.next()) {
                 Product u = new Product();
+                u.setId(rs.getInt("ProductID"));
                 u.setName(rs.getString("Name"));
                 u.setPrice(rs.getInt("Price"));
                 u.setImg(rs.getString("ImgLink"));
@@ -174,6 +202,21 @@ public class Client_Search {
         } catch (IOException e) {
             
         }
+    }
+     private Order extactFromfiled(){
+        Order or = new Order();
+        or.setAccount(user.getText());
+        or.setProductID(id.getText());
+        or.setQuantity(sprinner.getValue());
+        int d = Integer.parseInt(Price.getText()) * sprinner.getValue();
+        or.setTotalPrice(d);
+        
+        LocalDateTime now = LocalDateTime.now();
+        String b = now.toString();
+        or.setDate(b);
+        
+        return or;
+        
     }
     
 }
