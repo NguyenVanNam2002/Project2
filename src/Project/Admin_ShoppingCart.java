@@ -82,28 +82,7 @@ public class Admin_ShoppingCart {
     
     public void initialize(){
     
-     tableview.setItems(or.selectShopingcartALL());
-            orderID.setCellValueFactory((product) -> {
-                return product.getValue().getIDProperty();
-            });
-            product.setCellValueFactory((product) -> {
-                return product.getValue().getProductIDProperty();
-            });
-            quantity.setCellValueFactory((product) -> {
-                return product.getValue().getQuantityProperty();
-            });
-            totalprice.setCellValueFactory((product) -> {
-                return product.getValue().getTotalPriceProperty();
-            });
-            
-            date.setCellValueFactory((product) -> {
-                return product.getValue().getDateProperty();
-            });
-            
-            account.setCellValueFactory((product) -> {
-                return product.getValue().getAccountProperty();
-            });
-            
+     
     }
     @FXML
     void btnDeleteClick(ActionEvent event) {

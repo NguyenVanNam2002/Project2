@@ -83,5 +83,6 @@ CREATE TABLE Orders(
 	total_price VARCHAR(50) ,
 	dates DATETIME 
 );
+
 SELECT o.*,p.* FROM  order_detail as o join products as p on o.ProductID = p.ProductID WHERE Client_ID = 'namoizoioi@gmail.com';
 SELECT p.*,c.* FROM products as p join category as c on p.CategoryID = c.CategoryID
