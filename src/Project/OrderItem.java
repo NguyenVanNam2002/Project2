@@ -9,6 +9,7 @@ import Project.Data.Order;
 import Project.Data.Product;
 import java.util.Arrays;
 import javafx.fxml.FXML;
+import javafx.scene.control.CheckBox;
 import javafx.scene.control.Spinner;
 import javafx.scene.control.SpinnerValueFactory;
 import javafx.scene.image.Image;
@@ -28,8 +29,9 @@ public class OrderItem {
     private Text name;
 
     @FXML
-    private Spinner<Integer> spinner;
-
+    private Text spinner;
+    @FXML
+    private CheckBox check;
     @FXML
     private Text price;
     
@@ -37,26 +39,19 @@ public class OrderItem {
     private Product o;
     @FXML
     void click(MouseEvent event) {
-        orderlis.onClickListener(p);
+       if(check.isSelected()){
+            orderlis.onClickListener(p);
+       }
+       
+        
     }
     private Order  p;
      public void setData(Order fruit ,Product o , OrderListener orderlis ) {
         this.p= fruit;
         this.o = o;
         this.orderlis = orderlis ;
-        int b = fruit.getQuantity();
-        int c = o.getPrice();
-        SpinnerValueFactory<Integer> valueFactory = 
-               new SpinnerValueFactory.IntegerSpinnerValueFactory(1, 50, b);
-        
-        spinner.setValueFactory(valueFactory);
-        
+        spinner.setText(Integer.toString(fruit.getQuantity()));
         price.setText(Integer.toString(fruit.getTotalPrice()));
-        spinner.valueProperty().addListener((overValue, olerValue , newValue)->{
-           int a = c * spinner.getValue();
-           price.setText(Integer.toString(a));
-        });
-        
         name.setText(o.getName());
         
         Image images = new Image(getClass().getResourceAsStream(o.getImg()));

@@ -35,10 +35,7 @@ public class OrderDAOImpl implements OrderDAO{
             stmt.setInt(4, order.getQuantity());
             int row = stmt.executeUpdate();
             if(row ==1 ){
-                key = stmt.getGeneratedKeys();
-                key.next();
-                int newkey = key.getInt(1);
-                order.setID(newkey);
+               
                 return order;
             
             }else{
@@ -55,32 +52,44 @@ public class OrderDAOImpl implements OrderDAO{
         }
     
     }
-    public  ObservableList<Order> selectShopingcart( String a ){
-        String sql = "SELECT o.*,p.* FROM  order_detail as o join products as p on o.ProductID = p.ProductID WHERE Client_ID  = ? ";
-        ObservableList<Order> ordr = FXCollections.observableArrayList();
+   
+    public  Order insertOrder(Order order){
+        String sql = "INSERT INTO Orders(ProductID, Client_ID , Total_price, Quantity ,dates) "
+                + " VALUES (? , ? , ? , ? , ?)";
+        ResultSet key = null;
         try (Connection con = DbProject.getConnection(data);
-             PreparedStatement stmt = con.prepareStatement(sql);
-             ){
-            stmt.setString(1, a);
-            ResultSet rs = stmt.executeQuery();
-            while(rs.next()){
-                Order o = new Order();
-                o.setID(rs.getInt("o.order_ID"));
-                o.setProductID(rs.getString("p.Name"));
-                o.setQuantity(rs.getInt("o.Quantity"));
-                o.setTotalPrice(rs.getInt("o.Total_price"));
-                o.setDate(rs.getString("o.Indate"));
-                ordr.add(o);
+            PreparedStatement stmt = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+            ){
+            stmt.setInt(1, Integer.parseInt(order.getProductID()));
+            stmt.setString(2, order.getAccount());
+            stmt.setString(3, order.getTotalPrice().toString());
+            stmt.setInt(4, order.getQuantity());
+            stmt.setString(5, order.getDate());
+            int row = stmt.executeUpdate();
+            if(row ==1 ){
+               key = stmt.getGeneratedKeys();
+                key.next();
+                int newKey = key.getInt(1);
+                order.setID(newKey);
+                return order;
             
+            }else{
+                return null;
             }
-            
         } catch (Exception e) {
+            return null;
+        }finally {
+            try {
+                if (key != null) key.close();
+            } catch (SQLException ex) {
+                System.out.println(ex.getMessage());
+            }
         }
-        return ordr;
+    
     }
     
     public  ObservableList<Order> selectShopingcartALL(){
-    String sql = "SELECT o.*,p.* FROM  order_detail as o join products as p on o.ProductID = p.ProductID";
+    String sql = "SELECT o.*,p.* FROM  Orders as o join products as p on o.ProductID = p.ProductID ";
         ObservableList<Order> ordr = FXCollections.observableArrayList();
         try (Connection con = DbProject.getConnection(data);
              Statement stmt = con.createStatement();
@@ -88,12 +97,12 @@ public class OrderDAOImpl implements OrderDAO{
             
             while(rs.next()){
                 Order o = new Order();
-                o.setID(rs.getInt("o.order_ID"));
+                o.setID(rs.getInt("o.OrderID"));
                 o.setProductID(rs.getString("p.Name"));
                 o.setAccount(rs.getString("o.Client_ID"));
-                o.setQuantity(rs.getInt("o.Quantity"));
-                o.setTotalPrice(rs.getInt("o.Total_price"));
-                o.setDate(rs.getString("o.Indate"));
+                o.setQuantity(rs.getInt("o.quantity"));
+                o.setTotalPrice(rs.getInt("o.total_price"));
+                o.setDate(rs.getString("o.dates"));
                 ordr.add(o);
             
             }

@@ -98,7 +98,7 @@
             </TextField>
          </children>
       </HBox>
-      <TextArea fx:id="properties" layoutX="27.0" layoutY="481.0" prefHeight="121.0" prefWidth="301.0" />
+      <TextArea fx:id="properties" layoutX="18.0" layoutY="481.0" prefHeight="121.0" prefWidth="301.0" />
       <JFXButton fx:id="add" layoutX="102.0" layoutY="649.0" onAction="#btnadd" prefHeight="24.0" prefWidth="115.0" style="-fx-background-color: #a48787;" text="ADD ORDER" textFill="WHITE" />
       <Spinner fx:id="sprinner" editable="true" layoutX="106.0" layoutY="608.0" />
       <Text layoutX="27.0" layoutY="629.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Quantitty" />

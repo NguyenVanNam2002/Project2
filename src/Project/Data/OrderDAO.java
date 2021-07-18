@@ -13,6 +13,6 @@ import javafx.collections.ObservableList;
  */
 public interface OrderDAO {
     public  Order insert(Order order);
-    public  ObservableList<Order> selectShopingcart( String a );
+    public  Order insertOrder(Order order);
     public  ObservableList<Order> selectShopingcartALL();
 }

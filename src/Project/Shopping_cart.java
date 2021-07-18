@@ -16,15 +16,16 @@ import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import static java.util.Collections.list;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import java.time.LocalDateTime;
+import java.util.Optional;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Region;
@@ -39,7 +40,8 @@ public class Shopping_cart {
     private ProjectSignUp psu;
    @FXML
     private Text user;
-
+     @FXML
+    private JFXButton orders;
     @FXML
     private JFXButton Home;
 
@@ -48,13 +50,43 @@ public class Shopping_cart {
 
     @FXML
     private Text totalprice;
-
+     @FXML
+    private JFXButton update;
     @FXML
     private Text quantity;
-
+     @FXML
+    private Text ord;
     @FXML
     private Text productID;
+    ObservableList<Order> ordr = FXCollections.observableArrayList();
+    ObservableList<Product> pro = FXCollections.observableArrayList();
+    @FXML
+    void btnupdate(ActionEvent event) {
 
+    }
+    @FXML
+    void btnDeleteClick(ActionEvent event) throws IOException {
+
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setHeaderText("Are you sure you want to delete the selected Category?");
+        alert.setTitle("Deleting a Category");
+        Optional<ButtonType> confirmationResponse
+                = alert.showAndWait();
+        if (confirmationResponse.get() == ButtonType.OK) {
+            if(productID.getText() != null){
+                delete(productID.getText());
+                ProjectSignUp u =extractSignUpFromFields();
+                Nagatice.getInstance().goToShopping(u);
+            }else{
+                
+            }
+        }
+    }
+      @FXML
+    void btnorder(ActionEvent event) {
+        Order orderss = extactFromfiled();
+        orderss = or.insertOrder(orderss);
+    }
     @FXML
     void btnHome(ActionEvent event) throws IOException {
         ProjectSignUp p = extractSignUpFromFields();
@@ -81,12 +113,12 @@ public class Shopping_cart {
         ProjectSignUp sign = new ProjectSignUp(); 
         sign.setAccount(user.getText());
         return sign;
-    } private OrderListener orderlis;
+    } 
+     
+     private OrderListener orderlis;
     
     public void  selectShopingcart( String a ){
         String sql = "SELECT o.*,p.* FROM  order_detail as o join products as p on o.ProductID = p.ProductID WHERE Client_ID  = ? ";
-        ObservableList<Order> ordr = FXCollections.observableArrayList();
-        ObservableList<Product> pro = FXCollections.observableArrayList();
         try (Connection con = DbProject.getConnection();
              PreparedStatement stmt = con.prepareStatement(sql);
              ){
@@ -107,10 +139,10 @@ public class Shopping_cart {
         } catch (Exception e) {
         }
         
-         if (ordr.size() > 0) {
+        if (ordr.size() > 0) {
             orderlis = (Order snack) -> {
-                setChosenSnack(snack);
                 
+                setChosenSnack(snack);
             };
         }
         
@@ -128,7 +160,7 @@ public class Shopping_cart {
                     column = 0;
                     row++;
                 }
-
+              
                 grid.add(anchorPane, column++, row); //(child,column,row)
                 //set grid width
                 grid.setMinWidth(Region.USE_COMPUTED_SIZE);
@@ -140,12 +172,48 @@ public class Shopping_cart {
                 grid.setPrefHeight(Region.USE_COMPUTED_SIZE);
                 grid.setMaxHeight(Region.USE_PREF_SIZE);
                 GridPane.setMargin(anchorPane, new Insets(10));
-
             }
+             
         } catch (IOException e) {
             
         }
        
     }
     
+    public  boolean delete(String b) {
+        String sql = "DELETE FROM order_detail WHERE ProductID = ?";
+        try (
+                Connection conn = DbProject.getConnection();
+                PreparedStatement stmt = conn.prepareStatement(sql);) {
+
+            stmt.setInt(1, Integer.parseInt(b));
+
+            int rowDeleted = stmt.executeUpdate();
+
+            if (rowDeleted == 1) {
+                return true;
+            } else {
+                System.err.println("No  deleted");
+                return false;
+            }
+
+        } catch (Exception e) {
+            System.err.println(e);
+            return false;
+        }
+    }
+    
+    private Order extactFromfiled(){
+        Order orda = new Order();
+        orda.setAccount(user.getText());
+        orda.setProductID(productID.getText());
+        orda.setQuantity(Integer.parseInt(quantity.getText()));
+        int d = Integer.parseInt(totalprice.getText());
+        orda.setTotalPrice(d);
+        LocalDateTime now = LocalDateTime.now();
+        String b = now.toString();
+        orda.setDate(b);
+        return orda;
+        
+    }
 }

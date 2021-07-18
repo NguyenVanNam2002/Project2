@@ -25,7 +25,6 @@ import javafx.stage.Stage;
 public class Nagatice {
     public static final String login_FXML = "Login.fxml";
     public static final String sing_up_FXML = "SignUp.fxml";
-    public static final String admin_FXML = "inAdmin.fxml";
     public static final String Category_INDEX_FXML = "CategoriesIndexUI.fxml";
     public static final String Category_EDIT_FXML = "CategoriesEditUI.fxml";
     public static final String Feedback_EDIT_FXML = "FeedBackEditUI.fxml";
@@ -86,9 +85,6 @@ public class Nagatice {
         this.goTo(sing_up_FXML);
     }
      
-    public void goAdmin() throws IOException {
-        this.goTo(admin_FXML);
-    }
     public void goToFeedbackIndex() throws IOException {
         this.goTo(Feedback_index_FXML);
     }

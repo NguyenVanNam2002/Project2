@@ -73,7 +73,7 @@
                   </ImageView>
                </children>
             </HBox>
-            <JFXButton fx:id="setting" layoutX="43.0" layoutY="301.0" onAction="#btnsetting" prefHeight="63.0" prefWidth="255.0" style="-fx-background-radius: 50; -fx-background-color: #FF7F50;" text="EDIT PROFILE" textFill="WHITE">
+            <JFXButton fx:id="setting" layoutX="58.0" layoutY="270.0" onAction="#btnsetting" prefHeight="63.0" prefWidth="255.0" style="-fx-background-radius: 50; -fx-background-color: #FF7F50;" text="EDIT PROFILE" textFill="WHITE">
                <font>
                   <Font size="29.0" />
                </font>
@@ -88,10 +88,17 @@
                   </ImageView>
                </graphic>
             </JFXButton>
-            <JFXButton fx:id="btnDrink" layoutX="43.0" layoutY="197.0" onAction="#btnDrink" prefHeight="63.0" prefWidth="255.0" style="-fx-background-radius: 50; -fx-background-color: #FF7F50;" text="Drink" textFill="#f8f8f8">
+            <JFXButton fx:id="btnDrink" layoutX="58.0" layoutY="159.0" onAction="#btnDrink" prefHeight="63.0" prefWidth="255.0" style="-fx-background-radius: 50; -fx-background-color: #FF7F50;" text="Nước uống" textFill="#f8f8f8">
                <font>
                   <Font size="29.0" />
                </font>
+               <graphic>
+                  <ImageView fitHeight="50.0" fitWidth="43.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../beer_glass_40px.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
             </JFXButton>
             <Text layoutX="69.0" layoutY="482.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Follow us">
                <font>
@@ -122,24 +129,36 @@
                   <Font name="System Bold Italic" size="25.0" />
                </font>
             </Text>
-            <JFXButton fx:id="Food" layoutX="50.0" layoutY="94.0" onAction="#btnFoodclik" prefHeight="63.0" prefWidth="255.0" style="-fx-background-radius: 50; -fx-background-color: #FF7F50;" text="Food" textFill="#f8f8f8">
+            <JFXButton fx:id="Food" layoutX="58.0" layoutY="52.0" onAction="#btnFoodclik" prefHeight="63.0" prefWidth="255.0" style="-fx-background-radius: 50; -fx-background-color: #FF7F50;" text="Đồ ăn" textFill="#f8f8f8">
                <font>
                   <Font size="29.0" />
                </font>
+               <graphic>
+                  <ImageView fitHeight="49.0" fitWidth="43.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../restaurant_30px.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
             </JFXButton>
             <Text fx:id="drink" layoutX="490.0" layoutY="63.0" strokeType="OUTSIDE" strokeWidth="0.0" />
             <Text fx:id="food" layoutX="490.0" layoutY="100.0" strokeType="OUTSIDE" strokeWidth="0.0" />
-            <ImageView fitHeight="49.0" fitWidth="43.0" layoutX="89.0" layoutY="104.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../restaurant_30px.png" />
-               </image>
-            </ImageView>
-            <ImageView fitHeight="50.0" fitWidth="43.0" layoutX="89.0" layoutY="197.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../beer_glass_40px.png" />
-               </image>
-            </ImageView>
             <ImageView fitHeight="49.0" fitWidth="56.0" layoutX="58.0" layoutY="368.0" pickOnBounds="true" preserveRatio="true" />
+            <JFXButton layoutX="58.0" layoutY="368.0" prefHeight="63.0" prefWidth="255.0" style="-fx-background-radius: 50; -fx-background-color: #FF7F50;" text="Lịch sử Order" textFill="WHITE">
+               <font>
+                  <Font size="29.0" />
+               </font>
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+               <graphic>
+                  <ImageView fitHeight="46.0" fitWidth="38.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../van_50px.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </JFXButton>
          </children>
       </Pane>
    </children>

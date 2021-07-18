@@ -211,10 +211,10 @@ public class Client_Search {
         int d = Integer.parseInt(Price.getText()) * sprinner.getValue();
         or.setTotalPrice(d);
         
-        LocalDateTime now = LocalDateTime.now();
-        String b = now.toString();
-        or.setDate(b);
-        
+//        LocalDateTime now = LocalDateTime.now();
+//        String b = now.toString();
+//        or.setDate(b);
+//        
         return or;
         
     }
