@@ -64,25 +64,50 @@ public class Client_ViewC2Function {
     private Text proties;
     @FXML
     private Text ordersucess;
-   
+    @FXML
+    private Text q;
+
+    @FXML
+    private Text t;
 
     @FXML
     private JFXButton menu;
     @FXML
     void btnShopping(ActionEvent event) throws IOException {
+       
         ProjectSignUp osu = extractPasswordFromFields();
         Nagatice.getInstance().goToShopping(osu);
     }
     @FXML
-    void btnorder(ActionEvent event) {
+    void btnorder(ActionEvent event) throws IOException {
         try {
-                Order ord = extactFromfiled();
-                ord = od.insert(ord);
-                ordersucess.setText("Bạn order thành công");
+                if( equal(Integer.parseInt(id.getText()))){
+                    
+                    Order os = change();
+                    boolean result = od.update(os);
+                    Product ps = extractProductFromFields();
+                    ProjectSignUp u = extractPasswordFromFields();
+                    Nagatice.getInstance().goToViewC2(u, ps);
+                    
+                }else{
+                    Order ord = extactFromfiled();
+                    ord = od.insert(ord);
+                    Product ps = extractProductFromFields();
+                    ProjectSignUp u = extractPasswordFromFields();
+                    Nagatice.getInstance().goToViewC2(u, ps);
+                }
+               
+                ordersucess.setText("Bạn thêm sản phẩm vào giỏ thành công");
             } catch (Exception e) {
-                ordersucess.setText("Bạn order thất bại , hệ thống đang bảo trì");
+                ordersucess.setText("Bạn thêm vào giỏ thất bại , hệ thống đang bảo trì");
             }
      }
+    private Product extractProductFromFields() {
+        Product sign = new Product();
+        sign.setName(thename.getText());
+        return sign;
+    }
+    
     @FXML
     void btnHome(ActionEvent event) throws IOException {
        ProjectSignUp menus = extractPasswordFromFields();
@@ -104,6 +129,7 @@ public class Client_ViewC2Function {
         if(this.pd != null){
             thename.setText(d.getName());
             infomaitonselect(d.getName());
+            Select(d.getName());
         }
     }
      public void initialize(){
@@ -119,12 +145,10 @@ public class Client_ViewC2Function {
         }
        
        id.setVisible(false);
+       q.setVisible(false);
+       t.setVisible(false);
     }
-     private Product extractProductFromFields() {
-        Product sign = new Product();
-        sign.setName(thename.getText());
-        return sign;
-    }
+   
 
     private ProjectSignUp extractPasswordFromFields() {
         ProjectSignUp sign = new ProjectSignUp(); 
@@ -175,4 +199,52 @@ public class Client_ViewC2Function {
         return or;
         
     }
+    
+    private boolean equal(int id){
+        String sql = "SELECT * FROM ShoppingCart WHERE productID = ?";
+        try (
+                Connection conn = DbProject.getConnection();
+                PreparedStatement stmt = conn.prepareStatement(sql);) {
+
+            stmt.setInt(1, id);
+
+            ResultSet rs = stmt.executeQuery();
+
+            if (rs.next()) {
+                return true;
+            } else {
+                return false;
+            }
+
+        } catch (Exception e) {
+            System.err.println(e);
+            return false;
+        }
+    }
+    
+    private void Select(String id){
+        String sql = "SELECT o.*,p.* FROM  ShoppingCart as o join products as p on o.productID = p.productID WHERE p.Name = ? ";
+        try (Connection con = DbProject.getConnection();
+             PreparedStatement stmt = con.prepareStatement(sql);
+             ){
+            stmt.setString(1, id);
+            ResultSet rs = stmt.executeQuery();
+            while(rs.next()){
+             q.setText(Integer.toString(rs.getInt("quantity")));
+             t.setText(rs.getString("Total_price"));
+            }
+        } catch (Exception e) {
+        }
+        
+    }
+    
+    private Order change(){
+        Order oss = new Order();
+        oss.setProductID(id.getText());
+        oss.setQuantity(Integer.parseInt(q.getText()) + sprinner.getValue());
+        int d = Integer.parseInt(theprice.getText()) * sprinner.getValue();
+        oss.setTotalPrice(Integer.parseInt(t.getText()) + d);
+        return oss;
+    }
+    
 }

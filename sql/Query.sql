@@ -59,37 +59,50 @@ CREATE TABLE account_client(
 SELECT * FROM account_client;
 SELECT * FROM products WHERE `Name` LIKE '%a%';
 
-Create table order_detail(
-	ProductID int,
-	Client_ID varchar(50) ,
-	Total_price varchar(45),
-	Quantity int
-);
 
-Alter table order_detail
-Add foreign key (Client_ID) references account_client(accounts);
 
-Alter table order_detail
-Add foreign key (ProductID) references products(ProductID);
-SELECT * FROM order_detail;
+CREATE TABLE ShoppingCart(
+	productID INT ,
+	accounts VARCHAR(50) ,
+	quantity INT ,
+	Total_price VARCHAR(50)
+)
 
-INSERT INTO order_detail(ProductID, Client_ID , Total_price, Quantity , Indate)
-VALUES (15,'Namoizoioi@gmail.com',"100000",10,"2021-06-04 16:08:25");
+ALTER TABLE ShoppingCart
+ADD FOREIGN KEY (productID) REFERENCES products(ProductID);
+
+ALTER TABLE ShoppingCart
+ADD FOREIGN KEY (accounts) REFERENCES account_client(accounts);
+
 
 CREATE TABLE Orders(
 	OrderID INT AUTO_INCREMENT Primary key ,
-	ProductID INT ,
 	Client_ID VARCHAR(50) ,
 	total_price VARCHAR(50) ,
-	quantity INT ,
 	dates DATETIME 
 );
-Alter table Orders
-Add foreign key (Client_ID) references account_client(accounts);
+
 
 Alter table Orders
-add foreign key (ProductID) references products(ProductID);
+Add foreign key (Client_ID) REFERENCES account_client(accounts);
 SELECT * FROM Orders;
+
+Create table order_detail(
+	OrderID INT  ,
+	ProductID INT ,
+	Quantity INT ,
+	PRIMARY KEY ( OrderID , ProductID)
+);
+
+Alter table order_detail
+Add foreign key (ProductID) references products(ProductID);
+ALTER TABLE order_detail
+ADD FOREIGN KEY (OrderID) REFERENCES Orders(OrderID);
+
+
+SELECT * FROM order_detail;
+
 
 SELECT o.*,p.* FROM  order_detail as o join products as p on o.ProductID = p.ProductID WHERE Client_ID = 'namoizoioi@gmail.com';
 SELECT p.*,c.* FROM products as p join category as c on p.CategoryID = c.CategoryID
+

@@ -15,4 +15,5 @@ public interface OrderDAO {
     public  Order insert(Order order);
     public  Order insertOrder(Order order);
     public  ObservableList<Order> selectShopingcartALL();
+    public  boolean update(Order o);
 }

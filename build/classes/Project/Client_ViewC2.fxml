@@ -79,5 +79,7 @@
             </Pane>
          </content>
       </ScrollPane>
+      <Text fx:id="q" fill="WHITE" layoutX="36.0" layoutY="242.0" strokeType="OUTSIDE" strokeWidth="0.0" />
+      <Text fx:id="t" fill="WHITE" layoutX="36.0" layoutY="298.0" strokeType="OUTSIDE" strokeWidth="0.0" />
    </children>
 </AnchorPane>

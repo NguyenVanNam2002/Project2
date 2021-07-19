@@ -163,6 +163,9 @@ public class FunctionLogin {
         System.out.println("#Login initialized!");
         Sign.getItems().add("Client");
         Sign.getItems().add("Admin");
+        
+        account.setText("namoizoioi@gmail.com");
+        password.setText("987654321");
     }
     private String md5(String a){
         try {

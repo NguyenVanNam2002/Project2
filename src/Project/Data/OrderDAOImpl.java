@@ -23,7 +23,7 @@ public class OrderDAOImpl implements OrderDAO{
     DbType data = DbType.SQL;
     
     public  Order insert(Order order){
-        String sql = "INSERT INTO order_detail(ProductID, Client_ID , Total_price, Quantity) "
+        String sql = "INSERT INTO ShoppingCart(productID, accounts , quantity , Total_price )"
                 + " VALUES (? , ? , ? , ? )";
         ResultSet key = null;
         try (Connection con = DbProject.getConnection(data);
@@ -31,8 +31,8 @@ public class OrderDAOImpl implements OrderDAO{
             ){
             stmt.setInt(1, Integer.parseInt(order.getProductID()));
             stmt.setString(2, order.getAccount());
-            stmt.setString(3, order.getTotalPrice().toString());
-            stmt.setInt(4, order.getQuantity());
+            stmt.setInt(3, order.getQuantity());
+            stmt.setString(4, order.getTotalPrice().toString());
             int row = stmt.executeUpdate();
             if(row ==1 ){
                
@@ -112,4 +112,36 @@ public class OrderDAOImpl implements OrderDAO{
         return ordr;
     
     }
+    
+    public  boolean update(Order o) {
+        String sql = "UPDATE ShoppingCart SET "
+                + " Total_price = ? ,"
+                + " quantity = ? "
+                + "WHERE ProductID = ? ";
+
+        try (
+                Connection conn = DbProject.getConnection();
+                PreparedStatement stmt = conn.prepareStatement(sql);
+                ) {
+
+            stmt.setInt(1, o.getTotalPrice());
+            stmt.setInt(2, o.getQuantity());
+            stmt.setInt(3, Integer.parseInt(o.getProductID()));
+            
+
+            int rowUpdated = stmt.executeUpdate();
+
+            if (rowUpdated == 1) {
+                return true;
+            } else {
+                System.err.println("No order updated");
+                return false;
+            }
+
+        } catch (Exception e) {
+            System.err.println(e);
+            return false;
+        }
+    }
+
 }

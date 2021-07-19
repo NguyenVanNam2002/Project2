@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.Spinner?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Text?>
@@ -9,9 +10,12 @@
    <children>
       <ImageView fx:id="image" fitHeight="119.0" fitWidth="170.0" layoutX="59.0" layoutY="4.0" pickOnBounds="true" preserveRatio="true" />
       <Text fx:id="name" layoutX="229.0" layoutY="65.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="195.6708984375" />
-      <Text fx:id="price" layoutX="710.0" layoutY="66.0" strokeType="OUTSIDE" strokeWidth="0.0" />
-      <Text layoutX="796.0" layoutY="66.0" strokeType="OUTSIDE" strokeWidth="0.0" text="VNĐ" />
+      <Text fx:id="price" layoutX="618.0" layoutY="63.0" strokeType="OUTSIDE" strokeWidth="0.0" />
+      <Text layoutX="679.0" layoutY="62.0" strokeType="OUTSIDE" strokeWidth="0.0" text="VNĐ" />
       <CheckBox fx:id="check" layoutX="13.0" layoutY="52.0" mnemonicParsing="false" onMouseClicked="#click" prefHeight="21.0" prefWidth="9.0" />
-      <Text fx:id="spinner" layoutX="477.0" layoutY="69.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="106.6708984375" />
+      <Spinner fx:id="spinner" layoutX="425.0" layoutY="42.0" onMouseClicked="#quantityUpdate" />
+      <Text fx:id="id" layoutY="106.0" strokeType="OUTSIDE" strokeWidth="0.0" />
+      <Text fx:id="user" layoutX="13.0" layoutY="20.0" strokeType="OUTSIDE" strokeWidth="0.0" />
+      <Text layoutX="762.0" layoutY="62.0" onMouseClicked="#Delete" strokeType="OUTSIDE" strokeWidth="0.0" text="Xoá" />
    </children>
 </AnchorPane>

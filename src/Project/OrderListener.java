@@ -13,4 +13,5 @@ import Project.Data.Order;
  */
 public interface OrderListener {
     public void onClickListener(Order order);
+    public void OnDelete(Order order);
 }

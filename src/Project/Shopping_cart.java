@@ -18,6 +18,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.time.LocalDateTime;
 import java.util.Optional;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -84,8 +86,8 @@ public class Shopping_cart {
     }
       @FXML
     void btnorder(ActionEvent event) {
-        Order orderss = extactFromfiled();
-        orderss = or.insertOrder(orderss);
+//        Order orderss = extactFromfiled();
+//        orderss = or.insertOrder(orderss);
     }
     @FXML
     void btnHome(ActionEvent event) throws IOException {
@@ -118,7 +120,7 @@ public class Shopping_cart {
      private OrderListener orderlis;
     
     public void  selectShopingcart( String a ){
-        String sql = "SELECT o.*,p.* FROM  order_detail as o join products as p on o.ProductID = p.ProductID WHERE Client_ID  = ? ";
+        String sql = "SELECT o.*,p.* FROM  ShoppingCart as o join products as p on o.productID = p.productID WHERE accounts  = ? ";
         try (Connection con = DbProject.getConnection();
              PreparedStatement stmt = con.prepareStatement(sql);
              ){
@@ -130,9 +132,10 @@ public class Shopping_cart {
                  p.setName(rs.getString("p.Name"));
                  p.setPrice(rs.getInt("p.Price"));
                 Order o = new Order();
-                o.setQuantity(rs.getInt("o.Quantity"));
+                o.setQuantity(rs.getInt("o.quantity"));
                 o.setTotalPrice(rs.getInt("o.Total_price"));
-                o.setProductID(Integer.toString(rs.getInt("o.ProductID")));
+                o.setProductID(Integer.toString(rs.getInt("o.productID")));
+                o.setAccount(rs.getString("o.accounts"));
                 ordr.add(o);
                 pro.add(p);
             }
@@ -140,9 +143,34 @@ public class Shopping_cart {
         }
         
         if (ordr.size() > 0) {
-            orderlis = (Order snack) -> {
-                
-                setChosenSnack(snack);
+            orderlis = new OrderListener() {
+                @Override
+                public void onClickListener(Order order) {
+                    setChosenSnack(order);
+                }
+
+                @Override
+                public void OnDelete(Order order) {
+                    setChosenSnack(order);
+                    Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+                    alert.setHeaderText("Are you sure you want to delete the selected Category?");
+                    alert.setTitle("Deleting a Category");
+                    Optional<ButtonType> confirmationResponse
+                            = alert.showAndWait();
+                    if (confirmationResponse.get() == ButtonType.OK) {
+                        if(productID.getText() != null){
+                            delete(productID.getText());
+                            ProjectSignUp u =extractSignUpFromFields();
+                            try {
+                                Nagatice.getInstance().goToShopping(u);
+                            } catch (IOException ex) {
+                                Logger.getLogger(Shopping_cart.class.getName()).log(Level.SEVERE, null, ex);
+                            }
+                        }else{
+
+                        }
+                    }
+                }
             };
         }
         
@@ -181,7 +209,7 @@ public class Shopping_cart {
     }
     
     public  boolean delete(String b) {
-        String sql = "DELETE FROM order_detail WHERE ProductID = ?";
+        String sql = "DELETE FROM ShoppingCart WHERE productID = ?";
         try (
                 Connection conn = DbProject.getConnection();
                 PreparedStatement stmt = conn.prepareStatement(sql);) {
@@ -206,14 +234,12 @@ public class Shopping_cart {
     private Order extactFromfiled(){
         Order orda = new Order();
         orda.setAccount(user.getText());
-        orda.setProductID(productID.getText());
-        orda.setQuantity(Integer.parseInt(quantity.getText()));
-        int d = Integer.parseInt(totalprice.getText());
-        orda.setTotalPrice(d);
         LocalDateTime now = LocalDateTime.now();
         String b = now.toString();
         orda.setDate(b);
         return orda;
         
     }
+    
+    
 }
