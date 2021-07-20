@@ -40,6 +40,10 @@
                   <FontAwesomeIconView fill="WHITE" glyphName="BARS" size="30" text="" />
                </graphic>
             </JFXButton>
+            <Text fx:id="totalprice" layoutX="243.0" layoutY="17.0" strokeType="OUTSIDE" strokeWidth="0.0" />
+            <Text fx:id="quantity" layoutX="279.0" layoutY="26.0" strokeType="OUTSIDE" strokeWidth="0.0" />
+            <Text fx:id="productID" layoutX="291.0" layoutY="44.0" strokeType="OUTSIDE" strokeWidth="0.0" />
+            <Text fx:id="ord" layoutX="290.0" layoutY="62.0" strokeType="OUTSIDE" strokeWidth="0.0" />
          </children>
       </Pane>
       <ImageView fitHeight="667.0" fitWidth="1150.0" layoutY="75.0" pickOnBounds="true">
@@ -59,7 +63,7 @@
                   <Font name="System Bold Italic" size="32.0" />
                </font>
             </Text>
-            <ScrollPane layoutX="16.0" layoutY="57.0" prefHeight="571.0" prefWidth="949.0">
+            <ScrollPane layoutX="16.0" layoutY="57.0" prefHeight="506.0" prefWidth="1094.0">
                <content>
                   <GridPane fx:id="grid" prefHeight="13.0" prefWidth="3.0">
                      <rowConstraints>
@@ -68,16 +72,7 @@
                   </GridPane>
                </content>
             </ScrollPane>
-            <Text fx:id="totalprice" layoutX="27.0" layoutY="218.0" strokeType="OUTSIDE" strokeWidth="0.0" />
-            <Text fx:id="quantity" layoutX="27.0" layoutY="288.0" strokeType="OUTSIDE" strokeWidth="0.0" />
-            <Text fx:id="productID" layoutX="27.0" layoutY="340.0" strokeType="OUTSIDE" strokeWidth="0.0" />
-            <JFXButton fx:id="btnDelete" layoutX="968.0" layoutY="571.0" onAction="#btnDeleteClick" prefHeight="57.0" prefWidth="140.0" style="-fx-background-color: #668aff;" text="Xoá khỏi giỏ hàng" textFill="WHITE">
-               <font>
-                  <Font name="System Bold" size="12.0" />
-               </font>
-            </JFXButton>
-            <Text fx:id="ord" layoutX="2.0" layoutY="639.0" strokeType="OUTSIDE" strokeWidth="0.0" />
-            <JFXButton fx:id="orders" layoutX="968.0" layoutY="57.0" onAction="#btnorder" prefHeight="57.0" prefWidth="140.0" style="-fx-background-color: #668aff;" text="Order" textFill="WHITE">
+            <JFXButton fx:id="orders" layoutX="965.0" layoutY="576.0" onAction="#btnorder" prefHeight="57.0" prefWidth="140.0" style="-fx-background-color: #668aff;" text="Order" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="12.0" />
                </font>
@@ -89,12 +84,12 @@
                   </ImageView>
                </graphic>
             </JFXButton>
-            <JFXButton fx:id="update" layoutX="968.0" layoutY="315.0" onAction="#btnupdate" prefHeight="57.0" prefWidth="140.0" style="-fx-background-color: #668aff;" text="Chỉnh sửa đơn hàng" textFill="WHITE">
+            <Text fx:id="sote" layoutX="851.0" layoutY="610.0" strokeType="OUTSIDE" strokeWidth="0.0" />
+            <Text layoutX="626.0" layoutY="614.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Tổng tiền( VNĐ ) :">
                <font>
-                  <Font name="System Bold" size="12.0" />
+                  <Font size="23.0" />
                </font>
-            </JFXButton>
-            <Text layoutX="300.0" layoutY="36.0" strokeType="OUTSIDE" strokeWidth="0.0" text="* Lưu ý : mỗi lần order chỉ được 1 sản phẩm " />
+            </Text>
          </children></Pane>
    </children>
 </AnchorPane>

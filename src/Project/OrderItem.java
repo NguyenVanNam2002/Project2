@@ -9,15 +9,12 @@ import Project.Data.Order;
 import Project.Data.OrderDAO;
 import Project.Data.OrderDAOImpl;
 import Project.Data.Product;
-import Project.Data.ProjectSignUp;
 import Project.DbProject.DbProject;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.util.Arrays;
-import java.util.Optional;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Alert;
-import javafx.scene.control.ButtonType;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.Spinner;
 import javafx.scene.control.SpinnerValueFactory;
@@ -52,18 +49,30 @@ public class OrderItem {
     private Text user;
     @FXML
     void click(MouseEvent event) {
-         orderlis.onClickListener(p);    
+        
+        orderlis.onClickListener(check,p);
     }
+   
+    
+    
     @FXML
     void Delete(MouseEvent event) {
        orderlis.OnDelete(p);
     }
+    
     @FXML
     void quantityUpdate(MouseEvent event) {
         Order update = expformfield();
         boolean result = oder.update(update);
-        
+        orderlis.Update();
     }
+    
+    public int getPrice(Order c ){
+        this.p = c;
+        int a = c.getTotalPrice();
+        return a;
+    }
+    
     private Order  p;
      public void setData(Order fruit ,Product o , OrderListener orderlis ) {
         this.p= fruit;
@@ -95,6 +104,7 @@ public class OrderItem {
         spinner.getStyleClass().addAll(Arrays.asList(styleClasses));
         id.setVisible(false);
         user.setVisible(false);
+        check.setSelected(true);
     }
      
     private Order expformfield(){

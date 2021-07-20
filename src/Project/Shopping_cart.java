@@ -28,6 +28,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
+import javafx.scene.control.CheckBox;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Region;
@@ -60,31 +61,13 @@ public class Shopping_cart {
     private Text ord;
     @FXML
     private Text productID;
+       @FXML
+    private Text sote;
     ObservableList<Order> ordr = FXCollections.observableArrayList();
     ObservableList<Product> pro = FXCollections.observableArrayList();
+    ObservableList<String> list = FXCollections.observableArrayList();
+    
     @FXML
-    void btnupdate(ActionEvent event) {
-
-    }
-    @FXML
-    void btnDeleteClick(ActionEvent event) throws IOException {
-
-        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-        alert.setHeaderText("Are you sure you want to delete the selected Category?");
-        alert.setTitle("Deleting a Category");
-        Optional<ButtonType> confirmationResponse
-                = alert.showAndWait();
-        if (confirmationResponse.get() == ButtonType.OK) {
-            if(productID.getText() != null){
-                delete(productID.getText());
-                ProjectSignUp u =extractSignUpFromFields();
-                Nagatice.getInstance().goToShopping(u);
-            }else{
-                
-            }
-        }
-    }
-      @FXML
     void btnorder(ActionEvent event) {
 //        Order orderss = extactFromfiled();
 //        orderss = or.insertOrder(orderss);
@@ -110,6 +93,12 @@ public class Shopping_cart {
         productID.setText(snack.getProductID());
         totalprice.setText(snack.getTotalPrice().toString());
         quantity.setText(snack.getQuantity().toString());
+    }
+    
+    private void setChosenSnack() {
+        productID.setText("");
+        totalprice.setText("");
+        quantity.setText("");
     }
      private ProjectSignUp extractSignUpFromFields() {
         ProjectSignUp sign = new ProjectSignUp(); 
@@ -142,13 +131,22 @@ public class Shopping_cart {
         } catch (Exception e) {
         }
         
+        
         if (ordr.size() > 0) {
             orderlis = new OrderListener() {
                 @Override
-                public void onClickListener(Order order) {
-                    setChosenSnack(order);
+                public void onClickListener(CheckBox y ,Order order) {
+                    if(y.isSelected() == false){
+                       setChosenSnack(order);
+                       int c = Integer.parseInt(sote.getText()) - Integer.parseInt(totalprice.getText());
+                       sote.setText(Integer.toString(c));
+                    }else{
+                      int c = Integer.parseInt(sote.getText()) + Integer.parseInt(totalprice.getText());
+                       sote.setText(Integer.toString(c));
+                    }
+                    
                 }
-
+                
                 @Override
                 public void OnDelete(Order order) {
                     setChosenSnack(order);
@@ -171,24 +169,33 @@ public class Shopping_cart {
                         }
                     }
                 }
+                @Override
+                public void Update() {
+                    ProjectSignUp u =extractSignUpFromFields();
+                    try {
+                        Nagatice.getInstance().goToShopping(u);
+                    } catch (IOException ex) {
+                        Logger.getLogger(Shopping_cart.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                }
             };
         }
-        
         int column = 0;
         int row = 1;
+        int b = 0;
+        
         try {
             for (int i = 0; i < ordr.size(); i++) {
                 FXMLLoader fxmlLoader = new FXMLLoader();
                 fxmlLoader.setLocation(getClass().getResource("OrderItem.fxml"));
                 AnchorPane anchorPane = fxmlLoader.load();
-
                 OrderItem itemController = fxmlLoader.getController();
                 itemController.setData(ordr.get(i), pro.get(i) , orderlis);
+                b += itemController.getPrice(ordr.get(i));
                 if (column == 1) {
                     column = 0;
                     row++;
                 }
-              
                 grid.add(anchorPane, column++, row); //(child,column,row)
                 //set grid width
                 grid.setMinWidth(Region.USE_COMPUTED_SIZE);
@@ -201,11 +208,9 @@ public class Shopping_cart {
                 grid.setMaxHeight(Region.USE_PREF_SIZE);
                 GridPane.setMargin(anchorPane, new Insets(10));
             }
-             
+            sote.setText(Integer.toString(b));
         } catch (IOException e) {
-            
         }
-       
     }
     
     public  boolean delete(String b) {
@@ -238,7 +243,6 @@ public class Shopping_cart {
         String b = now.toString();
         orda.setDate(b);
         return orda;
-        
     }
     
     

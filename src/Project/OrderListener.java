@@ -6,12 +6,14 @@
 package Project;
 
 import Project.Data.Order;
+import javafx.scene.control.CheckBox;
 
 /**
  *
  * @author Admin
  */
 public interface OrderListener {
-    public void onClickListener(Order order);
+    public void onClickListener(CheckBox y ,Order order);
     public void OnDelete(Order order);
+    public void Update();
 }
