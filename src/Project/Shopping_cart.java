@@ -8,6 +8,7 @@ package Project;
 import Project.Data.Order;
 import Project.Data.OrderDAO;
 import Project.Data.OrderDAOImpl;
+import Project.Data.OrderDetail;
 import Project.Data.Product;
 import Project.Data.ProjectSignUp;
 import Project.DbProject.DbProject;
@@ -16,6 +17,8 @@ import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.time.LocalDateTime;
 import java.util.Optional;
 import java.util.logging.Level;
@@ -61,17 +64,43 @@ public class Shopping_cart {
     private Text ord;
     @FXML
     private Text productID;
-       @FXML
+    @FXML
     private Text sote;
+    
+    
+     @FXML
+    private Text orderid;
+
     ObservableList<Order> ordr = FXCollections.observableArrayList();
     ObservableList<Product> pro = FXCollections.observableArrayList();
-    ObservableList<String> list = FXCollections.observableArrayList();
+    ObservableList<String> listProductID = FXCollections.observableArrayList();
+    ObservableList<Integer> listQuantity = FXCollections.observableArrayList();
     
     @FXML
-    void btnorder(ActionEvent event) {
-//        Order orderss = extactFromfiled();
-//        orderss = or.insertOrder(orderss);
+    void btnorder(ActionEvent event) throws SQLException, IOException {
+        
+        if(validation()){
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setHeaderText("Bạn muốn Order sản phẩm ?");
+            alert.setTitle("Lưu ý");
+            Optional<ButtonType> confirmationResponse
+                    = alert.showAndWait();
+            if (confirmationResponse.get() == ButtonType.OK) {
+                Order orderss = extactFromfiled();
+                orderss = or.insertOrder(orderss);
+                selectShoping(user.getText(), sote.getText());
+                if(orderid.getText() != null){
+                    for(int c =0 ; c < listProductID.size() ; c ++){
+                           insert(orderid.getText(), listProductID.get(c), listQuantity.get(c));
+                           delete(listProductID.get(c));
+                    }
+                }
+                ProjectSignUp e = extractSignUpFromFields();
+                Nagatice.getInstance().goToShopping(e);
+            }
+        }
     }
+    
     @FXML
     void btnHome(ActionEvent event) throws IOException {
         ProjectSignUp p = extractSignUpFromFields();
@@ -88,6 +117,7 @@ public class Shopping_cart {
       productID.setVisible(false);
       totalprice.setVisible(false);
       quantity.setVisible(false);
+      orderid.setVisible(false);
     }
     private void setChosenSnack(Order snack) {
         productID.setText(snack.getProductID());
@@ -103,6 +133,12 @@ public class Shopping_cart {
      private ProjectSignUp extractSignUpFromFields() {
         ProjectSignUp sign = new ProjectSignUp(); 
         sign.setAccount(user.getText());
+        return sign;
+    } 
+     
+     private OrderDetail extract() {
+        OrderDetail sign = new OrderDetail(); 
+        sign.setID(Integer.parseInt(orderid.getText()));
         return sign;
     } 
      
@@ -140,9 +176,18 @@ public class Shopping_cart {
                        setChosenSnack(order);
                        int c = Integer.parseInt(sote.getText()) - Integer.parseInt(totalprice.getText());
                        sote.setText(Integer.toString(c));
+                       for(int ai = 0 ; ai <listProductID.size(); ai++){
+                        if(productID.getText().equals(listProductID.get(ai))){
+                                 listProductID.remove(listProductID.get(ai));
+                                 listQuantity.remove(listQuantity.get(ai));
+                             }
+
+                     }
                     }else{
                       int c = Integer.parseInt(sote.getText()) + Integer.parseInt(totalprice.getText());
-                       sote.setText(Integer.toString(c));
+                      sote.setText(Integer.toString(c));
+                      listProductID.add(productID.getText());
+                      listQuantity.add(Integer.parseInt(quantity.getText()));
                     }
                     
                 }
@@ -151,8 +196,8 @@ public class Shopping_cart {
                 public void OnDelete(Order order) {
                     setChosenSnack(order);
                     Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-                    alert.setHeaderText("Are you sure you want to delete the selected Category?");
-                    alert.setTitle("Deleting a Category");
+                    alert.setHeaderText("Bạn muốn xóa sản phẩm khỏi giỏ hàng?");
+                    alert.setTitle("Lưu ý");
                     Optional<ButtonType> confirmationResponse
                             = alert.showAndWait();
                     if (confirmationResponse.get() == ButtonType.OK) {
@@ -192,6 +237,8 @@ public class Shopping_cart {
                 OrderItem itemController = fxmlLoader.getController();
                 itemController.setData(ordr.get(i), pro.get(i) , orderlis);
                 b += itemController.getPrice(ordr.get(i));
+                listProductID.add(itemController.getProductID(ordr.get(i)));
+                listQuantity.add(itemController.getQuantity(ordr.get(i)));
                 if (column == 1) {
                     column = 0;
                     row++;
@@ -226,7 +273,7 @@ public class Shopping_cart {
             if (rowDeleted == 1) {
                 return true;
             } else {
-                System.err.println("No  deleted");
+                
                 return false;
             }
 
@@ -239,11 +286,65 @@ public class Shopping_cart {
     private Order extactFromfiled(){
         Order orda = new Order();
         orda.setAccount(user.getText());
+        orda.setTotalPrice(Integer.parseInt(sote.getText()));
         LocalDateTime now = LocalDateTime.now();
         String b = now.toString();
         orda.setDate(b);
         return orda;
     }
     
-    
+     public void  selectShoping( String a , String c){
+        String sql = "SELECT OrderID FROM  Orders WHERE Client_ID  = ? and total_price = ? ";
+        try (Connection con = DbProject.getConnection();
+             PreparedStatement stmt = con.prepareStatement(sql);
+             ){
+            stmt.setString(1, a);
+            stmt.setInt(2, Integer.parseInt(c));
+            ResultSet rs = stmt.executeQuery();
+            while(rs.next()){
+                orderid.setText(Integer.toString(rs.getInt("OrderID")));
+            }
+        } catch (Exception e) {
+        }
+     }
+      
+    public void insert(String c , String b ,int d) throws SQLException {
+        String sql = "INSERT INTO order_detail (OrderID, ProductID, Quantity) "
+               + "VALUES ( ?, ?, ?)" 
+                + "LIMIT 1";
+        ResultSet key = null;
+        try (
+                Connection connect = DbProject.getConnection();
+                PreparedStatement stmt = connect.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+                ) {
+            stmt.setInt(1, Integer.parseInt(c));
+            stmt.setInt(2, Integer.parseInt(b));
+            stmt.setInt(3, d);
+           
+            int rowInserted = stmt.executeUpdate();
+            if (rowInserted == 1) {
+               
+            } else {
+                System.out.println("No Product inserted");
+                
+            }
+        } catch (Exception e) {
+            System.err.println(e);
+            
+        }
+    }
+     private boolean validation(){
+            if(Integer.parseInt(sote.getText()) <=0 ){
+                Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+                    alert.setHeaderText("Trong giỏ của bạn không có sản phẩm nào");
+                    alert.setTitle("Lưu ý");
+                    Optional<ButtonType> confirmationResponse
+                            = alert.showAndWait();
+                    if (confirmationResponse.get() == ButtonType.OK) {
+                       
+                    }
+                 return false;
+            }
+            return true ;
+    }
 }

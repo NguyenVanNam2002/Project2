@@ -13,7 +13,6 @@ import Project.DbProject.DbProject;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.util.Arrays;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.Spinner;
@@ -49,7 +48,6 @@ public class OrderItem {
     private Text user;
     @FXML
     void click(MouseEvent event) {
-        
         orderlis.onClickListener(check,p);
     }
    
@@ -67,12 +65,21 @@ public class OrderItem {
         orderlis.Update();
     }
     
-    public int getPrice(Order c ){
-        this.p = c;
-        int a = c.getTotalPrice();
+    public int getPrice(Order o ){
+        this.p = o;
+        int a = o.getTotalPrice();
         return a;
     }
-    
+    public String getProductID(Order o){
+        this.p = o;
+        String a = o.getProductID();
+        return a;
+    }
+    public int getQuantity(Order o ){
+        this.p = o;
+        int a = o.getQuantity();
+        return a;
+    }
     private Order  p;
      public void setData(Order fruit ,Product o , OrderListener orderlis ) {
         this.p= fruit;
@@ -116,7 +123,7 @@ public class OrderItem {
     }
     
      public  boolean delete(String b) {
-        String sql = "DELETE FROM ShoppingCart WHERE productID = ?";
+        String sql = "DELETE FROM ShoppingCart WHERE productID = ? ";
         try (
                 Connection conn = DbProject.getConnection();
                 PreparedStatement stmt = conn.prepareStatement(sql);) {
@@ -128,7 +135,6 @@ public class OrderItem {
             if (rowDeleted == 1) {
                 return true;
             } else {
-                System.err.println("No  deleted");
                 return false;
             }
 

@@ -82,7 +82,6 @@ CREATE TABLE Orders(
 	dates DATETIME 
 );
 
-
 Alter table Orders
 Add foreign key (Client_ID) REFERENCES account_client(accounts);
 SELECT * FROM Orders;

@@ -13,6 +13,7 @@ import java.io.IOException;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Text;
 
 /**
@@ -50,16 +51,15 @@ public class Client_Controller {
     @FXML
     void btnDrink(ActionEvent event) throws IOException {
          ProjectSignUp menus = extractSignUpFromFields();
-        Category cate = extractDrinkFoodFromFields();
-        Nagatice.getInstance().goToChoose(menus,cate);
+        Nagatice.getInstance().goToChoose(menus);
     }
 
 
     @FXML
     void btnFoodclik(ActionEvent event) throws IOException {
         ProjectSignUp menus = extractSignUpFromFields();
-        Category cate = extractFoodFromFields();
-        Nagatice.getInstance().goToChoose(menus,cate);
+       
+        Nagatice.getInstance().goToChoose(menus);
     }
     @FXML
     void btnsetting(ActionEvent event) throws IOException {
@@ -74,7 +74,11 @@ public class Client_Controller {
         Product name = extractProductFromFields();
         Nagatice.getInstance().goToSearch(account, name);
     }
-    
+    @FXML
+    void shopping(MouseEvent event) throws IOException {
+        ProjectSignUp shop = extractSignUpFromFields();
+        Nagatice.getInstance().goToShopping(shop);
+    }
     public void initialize(ProjectSignUp p){
         this.psu = p;
         if(this.psu != null){
@@ -88,11 +92,7 @@ public class Client_Controller {
         food.setVisible(false);
         drink.setVisible(false);
     }
-    @FXML
-    void btnShopping(ActionEvent event) throws IOException {
-        ProjectSignUp shop = extractSignUpFromFields();
-        Nagatice.getInstance().goToShopping(shop);
-    }
+   
     private ProjectSignUp extractSignUpFromFields() {
         ProjectSignUp sign = new ProjectSignUp(); 
         sign.setAccount(user.getText());

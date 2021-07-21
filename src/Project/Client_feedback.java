@@ -20,8 +20,10 @@ import java.util.logging.Logger;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextArea;
+import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Text;
 
 /**
@@ -53,16 +55,29 @@ public class Client_feedback {
     private Text nameproduct;
     @FXML
     private Text succes;
+     @FXML
+    private TextField productname;
     @FXML
     void btnHome(ActionEvent event) throws IOException {
         ProjectSignUp menus = extractPasswordFromFields();
         Product pro = extractProductFromFields();
         Nagatice.getInstance().goToViewC2(menus,pro);
     }
-    @FXML
-    void btnShopping(ActionEvent event) throws IOException {
+     @FXML
+    void btnShopping(MouseEvent event) throws IOException {
         ProjectSignUp osu = extractPasswordFromFields();
         Nagatice.getInstance().goToShopping(osu);
+    }
+      @FXML
+    void btnSearchClick(ActionEvent event) throws IOException {
+        ProjectSignUp account = extractPasswordFromFields();
+        Product name = extractSearchFromFields();
+        Nagatice.getInstance().goToSearch(account, name);
+    }
+     private Product extractSearchFromFields() {
+        Product sign = new Product();
+        sign.setName(productname.getText());
+        return sign;
     }
     @FXML
     void btnfeedback(ActionEvent event) {
@@ -107,8 +122,16 @@ public class Client_feedback {
         fe.setContent(conten.getText());
         fe.setProductID(nameproduct.getText());
         return fe;
-    
     } 
+    private boolean validation(){
+        if(conten.getText().isEmpty()){
+            succes.setText("Vui lòng viết ý kiến của bạn vào sản phẩm");
+        }
+        if(conten.getText().length() < 10 ){
+            succes.setText("Ý kiến của bạn quá ngắn");
+        }
+        return true;
+    }
    
     public void infomaitonselect(String user){
         String sql = "SELECT  p.* , c.* FROM products as p join category as c on p.CategoryID = c.CategoryID WHERE p.Name = ? ";

@@ -21,8 +21,10 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Spinner;
 import javafx.scene.control.SpinnerValueFactory;
+import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Text;
 
 /**
@@ -72,22 +74,27 @@ public class Client_ViewC2Function {
     @FXML
     private JFXButton menu;
     @FXML
-    void btnShopping(ActionEvent event) throws IOException {
-       
+    private TextField productname;
+    @FXML
+    void btnShopping(MouseEvent event) throws IOException {
         ProjectSignUp osu = extractPasswordFromFields();
         Nagatice.getInstance().goToShopping(osu);
+    }
+   @FXML
+    void btnSearchClick(ActionEvent event) throws IOException {
+        ProjectSignUp account = extractPasswordFromFields();
+        Product name = extractSearchFromFields();
+        Nagatice.getInstance().goToSearch(account, name);
     }
     @FXML
     void btnorder(ActionEvent event) throws IOException {
         try {
-                if( equal(Integer.parseInt(id.getText()))){
-                    
+                if(equal(Integer.parseInt(id.getText()) ,user.getText())){
                     Order os = change();
                     boolean result = od.update(os);
                     Product ps = extractProductFromFields();
                     ProjectSignUp u = extractPasswordFromFields();
                     Nagatice.getInstance().goToViewC2(u, ps);
-                    
                 }else{
                     Order ord = extactFromfiled();
                     ord = od.insert(ord);
@@ -106,7 +113,11 @@ public class Client_ViewC2Function {
         sign.setName(thename.getText());
         return sign;
     }
-    
+    private Product extractSearchFromFields() {
+        Product sign = new Product();
+        sign.setName(productname.getText());
+        return sign;
+    }
     @FXML
     void btnHome(ActionEvent event) throws IOException {
        ProjectSignUp menus = extractPasswordFromFields();
@@ -199,13 +210,14 @@ public class Client_ViewC2Function {
         
     }
     
-    private boolean equal(int id){
-        String sql = "SELECT * FROM ShoppingCart WHERE productID = ?";
+    private boolean equal(int id , String user){
+        String sql = "SELECT * FROM ShoppingCart WHERE productID = ? and accounts = ?";
         try (
                 Connection conn = DbProject.getConnection();
                 PreparedStatement stmt = conn.prepareStatement(sql);) {
 
             stmt.setInt(1, id);
+            stmt.setString(2, user);
 
             ResultSet rs = stmt.executeQuery();
 

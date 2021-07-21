@@ -14,38 +14,53 @@
 
 <!--<?import java.net.URL?>-->
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="785.0" prefWidth="1173.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Project.Client_Controller">
+<AnchorPane prefHeight="866.0" prefWidth="1299.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Project.Client_Controller">
    <children>
-      <Pane layoutX="-4.0" layoutY="-2.0" prefHeight="124.0" prefWidth="1179.0" style="-fx-background-color: #463e3e9e;">
+      <Pane layoutX="-4.0" layoutY="-2.0" prefHeight="100.0" prefWidth="1305.0" style="-fx-background-color: pink;">
          <children>
-            <Text fill="WHITE" layoutX="505.0" layoutY="37.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Snack Shop" wrappingWidth="181.22265625">
+            <Text fill="WHITE" layoutX="594.0" layoutY="37.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Snack Shop" wrappingWidth="181.22265625">
                <font>
                   <Font name="System Bold Italic" size="34.0" />
                </font>
             </Text>
-            <FontAwesomeIconView fill="#f2f0f0" glyphName="USER" layoutX="14.0" layoutY="104.0" size="30" />
-            <Text fx:id="user" fill="#fcfcfc" layoutX="38.0" layoutY="103.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="210.99999904632568">
+            <FontAwesomeIconView fill="#f2f0f0" glyphName="USER" layoutX="109.0" layoutY="53.0" size="45" />
+            <Text fx:id="user" fill="#fcfcfc" layoutX="16.0" layoutY="82.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="221.99999904632568">
                <font>
                   <Font size="20.0" />
                </font></Text>
-            <JFXButton layoutX="921.0" layoutY="46.0" onAction="#btnShopping" prefHeight="72.0" prefWidth="211.0" style="-fx-background-color: white;" text="Shopping Cart">
-               <graphic>
-                  <ImageView fitHeight="62.0" fitWidth="76.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../favorite_cart_100px.png" />
-                     </image>
-                  </ImageView>
-               </graphic>
-            </JFXButton>
+            <ImageView fitHeight="62.0" fitWidth="76.0" layoutX="1216.0" layoutY="37.0" onMouseClicked="#shopping" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../favorite_cart_100px.png" />
+               </image>
+            </ImageView>
+            <HBox layoutX="926.0" layoutY="48.0" prefHeight="40.0" prefWidth="283.0" style="-fx-background-radius: 100; -fx-background-color: white;" styleClass="search-box-" stylesheets="@css_client.css">
+               <children>
+                  <JFXButton fx:id="btnSearch" onAction="#btnSearchClick" prefHeight="43.0" prefWidth="57.0" style="-fx-background-color: #0096FF; -fx-background-radius: 50;" styleClass="search-button-" text="Search" textFill="WHITE">
+                     <font>
+                        <Font size="13.0" />
+                     </font>
+                  </JFXButton>
+                  <TextField fx:id="productname" alignment="CENTER" focusTraversable="false" prefHeight="43.0" prefWidth="149.0" promptText="Type here to search" style="-fx-background-color: rgba(0,0,0,0);">
+                     <font>
+                        <Font size="13.0" />
+                     </font>
+                  </TextField>
+               </children>
+            </HBox>
+            <ImageView fitHeight="45.0" fitWidth="65.0" layoutX="783.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../img/hamburger_96px.png" />
+               </image>
+            </ImageView>
          </children></Pane>
-      <Pane layoutX="-3.0" layoutY="120.0" prefHeight="665.0" prefWidth="1179.0">
+      <Pane layoutX="-3.0" layoutY="98.0" prefHeight="769.0" prefWidth="1305.0">
          <children>
-            <ImageView fitHeight="665.0" fitWidth="1179.0" pickOnBounds="true">
+            <ImageView fitHeight="769.0" fitWidth="1305.0" pickOnBounds="true">
                <image>
                   <Image url="@../img/kSOp97d.jpg" />
                </image>
             </ImageView>
-            <HBox layoutX="50.0" layoutY="515.0" prefHeight="100.0" prefWidth="200.0">
+            <HBox layoutX="79.0" layoutY="515.0" prefHeight="100.0" prefWidth="200.0">
                <children>
                   <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -73,7 +88,7 @@
                   </ImageView>
                </children>
             </HBox>
-            <JFXButton fx:id="setting" layoutX="58.0" layoutY="270.0" onAction="#btnsetting" prefHeight="63.0" prefWidth="255.0" style="-fx-background-radius: 50; -fx-background-color: #FF7F50;" text="EDIT PROFILE" textFill="WHITE">
+            <JFXButton fx:id="setting" layoutX="69.0" layoutY="207.0" onAction="#btnsetting" prefHeight="63.0" prefWidth="255.0" style="-fx-background-radius: 50; -fx-background-color: #FF7F50;" text="EDIT PROFILE" textFill="WHITE">
                <font>
                   <Font size="29.0" />
                </font>
@@ -88,37 +103,23 @@
                   </ImageView>
                </graphic>
             </JFXButton>
-            <JFXButton fx:id="btnDrink" layoutX="58.0" layoutY="159.0" onAction="#btnDrink" prefHeight="63.0" prefWidth="255.0" style="-fx-background-radius: 50; -fx-background-color: #FF7F50;" text="Nước uống" textFill="#f8f8f8">
+            <JFXButton fx:id="btnDrink" layoutX="69.0" layoutY="94.0" onAction="#btnDrink" prefHeight="63.0" prefWidth="255.0" style="-fx-background-radius: 50; -fx-background-color: #FF7F50;" text="Menu" textFill="#f8f8f8">
                <font>
                   <Font size="29.0" />
                </font>
                <graphic>
                   <ImageView fitHeight="50.0" fitWidth="43.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../beer_glass_40px.png" />
+                        <Image url="@../menu_50px.png" />
                      </image>
                   </ImageView>
                </graphic>
             </JFXButton>
-            <Text layoutX="69.0" layoutY="482.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Follow us">
+            <Text layoutX="106.0" layoutY="483.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Follow us">
                <font>
                   <Font name="System Bold Italic" size="41.0" />
                </font>
             </Text>
-            <HBox layoutX="882.0" layoutY="7.0" prefHeight="40.0" prefWidth="283.0" style="-fx-background-radius: 100; -fx-background-color: white;" styleClass="search-box-" stylesheets="@css_client.css">
-               <children>
-                  <JFXButton fx:id="btnSearch" onAction="#btnSearchClick" prefHeight="43.0" prefWidth="57.0" style="-fx-background-color: #0096FF; -fx-background-radius: 50;" styleClass="search-button-" text="Search" textFill="WHITE">
-                     <font>
-                        <Font size="13.0" />
-                     </font>
-                  </JFXButton>
-                  <TextField fx:id="productname" alignment="CENTER" focusTraversable="false" prefHeight="43.0" prefWidth="149.0" promptText="Type here to search" style="-fx-background-color: rgba(0,0,0,0);">
-                     <font>
-                        <Font size="13.0" />
-                     </font>
-                  </TextField>
-               </children>
-            </HBox>
             <Text fill="WHITE" layoutX="704.0" layoutY="184.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Thanh xuân như một chén trà" wrappingWidth="371.6708984375">
                <font>
                   <Font name="System Bold Italic" size="25.0" />
@@ -129,22 +130,10 @@
                   <Font name="System Bold Italic" size="25.0" />
                </font>
             </Text>
-            <JFXButton fx:id="Food" layoutX="58.0" layoutY="52.0" onAction="#btnFoodclik" prefHeight="63.0" prefWidth="255.0" style="-fx-background-radius: 50; -fx-background-color: #FF7F50;" text="Đồ ăn" textFill="#f8f8f8">
-               <font>
-                  <Font size="29.0" />
-               </font>
-               <graphic>
-                  <ImageView fitHeight="49.0" fitWidth="43.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../restaurant_30px.png" />
-                     </image>
-                  </ImageView>
-               </graphic>
-            </JFXButton>
             <Text fx:id="drink" layoutX="490.0" layoutY="63.0" strokeType="OUTSIDE" strokeWidth="0.0" />
             <Text fx:id="food" layoutX="490.0" layoutY="100.0" strokeType="OUTSIDE" strokeWidth="0.0" />
             <ImageView fitHeight="49.0" fitWidth="56.0" layoutX="58.0" layoutY="368.0" pickOnBounds="true" preserveRatio="true" />
-            <JFXButton layoutX="58.0" layoutY="368.0" prefHeight="63.0" prefWidth="255.0" style="-fx-background-radius: 50; -fx-background-color: #FF7F50;" text="Lịch sử Order" textFill="WHITE">
+            <JFXButton layoutX="69.0" layoutY="321.0" prefHeight="63.0" prefWidth="255.0" style="-fx-background-radius: 50; -fx-background-color: #FF7F50;" text="Lịch sử Order" textFill="WHITE">
                <font>
                   <Font size="29.0" />
                </font>

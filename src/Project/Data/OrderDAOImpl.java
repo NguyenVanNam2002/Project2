@@ -54,17 +54,16 @@ public class OrderDAOImpl implements OrderDAO{
     }
    
     public  Order insertOrder(Order order){
-        String sql = "INSERT INTO Orders(ProductID, Client_ID , Total_price, Quantity ,dates) "
-                + " VALUES (? , ? , ? , ? , ?)";
+        String sql = "INSERT INTO Orders(Client_ID , total_price, dates) "
+                + " VALUES ( ? , ? , ? )";
         ResultSet key = null;
         try (Connection con = DbProject.getConnection(data);
             PreparedStatement stmt = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
             ){
-            stmt.setInt(1, Integer.parseInt(order.getProductID()));
-            stmt.setString(2, order.getAccount());
-            stmt.setString(3, order.getTotalPrice().toString());
-            stmt.setInt(4, order.getQuantity());
-            stmt.setString(5, order.getDate());
+            
+            stmt.setString(1, order.getAccount());
+            stmt.setString(2, order.getTotalPrice().toString());
+            stmt.setString(3, order.getDate());
             int row = stmt.executeUpdate();
             if(row ==1 ){
                key = stmt.getGeneratedKeys();
@@ -117,7 +116,7 @@ public class OrderDAOImpl implements OrderDAO{
         String sql = "UPDATE ShoppingCart SET "
                 + " Total_price = ? ,"
                 + " quantity = ? "
-                + "WHERE ProductID = ? ";
+                + "WHERE productID = ? ";
 
         try (
                 Connection conn = DbProject.getConnection();
@@ -143,5 +142,7 @@ public class OrderDAOImpl implements OrderDAO{
             return false;
         }
     }
+    
+    
 
 }

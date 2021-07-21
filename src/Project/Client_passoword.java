@@ -99,12 +99,6 @@ public class Client_passoword {
         }
     }
 
-    @FXML
-    void btnmenu(ActionEvent event) throws IOException {
-        ProjectSignUp menus = extractChangePasswordFromFields();
-        Nagatice.getInstance().goToClient(menus);
-    }
-    
     public void initialize(ProjectSignUp p){
         this.psu = p;
         if(this.psu != null){
