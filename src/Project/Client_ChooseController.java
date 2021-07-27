@@ -6,7 +6,6 @@
 package Project;
 
 import Project.Data.Category;
-import Project.Data.Order;
 import Project.Data.OrderDAO;
 import Project.Data.OrderDAOImpl;
 import Project.Data.Product;
@@ -35,7 +34,6 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Spinner;
-import javafx.scene.control.SpinnerValueFactory;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -106,10 +104,6 @@ public class Client_ChooseController {
     private JFXButton order;
 
     private MyListener myListener;
-    final int initialValue = 1;
-    SpinnerValueFactory<Integer> valueFactory
-            = new SpinnerValueFactory.IntegerSpinnerValueFactory(1, 50, initialValue);
-
     ObservableList<Product> list = FXCollections.observableArrayList();
     ObservableList<Product> lis = FXCollections.observableArrayList();
 
@@ -122,6 +116,7 @@ public class Client_ChooseController {
     private Product extractProductFromFields() {
         Product sign = new Product();
         sign.setName(thename.getText());
+        sign.setId(Integer.parseInt(id.getText()));
         return sign;
     }
 
@@ -205,27 +200,7 @@ public class Client_ChooseController {
 
     @FXML
     void btnorder(ActionEvent event) throws IOException {
-        try {
-
-            if (equal(Integer.parseInt(id.getText()), user.getText())) {
-                Order ord = extactFromfiled();
-                boolean result = od.update(ord);
-                Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                alert.setHeaderText(null);
-                alert.setContentText("Thêm vào giỏ hàng thành công !");
-                alert.showAndWait();
-            } else {
-                Order ord = extactFromfiled();
-                ord = od.insert(ord);
-                Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                alert.setHeaderText(null);
-                alert.setContentText("Thêm vào giỏ hàng thành công");
-                alert.showAndWait();
-            }
-
-        } catch (Exception e) {
-
-        }
+        addShoppingCart();
     }
 
     public void initialize(ProjectSignUp p, Category u) throws IOException {
@@ -262,15 +237,6 @@ public class Client_ChooseController {
         drink.setText("Drink");
         food.setVisible(false);
         drink.setVisible(false);
-        String[] styleClasses = new String[]{"",
-            Spinner.STYLE_CLASS_SPLIT_ARROWS_HORIZONTAL
-
-        };
-        for (String styleClass : styleClasses) {
-            sprinner.setValueFactory(valueFactory);
-            sprinner.getStyleClass().add(styleClass);
-        }
-
         id.setVisible(false);
         category.getItems().add("Tất cả");
         category.getItems().add("Đồ ăn");
@@ -308,20 +274,10 @@ public class Client_ChooseController {
                 @Override
                 public void addShoppingcart(Product snack) {
                     setChosenSnack(snack);
-                    if (equal(Integer.parseInt(id.getText()), user.getText())) {
-                        Order ord = extactFromfiled();
-                        boolean result = od.update(ord);
-                        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                        alert.setHeaderText(null);
-                        alert.setContentText("Thêm vào giỏ hàng thành công !");
-                        alert.showAndWait();
-                    } else {
-                        Order ord = extactFromfiled();
-                        ord = od.insert(ord);
-                        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                        alert.setHeaderText(null);
-                        alert.setContentText("Thêm vào giỏ hàng thành công !");
-                        alert.showAndWait();
+                    try {
+                        addShoppingCart();
+                    } catch (IOException ex) {
+                        Logger.getLogger(Client_ChooseController.class.getName()).log(Level.SEVERE, null, ex);
                     }
                 }
             };
@@ -388,20 +344,10 @@ public class Client_ChooseController {
                 @Override
                 public void addShoppingcart(Product snack) {
                     setChosenSnack(snack);
-                    if (equal(Integer.parseInt(id.getText()), user.getText())) {
-                        Order ord = extactFromfiled();
-                        boolean result = od.update(ord);
-                        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                        alert.setHeaderText(null);
-                        alert.setContentText("Thêm vào giỏ hàng thành công !");
-                        alert.showAndWait();
-                    } else {
-                        Order ord = extactFromfiled();
-                        ord = od.insert(ord);
-                        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                        alert.setHeaderText(null);
-                        alert.setContentText("Thêm vào giỏ hàng thành công !");
-                        alert.showAndWait();
+                    try {
+                        addShoppingCart();
+                    } catch (IOException ex) {
+                        Logger.getLogger(Client_ChooseController.class.getName()).log(Level.SEVERE, null, ex);
                     }
                 }
             };
@@ -471,20 +417,10 @@ public class Client_ChooseController {
                 @Override
                 public void addShoppingcart(Product snack) {
                     setChosenSnack(snack);
-                    if (equal(Integer.parseInt(id.getText()), user.getText())) {
-                        Order ord = extactFromfiled();
-                        boolean result = od.update(ord);
-                        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                        alert.setHeaderText(null);
-                        alert.setContentText("Thêm vào giỏ hàng thành công !");
-                        alert.showAndWait();
-                    } else {
-                        Order ord = extactFromfiled();
-                        ord = od.insert(ord);
-                        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                        alert.setHeaderText(null);
-                        alert.setContentText("Thêm vào giỏ hàng thành công !");
-                        alert.showAndWait();
+                    try {
+                        addShoppingCart();
+                    } catch (IOException ex) {
+                        Logger.getLogger(Client_ChooseController.class.getName()).log(Level.SEVERE, null, ex);
                     }
                 }
             };
@@ -536,42 +472,6 @@ public class Client_ChooseController {
             if (id.getText().isEmpty()) {
                 erross.setText("* Cửa hàng không có sản phẩm có kí tự trên , vui lòng tìm sản phẩm khác");
             }
-        }
-    }
-
-    private Order extactFromfiled() {
-        Order or = new Order();
-        or.setAccount(user.getText());
-        or.setProductID(id.getText());
-        or.setQuantity(sprinner.getValue());
-        String[] a = theprice.getText().split(" VNĐ");
-
-        int d = Integer.parseInt(a[0]) * sprinner.getValue();
-        or.setTotalPrice(d);
-        return or;
-
-    }
-
-    private boolean equal(int id, String user) {
-        String sql = "SELECT * FROM ShoppingCart WHERE productID = ? and accounts = ?";
-        try (
-                Connection conn = DbProject.getConnection();
-                PreparedStatement stmt = conn.prepareStatement(sql);) {
-
-            stmt.setInt(1, id);
-            stmt.setString(2, user);
-
-            ResultSet rs = stmt.executeQuery();
-
-            if (rs.next()) {
-                return true;
-            } else {
-                return false;
-            }
-
-        } catch (Exception e) {
-            System.err.println(e);
-            return false;
         }
     }
 
@@ -659,5 +559,24 @@ public class Client_ChooseController {
                 drawer.close();
             }
         });
+    }
+    
+    public void addShoppingCart() throws IOException{
+        Product ea = extractProductFromFields();
+        ProjectSignUp account =extractSignUpFromFields();
+        FXMLLoader fxmlLoader = new FXMLLoader();
+        fxmlLoader.setLocation(getClass().getResource("AddShoppingcart.fxml"));
+        AnchorPane anchorPane = fxmlLoader.load();
+
+        AddShoppingCart itemController = fxmlLoader.getController();
+        itemController.setData(account,ea);
+
+        Scene secondScene = new Scene(anchorPane, 966, 685);
+        Stage newWindow = new Stage();
+        newWindow.setTitle(null);
+        newWindow.setScene(secondScene);
+        newWindow.initModality(Modality.WINDOW_MODAL);
+
+        newWindow.show();
     }
 }

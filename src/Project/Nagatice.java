@@ -40,7 +40,7 @@ public class Nagatice {
     public static final String INFORMATION_FXML = "Client_Infomation.fxml";
     public static final String SEARCH_FXML = "Choose.fxml";
     public static final String SHOPPING_CLIENT_FXML = "Shoping_Cart.fxml";
-    
+    public static final String RESET = "AddShoppingcart.fxml";
 
     private FXMLLoader loader;
     private Stage stage = null;
@@ -118,13 +118,17 @@ public class Nagatice {
     }
     
    //Client
-  
+    public void goToReset(ProjectSignUp p, Product d) throws IOException {
+        this.goTo(RESET);
+        AddShoppingCart  ctrl = loader.getController();
+        ctrl.initialize(p, d);
+    }
     public void goToSearch(ProjectSignUp p, Product d) throws IOException {
         this.goTo(SEARCH_FXML);
         Client_ChooseController  ctrl = loader.getController();
         ctrl.initialize(p, d);
     }
-
+    
     public void goToChoose(ProjectSignUp p , Category u) throws IOException {
         this.goTo(CHOOSE_FXML);
         Client_ChooseController ctrl = loader.getController();
