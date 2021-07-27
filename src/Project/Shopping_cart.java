@@ -42,11 +42,12 @@ import javafx.scene.text.Text;
  * @author Admin
  */
 public class Shopping_cart {
+
     private OrderDAO or = new OrderDAOImpl();
     private ProjectSignUp psu;
-   @FXML
+    @FXML
     private Text user;
-     @FXML
+    @FXML
     private JFXButton orders;
     @FXML
     private JFXButton Home;
@@ -56,30 +57,30 @@ public class Shopping_cart {
 
     @FXML
     private Text totalprice;
-     @FXML
+    @FXML
     private JFXButton update;
     @FXML
     private Text quantity;
-     @FXML
+    @FXML
     private Text ord;
     @FXML
     private Text productID;
     @FXML
     private Text sote;
-    
-    
-     @FXML
+    private OrderListener orderlis;
+    @FXML
     private Text orderid;
 
     ObservableList<Order> ordr = FXCollections.observableArrayList();
     ObservableList<Product> pro = FXCollections.observableArrayList();
     ObservableList<String> listProductID = FXCollections.observableArrayList();
     ObservableList<Integer> listQuantity = FXCollections.observableArrayList();
-    
+    ObservableList<String> listOrderId = FXCollections.observableArrayList();
+
     @FXML
     void btnorder(ActionEvent event) throws SQLException, IOException {
-        
-        if(validation()){
+
+        if (validation()) {
             Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
             alert.setHeaderText("Bạn muốn Order sản phẩm ?");
             alert.setTitle("Lưu ý");
@@ -89,73 +90,80 @@ public class Shopping_cart {
                 Order orderss = extactFromfiled();
                 orderss = or.insertOrder(orderss);
                 selectShoping(user.getText(), sote.getText());
-                if(orderid.getText() != null){
-                    for(int c =0 ; c < listProductID.size() ; c ++){
-                           insert(orderid.getText(), listProductID.get(c), listQuantity.get(c));
-                           delete(listProductID.get(c));
+                for (int d = 0; d < listOrderId.size(); d++) {
+                    if (selectOrderDetail(listOrderId.get(d))) {
+
+                    } else {
+                        for (int c = 0; c < listProductID.size(); c++) {
+                            insert(listOrderId.get(d), listProductID.get(c), listQuantity.get(c));
+                            delete(listProductID.get(c));
+                        }
                     }
+
                 }
                 ProjectSignUp e = extractSignUpFromFields();
                 Nagatice.getInstance().goToShopping(e);
             }
         }
     }
-    
+
     @FXML
     void btnHome(ActionEvent event) throws IOException {
         ProjectSignUp p = extractSignUpFromFields();
-        Nagatice.getInstance().goToClient(p);
+        Nagatice.getInstance().goToChoose(p);
     }
-    public void initialize(ProjectSignUp p){
+
+    public void initialize(ProjectSignUp p) {
         this.psu = p;
-        if(this.psu != null){
+        if (this.psu != null) {
             user.setText(p.getAccount());
             selectShopingcart(p.getAccount());
         }
     }
-    public void initialize(){
-      productID.setVisible(false);
-      totalprice.setVisible(false);
-      quantity.setVisible(false);
-      orderid.setVisible(false);
+
+    public void initialize() {
+        productID.setVisible(false);
+        totalprice.setVisible(false);
+        quantity.setVisible(false);
+        orderid.setVisible(false);
     }
+
     private void setChosenSnack(Order snack) {
         productID.setText(snack.getProductID());
         totalprice.setText(snack.getTotalPrice().toString());
         quantity.setText(snack.getQuantity().toString());
     }
-    
+
     private void setChosenSnack() {
         productID.setText("");
         totalprice.setText("");
         quantity.setText("");
     }
-     private ProjectSignUp extractSignUpFromFields() {
-        ProjectSignUp sign = new ProjectSignUp(); 
+
+    private ProjectSignUp extractSignUpFromFields() {
+        ProjectSignUp sign = new ProjectSignUp();
         sign.setAccount(user.getText());
         return sign;
-    } 
-     
-     private OrderDetail extract() {
-        OrderDetail sign = new OrderDetail(); 
+    }
+
+    private OrderDetail extract() {
+        OrderDetail sign = new OrderDetail();
         sign.setID(Integer.parseInt(orderid.getText()));
         return sign;
-    } 
-     
-     private OrderListener orderlis;
-    
-    public void  selectShopingcart( String a ){
+    }
+
+    // shopping cart
+    public void selectShopingcart(String a) {
         String sql = "SELECT o.*,p.* FROM  ShoppingCart as o join products as p on o.productID = p.productID WHERE accounts  = ? ";
         try (Connection con = DbProject.getConnection();
-             PreparedStatement stmt = con.prepareStatement(sql);
-             ){
+                PreparedStatement stmt = con.prepareStatement(sql);) {
             stmt.setString(1, a);
             ResultSet rs = stmt.executeQuery();
-            while(rs.next()){
+            while (rs.next()) {
                 Product p = new Product();
-                 p.setImg(rs.getString("p.ImgLink"));
-                 p.setName(rs.getString("p.Name"));
-                 p.setPrice(rs.getInt("p.Price"));
+                p.setImg(rs.getString("p.ImgLink"));
+                p.setName(rs.getString("p.Name"));
+                p.setPrice(rs.getInt("p.Price"));
                 Order o = new Order();
                 o.setQuantity(rs.getInt("o.quantity"));
                 o.setTotalPrice(rs.getInt("o.Total_price"));
@@ -166,32 +174,31 @@ public class Shopping_cart {
             }
         } catch (Exception e) {
         }
-        
-        
+
         if (ordr.size() > 0) {
             orderlis = new OrderListener() {
                 @Override
-                public void onClickListener(CheckBox y ,Order order) {
-                    if(y.isSelected() == false){
-                       setChosenSnack(order);
-                       int c = Integer.parseInt(sote.getText()) - Integer.parseInt(totalprice.getText());
-                       sote.setText(Integer.toString(c));
-                       for(int ai = 0 ; ai <listProductID.size(); ai++){
-                        if(productID.getText().equals(listProductID.get(ai))){
-                                 listProductID.remove(listProductID.get(ai));
-                                 listQuantity.remove(listQuantity.get(ai));
-                             }
+                public void onClickListener(CheckBox y, Order order) {
+                    if (y.isSelected() == false) {
+                        setChosenSnack(order);
+                        int c = Integer.parseInt(sote.getText()) - Integer.parseInt(totalprice.getText());
+                        sote.setText(Integer.toString(c));
+                        for (int ai = 0; ai < listProductID.size(); ai++) {
+                            if (productID.getText().equals(listProductID.get(ai))) {
+                                listProductID.remove(listProductID.get(ai));
+                                listQuantity.remove(listQuantity.get(ai));
+                            }
 
-                     }
-                    }else{
-                      int c = Integer.parseInt(sote.getText()) + Integer.parseInt(totalprice.getText());
-                      sote.setText(Integer.toString(c));
-                      listProductID.add(productID.getText());
-                      listQuantity.add(Integer.parseInt(quantity.getText()));
+                        }
+                    } else {
+                        int c = Integer.parseInt(sote.getText()) + Integer.parseInt(totalprice.getText());
+                        sote.setText(Integer.toString(c));
+                        listProductID.add(productID.getText());
+                        listQuantity.add(Integer.parseInt(quantity.getText()));
                     }
-                    
+
                 }
-                
+
                 @Override
                 public void OnDelete(Order order) {
                     setChosenSnack(order);
@@ -201,22 +208,23 @@ public class Shopping_cart {
                     Optional<ButtonType> confirmationResponse
                             = alert.showAndWait();
                     if (confirmationResponse.get() == ButtonType.OK) {
-                        if(productID.getText() != null){
+                        if (productID.getText() != null) {
                             delete(productID.getText());
-                            ProjectSignUp u =extractSignUpFromFields();
+                            ProjectSignUp u = extractSignUpFromFields();
                             try {
                                 Nagatice.getInstance().goToShopping(u);
                             } catch (IOException ex) {
                                 Logger.getLogger(Shopping_cart.class.getName()).log(Level.SEVERE, null, ex);
                             }
-                        }else{
+                        } else {
 
                         }
                     }
                 }
+
                 @Override
                 public void Update() {
-                    ProjectSignUp u =extractSignUpFromFields();
+                    ProjectSignUp u = extractSignUpFromFields();
                     try {
                         Nagatice.getInstance().goToShopping(u);
                     } catch (IOException ex) {
@@ -228,14 +236,14 @@ public class Shopping_cart {
         int column = 0;
         int row = 1;
         int b = 0;
-        
+
         try {
             for (int i = 0; i < ordr.size(); i++) {
                 FXMLLoader fxmlLoader = new FXMLLoader();
                 fxmlLoader.setLocation(getClass().getResource("OrderItem.fxml"));
                 AnchorPane anchorPane = fxmlLoader.load();
                 OrderItem itemController = fxmlLoader.getController();
-                itemController.setData(ordr.get(i), pro.get(i) , orderlis);
+                itemController.setData(ordr.get(i), pro.get(i), orderlis);
                 b += itemController.getPrice(ordr.get(i));
                 listProductID.add(itemController.getProductID(ordr.get(i)));
                 listQuantity.add(itemController.getQuantity(ordr.get(i)));
@@ -259,8 +267,8 @@ public class Shopping_cart {
         } catch (IOException e) {
         }
     }
-    
-    public  boolean delete(String b) {
+
+    public boolean delete(String b) {
         String sql = "DELETE FROM ShoppingCart WHERE productID = ?";
         try (
                 Connection conn = DbProject.getConnection();
@@ -273,7 +281,7 @@ public class Shopping_cart {
             if (rowDeleted == 1) {
                 return true;
             } else {
-                
+
                 return false;
             }
 
@@ -282,8 +290,9 @@ public class Shopping_cart {
             return false;
         }
     }
-    
-    private Order extactFromfiled(){
+
+    // Order
+    private Order extactFromfiled() {
         Order orda = new Order();
         orda.setAccount(user.getText());
         orda.setTotalPrice(Integer.parseInt(sote.getText()));
@@ -292,59 +301,77 @@ public class Shopping_cart {
         orda.setDate(b);
         return orda;
     }
-    
-     public void  selectShoping( String a , String c){
+
+    public void selectShoping(String a, String c) {
         String sql = "SELECT OrderID FROM  Orders WHERE Client_ID  = ? and total_price = ? ";
         try (Connection con = DbProject.getConnection();
-             PreparedStatement stmt = con.prepareStatement(sql);
-             ){
+                PreparedStatement stmt = con.prepareStatement(sql);) {
             stmt.setString(1, a);
             stmt.setInt(2, Integer.parseInt(c));
             ResultSet rs = stmt.executeQuery();
-            while(rs.next()){
-                orderid.setText(Integer.toString(rs.getInt("OrderID")));
+            while (rs.next()) {
+                listOrderId.add(Integer.toString(rs.getInt("OrderID")));
             }
         } catch (Exception e) {
         }
-     }
-      
-    public void insert(String c , String b ,int d) throws SQLException {
+    }
+
+    // Order Detail
+    public boolean selectOrderDetail(String a) {
+        String sql = "SELECT * FROM  order_detail WHERE OrderID = ? ";
+        try (Connection con = DbProject.getConnection();
+                PreparedStatement stmt = con.prepareStatement(sql);) {
+
+            stmt.setInt(1, Integer.parseInt(a));
+            ResultSet rs = stmt.executeQuery();
+            if (rs.next()) {
+                return true;
+            } else {
+                return false;
+            }
+        } catch (Exception e) {
+            return false;
+        }
+    }
+
+    public void insert(String c, String b, int d) throws SQLException {
         String sql = "INSERT INTO order_detail (OrderID, ProductID, Quantity) "
-               + "VALUES ( ?, ?, ?)" 
+                + "VALUES ( ?, ?, ?)"
                 + "LIMIT 1";
         ResultSet key = null;
         try (
                 Connection connect = DbProject.getConnection();
-                PreparedStatement stmt = connect.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
-                ) {
+                PreparedStatement stmt = connect.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);) {
             stmt.setInt(1, Integer.parseInt(c));
             stmt.setInt(2, Integer.parseInt(b));
             stmt.setInt(3, d);
-           
+
             int rowInserted = stmt.executeUpdate();
             if (rowInserted == 1) {
-               
+
             } else {
                 System.out.println("No Product inserted");
-                
+
             }
         } catch (Exception e) {
             System.err.println(e);
-            
+
         }
     }
-     private boolean validation(){
-            if(Integer.parseInt(sote.getText()) <=0 ){
-                Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-                    alert.setHeaderText("Trong giỏ của bạn không có sản phẩm nào");
-                    alert.setTitle("Lưu ý");
-                    Optional<ButtonType> confirmationResponse
-                            = alert.showAndWait();
-                    if (confirmationResponse.get() == ButtonType.OK) {
-                       
-                    }
-                 return false;
+
+    // validation
+    private boolean validation() {
+        if (Integer.parseInt(sote.getText()) <= 0) {
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setHeaderText("Trong giỏ của bạn không có sản phẩm nào");
+            alert.setTitle("Lưu ý");
+            Optional<ButtonType> confirmationResponse
+                    = alert.showAndWait();
+            if (confirmationResponse.get() == ButtonType.OK) {
+
             }
-            return true ;
+            return false;
+        }
+        return true;
     }
 }

@@ -18,6 +18,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Text;
 
 /**
@@ -59,10 +60,10 @@ public class Client_passoword {
     @FXML
     private JFXButton backsetting;
     
-     @FXML
-    void btnsetting(ActionEvent event) throws IOException {
-        ProjectSignUp setting = extractChangePasswordFromFields();
-        Nagatice.getInstance().goToSeting(setting);
+    @FXML
+    void back(MouseEvent event) throws IOException {
+        ProjectSignUp p = extractPasswordFromFields();
+        Nagatice.getInstance().goToChoose(p);
     }
     @FXML
     void btnChangePassword(ActionEvent event) {

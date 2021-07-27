@@ -15,14 +15,17 @@ import com.jfoenix.controls.JFXTextField;
 import java.io.IOException;
 import java.math.BigInteger;
 import java.security.MessageDigest;
-import java.util.Optional;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javafx.animation.PauseTransition;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
-import javafx.scene.control.ButtonType;
 import javafx.scene.control.ComboBox;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
+import javafx.util.Duration;
 
 /**
  *
@@ -51,9 +54,9 @@ public class FunctionLogin {
     @FXML
     private Text error1;
     @FXML
-    private Text errors5;
-    @FXML
     private ComboBox<String> Sign;
+    @FXML
+    private ImageView loading;
     @FXML
     void btnLogin(ActionEvent event) throws IOException {
         try{
@@ -63,28 +66,44 @@ public class FunctionLogin {
                 boolean Requierd = psd.LoginAdmin(login);
                 if(requierd){
                     if(Sign.getSelectionModel().getSelectedItem().toString() == "Admin"){
-                        errors5.setText("Bạn không có quyền hạn");
+                        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                        alert.setHeaderText(null);
+                        alert.setContentText("Bạn không đủ quyền hạn !");
+                        alert.show();
+                        
                     }else if(Sign.getSelectionModel().getSelectedItem().toString() == "Client"){
-                        Nagatice.getInstance().goToClient(login);
+                        loading.setVisible(true);
+                        PauseTransition pt = new PauseTransition();
+                        pt.setDuration(Duration.seconds(2));
+                        pt.setOnFinished(e -> {
+                             try {
+                                 Nagatice.getInstance().goToChoose(login);
+                             } catch (IOException ex) {
+                                 Logger.getLogger(FunctionLogin.class.getName()).log(Level.SEVERE, null, ex);
+                             }
+                        });
+
+                        pt.play();  
                     }
                 }else if(Requierd){
                     if(Sign.getSelectionModel().getSelectedItem().toString() == "Admin"){
                         Nagatice.getInstance().goToIndexProduct();
                     }else if(
                         Sign.getSelectionModel().getSelectedItem().toString() == "Client"){
-                        Nagatice.getInstance().goToClient(login);
+                        Nagatice.getInstance().goToChoose(login);
                     }  
                 } else{
-                    errors5.setText("Này anh bạn : tài khoản và mật khẩu sai rồi");
+                    Alert alert = new Alert(Alert.AlertType.ERROR);
+                    alert.setHeaderText(null);
+                    alert.setContentText("Mật khẩu hoặc tài khoản không chính xác !");
+                    alert.show();
                 }
             }
         }catch(Exception  e){
             System.err.println(e.getMessage());
-            
-          
         }
     }
-
+  
     @FXML
     void btnSingup(ActionEvent event) throws IOException {
        Nagatice.getInstance().goSingup();
@@ -165,7 +184,9 @@ public class FunctionLogin {
         Sign.getItems().add("Admin");
         
         account.setText("namoizoioi@gmail.com");
-        password.setText("987654321");
+        password.setText("0335795257");
+        loading.setVisible(false);
+        
     }
     private String md5(String a){
         try {

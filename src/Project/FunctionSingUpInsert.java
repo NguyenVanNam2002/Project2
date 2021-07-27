@@ -184,7 +184,13 @@ public class FunctionSingUpInsert {
             error4.setText("Your Phone not empty");
             return false; 
         }else{
-            error4.setText("");
+            try {
+                Integer.parseInt(phone.getText());
+                error4.setText("");
+            } catch (NumberFormatException e) {
+                error4.setText("Price is not character !");
+                return false;
+            }
         }
         if(phone.getText().length() != 10 ){
             error4.setText("Your Phone Number not equals 10");

@@ -14,7 +14,7 @@ import javafx.stage.Stage;
  * @author Admin
  */
 public class InPlay extends Application {
-    
+    public static boolean IS = false;
     @Override
     public void start(Stage primaryStage) throws IOException {
         primaryStage.resizableProperty().setValue(Boolean.FALSE);

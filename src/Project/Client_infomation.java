@@ -17,6 +17,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
 
@@ -59,19 +60,12 @@ public class Client_infomation {
     private Text errors11;
     @FXML
     private Text succes;
-    @FXML
-    void btnmenu(ActionEvent event) throws IOException {
-        ProjectSignUp menus = extractPasswordFromFields();
-        Nagatice.getInstance().goToClient(menus);
-        
-    }
 
     @FXML
-    void btnsetting(ActionEvent event) throws IOException {
-        ProjectSignUp setting = extractPasswordFromFields();
-        Nagatice.getInstance().goToSeting(setting);
+    void back(MouseEvent event) throws IOException {
+        ProjectSignUp p = extractPasswordFromFields();
+        Nagatice.getInstance().goToChoose(p);
     }
-
     @FXML
     void btnupdateInformation(ActionEvent event) {
         try {
@@ -135,7 +129,13 @@ public class Client_infomation {
             errors1.setText("Your Phone not empty");
             return false; 
         }else{
-            errors1.setText("");
+           try {
+                Integer.parseInt(phone.getText());
+                errors1.setText("");
+            } catch (NumberFormatException e) {
+                errors1.setText("Price is not character !");
+                return false;
+            }
         }
         if(phone.getText().length() != 10 ){
             errors1.setText("Your Phone Number not equals 10");

@@ -34,14 +34,11 @@ public class Nagatice {
     public static final String PRODUCT_EDIT_FXML = "ProductEditUI.fxml";
     public static final String SHOPPING_ADMIN_FXML = "Admin_ShoppingCart.fxml";
     // Client
-    public static final String CLIENT_FXML = "Client_user.fxml";
     public static final String CHOOSE_FXML = "Choose.fxml";
     public static final String SETTING_FXML = "Client_Settings.fxml";
     public static final String PASSWORD_FXML = "Client_Password.fxml";
     public static final String INFORMATION_FXML = "Client_Infomation.fxml";
-    public static final String VIEWC2_FXML = "Client_ViewC2.fxml";
     public static final String SEARCH_FXML = "Choose.fxml";
-    public static final String FEED_BACK_CLIENT_FXML = "FXML.fxml";
     public static final String SHOPPING_CLIENT_FXML = "Shoping_Cart.fxml";
     
 
@@ -121,16 +118,7 @@ public class Nagatice {
     }
     
    //Client
-    public void goTo() throws IOException {
-        this.goTo(CLIENT_FXML);
-    }
-    
-    public void goToClient(ProjectSignUp p) throws IOException {
-        this.goTo(CLIENT_FXML);
-        Client_Controller ctrl = loader.getController();
-        ctrl.initialize(p);
-    }
-    
+  
     public void goToSearch(ProjectSignUp p, Product d) throws IOException {
         this.goTo(SEARCH_FXML);
         Client_ChooseController  ctrl = loader.getController();
@@ -145,22 +133,6 @@ public class Nagatice {
     public void goToChoose(ProjectSignUp p ) throws IOException {
         this.goTo(CHOOSE_FXML);
         Client_ChooseController ctrl = loader.getController();
-        ctrl.initialize(p);
-    }
-    public void goToViewC2(ProjectSignUp p, Product d) throws IOException {
-        this.goTo(VIEWC2_FXML);
-        Client_ViewC2Function  ctrl = loader.getController();
-        ctrl.initialize(p, d);
-    }
-        public void goFeedbackClient(ProjectSignUp p, Product d) throws IOException {
-        this.goTo(FEED_BACK_CLIENT_FXML);
-        Client_feedback ctrl = loader.getController();
-        ctrl.initialize(p, d);
-    }
-   
-    public void goToSeting(ProjectSignUp p) throws IOException {
-        this.goTo(SETTING_FXML);
-        Client_setting ctrl = loader.getController();
         ctrl.initialize(p);
     }
     public void goToChangePassword(ProjectSignUp p) throws IOException {

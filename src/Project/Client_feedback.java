@@ -10,7 +10,6 @@ import Project.Data.Product;
 import Project.Data.ProjectSignUp;
 import Project.DbProject.DbProject;
 import com.jfoenix.controls.JFXButton;
-import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -23,7 +22,6 @@ import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Text;
 
 /**
@@ -36,12 +34,8 @@ public class Client_feedback {
     @FXML
     private Text user;
 
-    @FXML
-    private Text id;
 
-    @FXML
-    private JFXButton Home;
-
+ 
     @FXML
     private ImageView imageview;
 
@@ -58,28 +52,6 @@ public class Client_feedback {
      @FXML
     private TextField productname;
     @FXML
-    void btnHome(ActionEvent event) throws IOException {
-        ProjectSignUp menus = extractPasswordFromFields();
-        Product pro = extractProductFromFields();
-        Nagatice.getInstance().goToViewC2(menus,pro);
-    }
-     @FXML
-    void btnShopping(MouseEvent event) throws IOException {
-        ProjectSignUp osu = extractPasswordFromFields();
-        Nagatice.getInstance().goToShopping(osu);
-    }
-      @FXML
-    void btnSearchClick(ActionEvent event) throws IOException {
-        ProjectSignUp account = extractPasswordFromFields();
-        Product name = extractSearchFromFields();
-        Nagatice.getInstance().goToSearch(account, name);
-    }
-     private Product extractSearchFromFields() {
-        Product sign = new Product();
-        sign.setName(productname.getText());
-        return sign;
-    }
-    @FXML
     void btnfeedback(ActionEvent event) {
         
         try {
@@ -93,28 +65,7 @@ public class Client_feedback {
         }
         
     }
-     private ProjectSignUp extractPasswordFromFields() {
-        ProjectSignUp sign = new ProjectSignUp(); 
-        sign.setAccount(user.getText());
-        return sign;
-    }
-      private Product extractProductFromFields() {
-        Product sign = new Product();
-        sign.setName(nameproduct.getText());
-        return sign;
-    }
-     public void initialize(ProjectSignUp p , Product d){
-        this.psu = p;
-        this.pd = d;
-        if(this.psu != null){
-            user.setText(p.getAccount());  
-        }
-        if(this.pd != null){
-            nameproduct.setText(d.getName());
-            infomaitonselect(d.getName());
-        }
-    }
-     public void initialize(){
+    public void initialize(){
       nameproduct.setVisible(false);
     }
     private Feedback infomationinsert(){
@@ -142,6 +93,7 @@ public class Client_feedback {
              stmt.setString(1, user);
             try (ResultSet rs = stmt.executeQuery()) {
                 if(rs.next()){
+                    
                     Image myimage = new Image(getClass().getResourceAsStream(rs.getString("p.ImgLink")));
                     imageview.setImage(myimage);
                     
@@ -151,5 +103,10 @@ public class Client_feedback {
             con.close();
         } catch (Exception e) {
         }
+    }
+    public void Setdata(Product a){
+        this.pd = a;
+        nameproduct.setText(a.getName());
+        infomaitonselect(a.getName());
     }
 }

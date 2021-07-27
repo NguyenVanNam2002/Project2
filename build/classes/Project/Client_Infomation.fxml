@@ -33,7 +33,7 @@
       </Pane>
       <ImageView fitHeight="767.0" fitWidth="1299.0" layoutY="100.0" pickOnBounds="true">
          <image>
-            <Image url="@../img/Screen-Shot-2019-02-22-at-10.19.04-AM.jpg" />
+            <Image url="@../hinh-nen-may-tinh-don-gian.jpg" />
          </image>
       </ImageView>
       <JFXButton fx:id="updateinformation" layoutX="483.0" layoutY="694.0" onAction="#btnupdateInformation" prefHeight="74.0" prefWidth="374.0" style="-fx-background-color: gray;" text="Cập nhập thông tin" textFill="WHITE">
@@ -60,8 +60,7 @@
       <JFXTextField fx:id="address" layoutX="511.0" layoutY="486.0" prefHeight="31.0" prefWidth="317.0" style="-fx-background-color: white;" />
       <FontAwesomeIconView fill="WHITE" glyphName="PHONE" layoutX="453.0" layoutY="430.0" size="45" text="" />
       <FontAwesomeIconView fill="WHITE" glyphName="HOME" layoutX="453.0" layoutY="514.0" size="45" text="" />
-      <JFXButton fx:id="backsetting" layoutX="21.0" layoutY="150.0" onAction="#btnsetting" prefHeight="46.0" prefWidth="92.0" style="-fx-background-color: gray;" text="Quay Lại" textFill="WHITE" />
-      <Text fx:id="succes" fill="RED" layoutX="407.0" layoutY="653.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="373.99999433755875">
+      <Text fx:id="succes" fill="RED" layoutX="380.0" layoutY="647.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="608.9999943375587">
          <font>
             <Font size="30.0" />
          </font>
@@ -69,5 +68,10 @@
       <Text fx:id="errors" fill="RED" layoutX="511.0" layoutY="342.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="316.99999572336674" />
       <Text fx:id="errors1" fill="RED" layoutX="511.0" layoutY="440.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="316.99999572336674" />
       <Text fx:id="errors11" fill="RED" layoutX="511.0" layoutY="533.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="316.99999572336674" />
+      <ImageView fitHeight="101.0" fitWidth="150.0" layoutX="7.0" layoutY="101.0" onMouseClicked="#back" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../back_100px.png" />
+         </image>
+      </ImageView>
    </children>
 </AnchorPane>

@@ -14,7 +14,7 @@
       <Text fx:id="price" layoutX="881.0" layoutY="68.0" strokeType="OUTSIDE" strokeWidth="0.0" />
       <Text layoutX="953.0" layoutY="68.0" strokeType="OUTSIDE" strokeWidth="0.0" text="VNĐ" />
       <CheckBox fx:id="check" layoutX="13.0" layoutY="53.0" mnemonicParsing="false" onMouseClicked="#click" prefHeight="21.0" prefWidth="9.0" />
-      <Spinner fx:id="spinner" layoutX="507.0" layoutY="46.0" onMouseClicked="#quantityUpdate" />
+      <Spinner fx:id="spinner" editable="true" layoutX="507.0" layoutY="46.0" onMouseClicked="#quantityUpdate" />
       <Text fx:id="id" layoutY="106.0" strokeType="OUTSIDE" strokeWidth="0.0" />
       <Text fx:id="user" layoutX="13.0" layoutY="20.0" strokeType="OUTSIDE" strokeWidth="0.0" />
       <ImageView fitHeight="31.0" fitWidth="68.0" layoutX="1114.0" layoutY="46.0" onMouseClicked="#Delete" pickOnBounds="true" preserveRatio="true">

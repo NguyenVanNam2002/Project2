@@ -22,6 +22,7 @@ import javafx.collections.ObservableList;
 public class OrderDAOImpl implements OrderDAO{
     DbType data = DbType.SQL;
     
+    // shopping Cart
     public  Order insert(Order order){
         String sql = "INSERT INTO ShoppingCart(productID, accounts , quantity , Total_price )"
                 + " VALUES (? , ? , ? , ? )";
@@ -53,6 +54,37 @@ public class OrderDAOImpl implements OrderDAO{
     
     }
    
+    public  boolean update(Order o){
+        String sql = "UPDATE ShoppingCart SET "
+                + " Total_price = ? ,"
+                + " quantity = ? "
+                + "WHERE productID = ? ";
+
+        try (
+                Connection conn = DbProject.getConnection();
+                PreparedStatement stmt = conn.prepareStatement(sql);
+                ) {
+
+            stmt.setInt(1, o.getTotalPrice());
+            stmt.setInt(2, o.getQuantity());
+            stmt.setInt(3, Integer.parseInt(o.getProductID()));
+            
+
+            int rowUpdated = stmt.executeUpdate();
+
+            if (rowUpdated == 1) {
+                return true;
+            } else {
+                System.err.println("No order updated");
+                return false;
+            }
+
+        } catch (Exception e) {
+            System.err.println(e);
+            return false;
+        }
+    }
+    // Order
     public  Order insertOrder(Order order){
         String sql = "INSERT INTO Orders(Client_ID , total_price, dates) "
                 + " VALUES ( ? , ? , ? )";
@@ -86,63 +118,6 @@ public class OrderDAOImpl implements OrderDAO{
         }
     
     }
-    
-    public  ObservableList<Order> selectShopingcartALL(){
-    String sql = "SELECT o.*,p.* FROM  Orders as o join products as p on o.ProductID = p.ProductID ";
-        ObservableList<Order> ordr = FXCollections.observableArrayList();
-        try (Connection con = DbProject.getConnection(data);
-             Statement stmt = con.createStatement();
-             ResultSet rs = stmt.executeQuery(sql);){
-            
-            while(rs.next()){
-                Order o = new Order();
-                o.setID(rs.getInt("o.OrderID"));
-                o.setProductID(rs.getString("p.Name"));
-                o.setAccount(rs.getString("o.Client_ID"));
-                o.setQuantity(rs.getInt("o.quantity"));
-                o.setTotalPrice(rs.getInt("o.total_price"));
-                o.setDate(rs.getString("o.dates"));
-                ordr.add(o);
-            
-            }
-            
-        } catch (Exception e) {
-        }
-        return ordr;
-    
-    }
-    
-    public  boolean update(Order o) {
-        String sql = "UPDATE ShoppingCart SET "
-                + " Total_price = ? ,"
-                + " quantity = ? "
-                + "WHERE productID = ? ";
-
-        try (
-                Connection conn = DbProject.getConnection();
-                PreparedStatement stmt = conn.prepareStatement(sql);
-                ) {
-
-            stmt.setInt(1, o.getTotalPrice());
-            stmt.setInt(2, o.getQuantity());
-            stmt.setInt(3, Integer.parseInt(o.getProductID()));
-            
-
-            int rowUpdated = stmt.executeUpdate();
-
-            if (rowUpdated == 1) {
-                return true;
-            } else {
-                System.err.println("No order updated");
-                return false;
-            }
-
-        } catch (Exception e) {
-            System.err.println(e);
-            return false;
-        }
-    }
-    
     
 
 }

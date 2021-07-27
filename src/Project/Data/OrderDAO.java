@@ -12,8 +12,10 @@ import javafx.collections.ObservableList;
  * @author Admin
  */
 public interface OrderDAO {
+    //Shopping cart
     public  Order insert(Order order);
-    public  Order insertOrder(Order order);
-    public  ObservableList<Order> selectShopingcartALL();
     public  boolean update(Order o);
+    
+    // Order
+    public  Order insertOrder(Order order);
 }
